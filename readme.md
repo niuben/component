@@ -52,6 +52,12 @@ ReactDom.render(<Nav />, document.getElementById("demo1"));
 |title | 标题 | string| 首页| 
 |goBack | 返回函数 | event | null| 
 
+## 快速开始
+
+## 调式Node端代码
+1. 打开Chrome浏览器的开发者工具;
+2. node --inspect --inspect-brk getjson.js
 
 ### 版本历史
-* v0.1.0: 展示组件列表和查看组件详情;
+* v0.1.0: 查看组件列表和详情;
+* v0.2.0: 增加在线调试功能;

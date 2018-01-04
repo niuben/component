@@ -46,7 +46,6 @@
   <script src="./static/require.js"></script>
   <script src="./data.js"></script>
   <script>
-
     // 根据message事件
     function receiveMessage(msg, a, b, c){
         window.modules = msg.data;
@@ -54,10 +53,8 @@
         console.log(event, a, b, c);
         // alert(event);
     }
-    window.addEventListener("message", receiveMessage, false);
-    
+    window.addEventListener("message", receiveMessage, false);    
     console.log(modules);
     evalModule(findModule("./app.js")["file"]["./app.js"]);
-
   </script>
 </html>

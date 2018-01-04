@@ -31,18 +31,12 @@
         font-size: 20px;
       }
       #markdown {
-        margin-top: 10px;
-        /* border-bottom: 1px solid #EEE; */
+        border-bottom: 1px solid #EEE;
       }
-      
-      #preview {
-        display: none;
-        margin-top: 10px;
-      }
-      /* #editor, #preview {
+      #editor, #preview {
         float: left;
         width: 50%;
-      } */
+      }
       
     </style>
   </head>
@@ -52,11 +46,10 @@
     <!-- <h1>导航栏</h1> -->
   </div>
   <div id="markdown" class="markdown-body"></div>
-  <div id="preview" class="markdown-body">
-    <h3>运行结果</h3>    
+  <div id="editor" style="height: 200px;"></div>  
+  <div id="preview">
     <div id="root"></div>
   </div>
-  
   
   <!-- 执行代码相关资源  -->
   <script src="./static/dll.js"></script>
@@ -69,30 +62,23 @@
   
   <!-- Markdown相关资源 -->
   <script src="./static/markdown.js"></script>  
-  
-  
+
+  <!-- 编辑器相关资源 -->
+  <script src="./static/editor/ace.js"></script>  
+
   <script>
     //初始化运行代码、ReadMe和编辑器
-    // var code = findModule("./app.js")["file"]["./app.js"];
-    // var dropdownComponent = findModule("./dropdown.js")["file"];
-    // var componentCode = dropdownComponent["./dropdown.js"];
+    var code = findModule("./app.js")["file"]["./app.js"];
+    var dropdownComponent = findModule("./dropdown.js")["file"];
+    var componentCode = dropdownComponent["./dropdown.js"];
     // var readme = navComponent["./readme.md"];
     
     /*
     * 显示markdown文本
     * 点击代码区域将内容赋值到编辑器中 
     */ 
-    // $.get("./static/data/readme.md", function(msg){
-      
-      var markdown = findModule("readme")["file"]["readme"];      
-      $("#markdown").html(marked(markdown));
-
-      var code = document.getElementsByClassName("lang-js")[0].innerHTML;      
-	    code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-
-      evalModule(transformCode(code));
-      $("#preview").show();
-
+    $.get("./static/data/readme.md", function(msg){
+      $("#markdown").html(marked(msg));
       // $("pre code").each(function(index){
       //   $(this).attr("id", "code" + index);
       //   // $("#code" + index).before('<div id="demo' + index + '"></div>');
@@ -101,30 +87,30 @@
       //   var code = $(this).text();
       //   evalModule(transformCode(code));
       // })
-    // });
 
-    // $("body").on("click", "pre", function(e){
-    //     if($(this).find("code").length > 0){          
-    //       editor.setValue($(this).text(), 1);
-    //     }        
-    // })
+    });
+    $("body").on("click", "pre", function(e){
+        if($(this).find("code").length > 0){          
+          editor.setValue($(this).text(), 1);
+        }        
+    })
 
     /*
     * 初始化编辑;
     * 给编辑器增加change监听;
     */
     // $("#editor").html(componentCode);
-    // var editor = ace.edit("editor");        
-    // editor.setValue(code, 1);    
-    // editor.setShowPrintMargin(false);
+    var editor = ace.edit("editor");        
+    editor.setValue(code, 1);    
+    editor.setShowPrintMargin(false);
     
-    // editor.on("change", function(e){
-    //   console.log(1);  
-    //   code = editor.getValue();
-    //   evalModule(transformCode(code));
-    // });
+    editor.on("change", function(e){
+      console.log(1);  
+      code = editor.getValue();
+      evalModule(transformCode(code));
+    });
 
-    
+    evalModule(transformCode(code));
   </script>
   </body>
 </html>

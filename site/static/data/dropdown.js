@@ -2,10 +2,9 @@ var modules = {
   component: [
     {
       id: "0",
-      name: "app",
+      name: "readme",
       file: {
-        "./app.js":
-          'import React from "react";\nimport ReactDom from "react-dom";\nimport Dropdown from "./dropdown.js";\n ReactDom.render(<Dropdown infor={{title: "时间列表", list: [{            name: 1,             value: 1        }, {            name: 2,             value: 2        }, {            name: 3,             value: 3        },{            name: 4,             value: 4        }, {            name: 5,             value: 5        }, {            name: 6,             value: 6        },{            name: 7,             value: 7        }, {            name: 8,             value: 8        }, {            name: 9,             value: 9        }]}} />, document.getElementById("root"));'
+        "readme": '## 时间范围选择（下拉框）\n通过两个下拉框选择时间\n## 安装\n```\nnpm install dropdown\n```\n### 场景\n在一个固定时间段内选择开始时间和结束时间；\n### API\n| 属性名 | 说明 | 类型 | 默认值 |\n| ------| ------ | ------ | ----- |\n|title|标题|string|请选择时间范围|\n|tips|时间范围说明|string|请选择最近一个月|\n### 代码展示\n```js\nimport React from "react";\nimport ReactDom from "react-dom";\nimport Dropdown from "./dropdown.js";\nReactDom.render(<Dropdown infor={{\n title: "学生列表",\n list: [\n { name: "张三", value: 1 },\n { name: "李四", value: 2 },\n { name: "王五", value: 3 }\n ]\n }}\n/>, document.getElementById("root"));\n```'
       }
     },
     {
