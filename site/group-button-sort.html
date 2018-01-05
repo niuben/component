@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>
+    <link rel="stylesheet" href="./static/github-theme.css" />
+    <title>group-button-sort</title>
+    <style>
+      * {
+          padding: 0px;
+          margin: 0px;
+      }      
+      ul, li {
+          list-style: none;
+      }
+      #top {
+        position: relative;
+        height: 60px;
+        line-height: 60px;
+        box-shadow: 0 0 5px 0 #a5a5a5;
+      }
+      #top span {
+        position: absolute;
+        width: 60px;
+        height: 60px;        
+        text-align: center;
+      }
+      #top h1 {
+        text-align: center;
+        font-size: 20px;
+      }
+      #markdown {
+        margin-left: 10px;
+        margin-top: 10px;
+        /* border-bottom: 1px solid #EEE; */
+      }
+      
+      #preview {
+        display: none;
+        margin-top: 10px;
+      }
+      /* #editor, #preview {
+        float: left;
+        width: 50%;
+      } */
+      
+    </style>
+  </head>
+  <body>    
+  <div id="top">
+    <span>首页</span>
+    <!-- <h1>导航栏</h1> -->
+  </div>
+  <div id="markdown" class="markdown-body"></div>
+  <div id="preview" class="markdown-body">
+    <h3>运行结果</h3>    
+    <div id="root"></div>
+  </div>
+  
+  
+  <!-- 执行代码相关资源  -->
+  <script src="./static/dll.js"></script>
+  <script src="./static/babel.min.js"></script>
+  <script src="./static/jquery.js"></script>
+  <script src="./static/file.js"></script>
+  <script src="./static/module.js"></script>
+  <script src="./static/require.js"></script>
+  <script src="./static/data/group-button-sort.js?v=1"></script>
+  
+  <!-- Markdown相关资源 -->
+  <script src="./static/markdown.js"></script>  
+  <script src="./static/sass/sass.js"></script>
+  
+  <script>
+    //初始化运行代码、ReadMe和编辑器
+    // var code = findModule("./app.js")["file"]["./app.js"];
+    // var dropdownComponent = findModule("./dropdown.js")["file"];
+    // var componentCode = dropdownComponent["./dropdown.js"];
+    // var readme = navComponent["./readme.md"];
+    
+    /*
+    * 显示markdown文本
+    * 点击代码区域将内容赋值到编辑器中 
+    */ 
+    // $.get("./static/data/readme.md", function(msg){
+      var sass = new Sass();
+
+      var markdown = findModule("readme")["file"]["readme"];      
+      $("#markdown").html(marked(markdown));
+
+      var code = document.getElementsByClassName("lang-js")[0].innerHTML;
+	    code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+
+      evalModule(transformCode(code));
+      $("#preview").show();
+
+      // $("pre code").each(function(index){
+      //   $(this).attr("id", "code" + index);
+      //   // $("#code" + index).before('<div id="demo' + index + '"></div>');
+      //   $(this).parent().before('<div id="demo' + index + '" style="margin-bottom: 10px;"></div>');
+                
+      //   var code = $(this).text();
+      //   evalModule(transformCode(code));
+      // })
+    // });
+
+    // $("body").on("click", "pre", function(e){
+    //     if($(this).find("code").length > 0){          
+    //       editor.setValue($(this).text(), 1);
+    //     }        
+    // })
+
+    /*
+    * 初始化编辑;
+    * 给编辑器增加change监听;
+    */
+    // $("#editor").html(componentCode);
+    // var editor = ace.edit("editor");        
+    // editor.setValue(code, 1);    
+    // editor.setShowPrintMargin(false);
+    
+    // editor.on("change", function(e){
+    //   console.log(1);  
+    //   code = editor.getValue();
+    //   evalModule(transformCode(code));
+    // });
+
+  </script>
+  </body>
+</html>
