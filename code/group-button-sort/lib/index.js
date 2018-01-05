@@ -6,21 +6,13 @@ export default class Group extends React.Component {
         super(props);
         this.state = {
             value: null,
-            list: [{
-                name: "兑换量",
-                value: "exchange_num",
+            list: this.props.list != undefined ? this.props.list : [{
+                name: "选项1",
+                value: "0",
                 order: "desc"
             },{
-                name: "积分",
-                value: "price",
-                order: "desc"
-            },{
-                name: "上架时间",
-                value: "create_time",
-                order: "desc"
-            },{
-                name: "上架时间",
-                value: "create_time",
+                name: "选项2",
+                value: "1",
                 order: "desc"
             }]
         };

@@ -1,54 +1,47 @@
 import React from "react";
-import style from  "./index.scss";
+import "./index.scss";
+import "./reset.scss";
 const title = [{
-    name: "选择礼品",
-    text: "1"
+  name: "步骤一",
+  text: "1"
 },{
-  name: "填写信息",
+  name: "步骤二",
   text: "2"
 },{
-  name: "核对信息",
+  name: "步骤三",
   text: "3"
 },{
-  name: "提交成功",
+  name: "步骤四",
   text: "4"
 }];
 
 export default class Title extends React.Component {
   constructor(props){
     super(props);
-    this.state  = {
-      step: 5
-    };
     this.title = this.props.title || title; 
   } 
   nextstep(index) {
-
-    if( this.state.step > index || this.state.step === title.length - 1 ) {
-      return style.active + " " + style.current;
-    } else if(this.state.step === index) {
-      return style.current;
+   
+    if( this.props.step > index || this.props.step === title.length - 1 ) {
+      return 'active last'
+    } else if(this.props.step === index) {
+      return 'active'
     } 
   }
 
   render() {
     return(
-      <div className={style.stepBar}>
-        <ul className={style.title + " " + style.clearfix}>
-          {
-              this.title.map((item, index) =>{
-                return <li className={this.nextstep(index)} key={index}>
-                  <div style={{position: "relative"}}>
-                    <h3>{item.name}</h3>
-                    <p>
-                      <i>{item.text}</i>
-                      <em></em>
-                    </p>
-                  </div>
-              </li>
-              })
-          }
-          </ul>
+      <div className="cartbar">
+        <ul className="title clearfix">
+        {
+            this.title.map((item, index) =>{
+              return <li key={index} className={ this.nextstep(index)}>
+                <h3>{item.name}</h3>
+                <p><i>{item.text}</i></p>
+            </li>
+            })
+        }
+        </ul>
       </div>
     )
   }

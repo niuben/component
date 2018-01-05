@@ -20,10 +20,17 @@ function parseModule(name){
     var entryContent = FileObj.read(entryPath);
     obj[entry] = entryContent;
 
+    //获取readme文档
+    var readmePath = modulePath + "/" + "readme.md";
+    if(FileObj.isExit(readmePath)){
+        obj["readme"] = FileObj.read(readmePath);
+    }
+
     var fileObj = parseFile(entryContent, Path.dirname(entryPath)); 
     
     //将文件对象复制存储对象中
     obj = contactObj(obj, fileObj);
+
 
     console.log("modules", obj);
     return obj;
@@ -104,6 +111,18 @@ function getPathFromCode(code){
     return path;
 }
 
-var fileJSON = parseModule("range-select");
-FileObj.create("../site/static/data/range-select.json", JSON.stringify(fileJSON));
+var modulesArr = ["dropdown", "stepbar", "group-button-sort"];
+modulesArr.map(function(moduleName){
+    var module = {
+        component: [{
+            id: "1",
+            name: moduleName,
+            file: {}
+        }]
+    }
+    var fileJSON = parseModule(moduleName);
+    module["component"][0]["file"] = fileJSON;
+    FileObj.create("../site/static/data/" + moduleName + ".js", "var modules= " + JSON.stringify(module));
+});
+
 // console.log(Path.join(getPathFromCode("node_modules/dropdown/lib/index.js"), "b.js"));

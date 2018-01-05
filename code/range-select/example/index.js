@@ -1,4 +1,4 @@
-import "../lib/reset.css";
+import "../lib/reset.scss";
 import React from 'react';
 import { render } from 'react-dom';
 import RangeSelect from "../lib";

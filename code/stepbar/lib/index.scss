@@ -1,68 +1,48 @@
-@import "./color/conf.scss";
-.stepBar {
-    @import "./reset.scss";
-    width: 80%;
-    padding: 0px 80px;
+.cartbar {
+    background-color: #fafafa;
     .title {
         li {
-            position: relative;
             float: left;
-            width: 33.33%;
-        }
-        li:last-child {
-            width: 0px;
+            width: 25%;
         }
         h3 {
-            position: relative;
-            width: 160px;                     
-            margin: 15px 0 15px;
-            margin-left: -80px;
+            margin: 25px 0 20px;
             color: #333;
-            font-size: $font-size-title;
+            font-size: 16px;
             text-align: center;
         }
         p {
             position: relative;
-            em {
-                position: absolute;
-                top: ($circle-size-lg - 4) / 2;
-                width: 100%;
-                height: 4px;
-                background-color: #ccc;
-                z-index: 1;                
-            }            
-            i {
-                position: absolute;
-                top: 0;
-                left: 0;
-                margin-left: -$circle-size-lg / 2;
-                width: $circle-size-lg;
-                height: $circle-size-lg;
-                line-height: $circle-size-lg;
-                color: #fff;
-                font-size: $font-size-lg;
-                text-align: center;
-                border-radius: 50%;
-                background-color: #ccc;
-                z-index: 10;
-            }            
+            width: 100%;
+            height: 3px;
+            background-color: #ccc;
         }
-        li:last-child p em {
-            width: 0;
-            left: 0%;
-        }         
+        i {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            margin-left: -11px;
+            width: 22px;
+            height: 22px;
+            line-height: 22px;
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #ccc;
+        }
         .active {
-            em {
-                background: #3697fd;
-                z-index: 2;
+            p {
+                background: #3697fd url(./cart_bg.jpg) right no-repeat;
             }
-        }
-
-        .current{
             i {
                 background-color: #3697fd;
             }
         }
-        
+        .last {
+            p {
+                background-image: none;
+            }
+        }
     }
 }

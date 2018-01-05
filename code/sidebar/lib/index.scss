@@ -1,4 +1,3 @@
-@import "./color/conf.scss";
 .faq-left {
     float: left;
     width: 198px;
@@ -70,7 +69,7 @@
     }    
 }
 .faq-right {
-    float: left;
+    float: right;
     width: 946px;
     height: 100%;
     .tabText {

@@ -1,11 +1,9 @@
-## 时间范围选择（下拉框）
-通过两个下拉框选择时间
+## 侧边栏
+展示不同的信息
 
 ### 场景
 在一个固定时间段内选择开始时间和结束时间；
 
-### 截图
-![运行截图](http://niuben.github.io/img/range-select.gif)
 
 
 ### API
@@ -13,3 +11,13 @@
 | ------| ------ | ------ | ----- |
 |title|标题|string|请选择时间范围|
 |tips|时间范围说明|string|请选择最近一个月|
+
+
+### 演示代码
+```js
+import React from 'react';
+import { render } from 'react-dom';
+import Sidebar from "./lib/index.js";
+
+render(<Sidebar />, document.getElementById('root'));
+```

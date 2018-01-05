@@ -33,10 +33,10 @@ var config = {
                     loader: "style-loader"
                 },{
                     loader: "css-loader",
-                    options: {
-                        modules: true,
-                        localIdentName: '[hash:5]'
-                    }
+                    // options: {
+                    //     modules: true,
+                    //     localIdentName: '[hash:5]'
+                    // }
                 },{
                     loader: "sass-loader"
                 }

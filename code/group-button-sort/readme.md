@@ -1,15 +1,26 @@
-## 时间范围选择（下拉框）
-通过两个下拉框选择时间
+## 排序按钮组
+点击单个按钮后按钮选中，其他按钮取消选中;
 
 ### 场景
-在一个固定时间段内选择开始时间和结束时间；
+需要进行单选的场景下,比如选择性别
 
-### 截图
-![运行截图](http://niuben.github.io/img/range-select.gif)
-
+### 安装
+```
+    npm install group-button-sort
+    // yarn add group-button-sort
+```
 
 ### API
 | 属性名 | 说明 | 类型 | 默认值 |
 | ------| ------ | ------ | ----- |
-|title|标题|string|请选择时间范围|
-|tips|时间范围说明|string|请选择最近一个月|
+|list|展示数据|Array|[{ name: "选项1" <br/>, value: "0" <br/>, order: "desc"} <br/>,{ name: "选项2" <br/>, value: "1" <br/>,order: "desc"}]|
+
+
+### 演示代码
+```js
+import React from 'react';
+import { render } from 'react-dom';
+import GroupButtonSort from "lib/index.js";
+
+render(<GroupButtonSort />, document.getElementById('root'));
+```

@@ -64,7 +64,6 @@ function getImgUrl(code, path) {
   return code;
 }
 
-
 //文件名
 function getFileName(filePath){
     var fileArr = [],

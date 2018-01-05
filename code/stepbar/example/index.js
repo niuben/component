@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import RangeSelect from "../lib";
+import Stepbar from "../lib";
 
 class Test extends React.Component{
     constructor(props){
@@ -10,7 +10,7 @@ class Test extends React.Component{
         };        
     }
     render(){
-        return <RangeSelect />
+        return <Stepbar step={2} />
     }
 }
 

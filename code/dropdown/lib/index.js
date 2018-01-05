@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.scss";
+import "./reset.css";
 
 export default class Dropdown extends React.Component {
     constructor(props){

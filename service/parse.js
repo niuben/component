@@ -100,6 +100,5 @@ function parseModule(name){
 
 parseModule("stepbar");
 console.log(obj);
-
 // parseFile(code);
 FileObj.create("../site/static/data/stepbar.json", JSON.stringify(modules));
