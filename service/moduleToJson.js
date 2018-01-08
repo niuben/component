@@ -31,6 +31,12 @@ function parseModule(name){
     //将文件对象复制存储对象中
     obj = contactObj(obj, fileObj);
 
+    //将css引用的图片替换为base64
+    for(var path in obj){
+        if(path.indexOf(".css") != -1 || path.indexOf(".scss") != -1){
+            obj[path] = parseImgUrl(obj[path], name);
+        }
+    }
 
     console.log("modules", obj);
     return obj;
@@ -69,6 +75,7 @@ function parseFile(content, currPath){
         var importContent = FileObj.read(importPath);
 
         obj[path] = importContent;
+    
 
         //分析文件内容中import
         var importObj = parseFile(importContent, Path.dirname(importPath));
@@ -111,7 +118,50 @@ function getPathFromCode(code){
     return path;
 }
 
-var modulesArr = ["dropdown", "stepbar", "group-button-sort"];
+/*
+ *  
+*/
+function parseImgUrl(code, componentName) {
+    //如果code等于undefined或者null,直接返回为空
+    if (!code) {
+      return "";
+    }
+  
+    var cssArr = code.split("}");
+  
+    var urlPatten = /url\((.)*\)/gi;
+    var imgBasePath = "../code/";
+  
+    //文件名设定为组件名
+    // var componentName = getFileName(path);
+  
+    //将查找图片
+    for (var i = 0; i < cssArr.length; i++) {
+      var imgArr = cssArr[i].match(urlPatten);
+      if (!imgArr || imgArr.length == 0) {
+        continue;
+      }
+  
+      //获取图片Url
+      var imgUrl = imgArr[0],
+        startPos = imgUrl.indexOf("("),
+        endPos = imgUrl.indexOf(")");
+  
+      var imgName = imgUrl.substr(startPos + 1, endPos - startPos - 1);
+  
+      cssArr[i] = cssArr[i].replace(
+        urlPatten,
+        "url(" + Path.join(imgBasePath, componentName, "/lib/", imgName) + ")"
+      );
+      // console.log("img", imgName);
+    }
+    code = cssArr.join("}");
+    return code;
+  }
+
+
+// var modulesArr = ["dropdown", "stepbar", "group-button-sort"];
+var modulesArr = ["dropdown"];
 modulesArr.map(function(moduleName){
     var module = {
         component: [{
