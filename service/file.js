@@ -5,8 +5,8 @@ function createFile(path, content){
     return fs.writeFileSync(path, content);
 };
 
-function readFile(path) {
-    var buf = fs.readFileSync(path);
+function readFile(path, optin) {
+    var buf = fs.readFileSync(path);    
     return buf.toString();
 }
 

@@ -1,6 +1,6 @@
 var Path = require("path");
 var FileObj = require("./file.js");
-
+var fs = require("fs");
 //获取模块的入口文件
 function parseModule(name){    
     //所有文件存储对象
@@ -33,12 +33,24 @@ function parseModule(name){
 
     //将css引用的图片替换为base64
     for(var path in obj){
-        if(path.indexOf(".css") != -1 || path.indexOf(".scss") != -1){
+        if(path.indexOf(".css") != -1 || path.indexOf(".scss") != -1){                        
+            
+            //将scss转化为css;
+            if(path.indexOf(".scss") != -1){
+                var sass = require("node-sass");
+                var result = sass.renderSync({
+                    data: obj[path]
+                }); 
+                                
+                obj[path] = typeof result == "object" ? result["css"].toString() : obj[path];
+            }
+
+            //将图片进行base64;
             obj[path] = parseImgUrl(obj[path], name);
         }
     }
 
-    console.log("modules", obj);
+    // console.log("modules", obj);
     return obj;
 
 }
@@ -119,7 +131,7 @@ function getPathFromCode(code){
 }
 
 /*
- *  
+ *  将
 */
 function parseImgUrl(code, componentName) {
     //如果code等于undefined或者null,直接返回为空
@@ -130,7 +142,7 @@ function parseImgUrl(code, componentName) {
     var cssArr = code.split("}");
   
     var urlPatten = /url\((.)*\)/gi;
-    var imgBasePath = "../code/";
+    var imgBasePath = Path.join("../code/", componentName, "/lib/");
   
     //文件名设定为组件名
     // var componentName = getFileName(path);
@@ -148,10 +160,13 @@ function parseImgUrl(code, componentName) {
         endPos = imgUrl.indexOf(")");
   
       var imgName = imgUrl.substr(startPos + 1, endPos - startPos - 1);
-  
+      var imgFileUrl = Path.join(imgBasePath, imgName);
+      var imgContent = fs.readFileSync(imgFileUrl);
+      var imgBase64 = "data:image/png;base64," +  new Buffer(imgContent).toString("base64");
+
       cssArr[i] = cssArr[i].replace(
         urlPatten,
-        "url(" + Path.join(imgBasePath, componentName, "/lib/", imgName) + ")"
+        "url(" + imgBase64 + ")"
       );
       // console.log("img", imgName);
     }
@@ -159,9 +174,8 @@ function parseImgUrl(code, componentName) {
     return code;
   }
 
-
-// var modulesArr = ["dropdown", "stepbar", "group-button-sort"];
-var modulesArr = ["dropdown"];
+var modulesArr = ["dropdown", "stepbar", "group-button-sort"];
+// var modulesArr = ["group-button-sort"];
 modulesArr.map(function(moduleName){
     var module = {
         component: [{

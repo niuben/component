@@ -20,19 +20,19 @@ function require(path, baseDir) {
   }
 
   //
-  if(path.indexOf(".css") != -1) {
+  // if(path.indexOf(".css") != -1) {
     // var fileName = getFileName(path);
-    code = evalCssModule(code, path);
+    // code = evalCssModule(code, path);
     $("head").append("<style>" + code + "</style>");
-    return;
-  }
+    // return;
+  // }
   
   //将scss转换为css
-  if(path.indexOf(".scss") != -1) {
-    code = evalCssModule(code, path);
-    sass.compile(code, function(cssCode){
-      $("head").append("<style>" + cssCode.text + "</style>");
-    }) 
-  }
+  // if(path.indexOf(".scss") != -1) {
+  //   // code = evalCssModule(code, path);
+  //   sass.compile(code, function(cssCode){
+  //     $("head").append("<style>" + cssCode.text + "</style>");
+  //   }) 
+  // }
   
 }
