@@ -1,3 +1,4 @@
+@import "./reset.css";
 .dropbtn {
     background-color: #FFF;
     background-image: url(./arrow.png);
@@ -12,7 +13,6 @@
     cursor: pointer;
 }
 
-
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
     display: inline-block;
@@ -21,9 +21,7 @@
     background: #FFF;
 }
 
-
 /* Dropdown Content (Hidden by Default) */
-
 .dropdown-content {
     position: absolute;
     display: none;
@@ -36,17 +34,13 @@
     background: #FFF;
 }
 
-
 /* Links inside the dropdown */
-
 .dropdown-content a {
     color: black;
     padding: 4px 16px;
     text-decoration: none;
     display: block;
 }
-
-
 /* Change color of dropdown links on hover */
 
 .dropdown-content a:hover,
@@ -57,7 +51,6 @@
 
 
 /* Show the dropdown menu on hover */
-
 .dropdown:hover {}
 
 .dropdown:hover .dropdown-content,
@@ -68,7 +61,6 @@
 
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-
 .dropdown:hover .dropbtn,
 .dropdown.active .dropbtn {
     border-color: #3697fd;

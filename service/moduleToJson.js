@@ -1,6 +1,7 @@
 var Path = require("path");
 var FileObj = require("./file.js");
 var fs = require("fs");
+
 //获取模块的入口文件
 function parseModule(name){    
     //所有文件存储对象
@@ -33,26 +34,26 @@ function parseModule(name){
 
     //将css引用的图片替换为base64
     for(var path in obj){
-        if(path.indexOf(".css") != -1 || path.indexOf(".scss") != -1){                        
-            
+        if(path.indexOf(".css") != -1 || path.indexOf(".scss") != -1){
             //将scss转化为css;
             if(path.indexOf(".scss") != -1){
+                
                 var sass = require("node-sass");
                 var result = sass.renderSync({
-                    data: obj[path]
+                    data: obj[path],
+
                 }); 
                                 
                 obj[path] = typeof result == "object" ? result["css"].toString() : obj[path];
             }
 
             //将图片进行base64;
-            obj[path] = parseImgUrl(obj[path], name);
+            obj[path] = imageToBase64(obj[path], name);
         }
     }
 
-    // console.log("modules", obj);
+    // console.log("modules", obj);    
     return obj;
-
 }
 
 /*
@@ -85,14 +86,11 @@ function parseFile(content, currPath){
         //依赖文件内容
         var importPath = Path.join(currPath, path);
         var importContent = FileObj.read(importPath);
-
         obj[path] = importContent;
     
-
         //分析文件内容中import
         var importObj = parseFile(importContent, Path.dirname(importPath));
         obj = contactObj(importObj, obj);
-
     }        
 
     return obj;
@@ -130,16 +128,31 @@ function getPathFromCode(code){
     return path;
 }
 
-/*
- *  将
-*/
-function parseImgUrl(code, componentName) {
+function isImage(imgName){
+    if(imgName.indexOf(".") == -1){
+        return false;
+    }
+
+    var imgNameArr = imgName.split(".");
+    var imgType = imgNameArr[imgNameArr.length - 1];
+    var imgTypeList = ["png", "jpg", "jpeg", "gif", "bmp"];
+    
+    imgType = imgType.toLowerCase();
+
+    if(imgTypeList.indexOf(imgType) == -1){
+        return false;
+    }
+    return true;
+}   
+
+//获取到CSS文件所有URL链接的图片，然后将图片替换为为base64字符串;
+function imageToBase64(code, componentName) {
     //如果code等于undefined或者null,直接返回为空
     if (!code) {
       return "";
     }
   
-    var cssArr = code.split("}");
+    var cssArr = code.split("{");
   
     var urlPatten = /url\((.)*\)/gi;
     var imgBasePath = Path.join("../code/", componentName, "/lib/");
@@ -149,33 +162,41 @@ function parseImgUrl(code, componentName) {
   
     //将查找图片
     for (var i = 0; i < cssArr.length; i++) {
-      var imgArr = cssArr[i].match(urlPatten);
-      if (!imgArr || imgArr.length == 0) {
-        continue;
-      }
+        var imgArr = cssArr[i].match(urlPatten);
+        
+        if (!imgArr || imgArr.length == 0) {
+            continue;
+        }
   
-      //获取图片Url
-      var imgUrl = imgArr[0],
+        //获取图片Url
+        var imgUrl = imgArr[0],
         startPos = imgUrl.indexOf("("),
         endPos = imgUrl.indexOf(")");
-  
-      var imgName = imgUrl.substr(startPos + 1, endPos - startPos - 1);
-      var imgFileUrl = Path.join(imgBasePath, imgName);
-      var imgContent = fs.readFileSync(imgFileUrl);
-      var imgBase64 = "data:image/png;base64," +  new Buffer(imgContent).toString("base64");
 
-      cssArr[i] = cssArr[i].replace(
-        urlPatten,
-        "url(" + imgBase64 + ")"
-      );
-      // console.log("img", imgName);
+        var imgName = imgUrl.substr(startPos + 1, endPos - startPos - 1);
+
+        if(isImage(imgName) == false){
+            console.log(imgName);
+            continue;
+        }
+        
+        var imgFileUrl = Path.join(imgBasePath, imgName);
+        var imgContent = fs.readFileSync(imgFileUrl);
+        var imgBase64 = "data:image/png;base64," +  new Buffer(imgContent).toString("base64");
+
+        cssArr[i] = cssArr[i].replace(
+            urlPatten,
+            "url(" + imgBase64 + ")"
+        );
+        // console.log("img", imgName);
     }
-    code = cssArr.join("}");
+    code = cssArr.join("{");
     return code;
-  }
+}
 
-var modulesArr = ["dropdown", "stepbar", "group-button-sort"];
-// var modulesArr = ["group-button-sort"];
+// var modulesArr = ["dropdown", "stepbar", "group-button-sort"];
+var modulesArr = ["dropdown"];
+
 modulesArr.map(function(moduleName){
     var module = {
         component: [{
@@ -185,8 +206,8 @@ modulesArr.map(function(moduleName){
         }]
     }
     var fileJSON = parseModule(moduleName);
-    module["component"][0]["file"] = fileJSON;
-    FileObj.create("../site/static/data/" + moduleName + ".js", "var modules= " + JSON.stringify(module));
+    console.log("fileJSON", fileJSON);
+    module["component"][0]["file"] = fileJSON;    
+    FileObj.create("../site/static/data/" + moduleName + ".js", "var modules1= " + JSON.stringify(module, null, 2));
 });
-
 // console.log(Path.join(getPathFromCode("node_modules/dropdown/lib/index.js"), "b.js"));
