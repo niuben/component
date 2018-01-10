@@ -121,7 +121,11 @@ function getPathFromCode(code){
     }else if(code.indexOf("require") != -1){
         var startPos = code.indexOf("("),
             endPos = code.indexOf(")");    
-        path = code.substr(startPos + 1, endPos - startPos - 1); 
+        
+        path = code.substr(startPos + 1, endPos - startPos - 1);
+
+        //
+
     }
 
     //去除path中的双引号和单引号
@@ -195,7 +199,7 @@ function imageToBase64(code, componentName) {
 }
 
 // var modulesArr = ["dropdown", "stepbar", "group-button-sort"];
-var modulesArr = ["dropdown"];
+var modulesArr = ["react-viewport-slider"];
 
 modulesArr.map(function(moduleName){
     var module = {
