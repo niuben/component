@@ -28,5 +28,6 @@ module.exports = {
     create: createFile,
     read: readFile,
     getType: getFileType,
+    getName: getFileName,
     isExit: isExit
 }

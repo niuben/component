@@ -77,19 +77,58 @@ function parseFile(content, currPath){
         if(typeof path == "string"){            
             path = path.replace(/"|'/g, "");
         }
-
+            
         //判断路径状态
         if(path == undefined || path == "react" || path == "react-dom"){
             continue;
         }
         
+        /*
+        * 根据路径建立层级关系; 比如：将./a/b.js转化为下面格式
+        {
+            a: {
+                "b.js": null
+            }
+        }
+        */        
+        console.log("path", path);
+        
+        var curObj = obj;
+        var curFile = null;
+        pathArr = path.split("/");
+        for(var i = 0; i < pathArr.length; i++){
+            var name = path[i];
+            if(i == 0 && name == "."){
+                continue;
+            }
+            
+            //判断最后一个值是否需要增加.js后缀; 比如将 ./A 转化为 ./A.js
+            if(i == pathArr.length - 1 && pathArr.length > 1 && path.indexOf(".js") == -1){
+                name = name + ".js";
+            }
+            
+            //
+            if(name.indexOf(".") == -1) {
+                curObj[name] = {};
+                curObj = curObj[name];
+            }else{
+                curObj[name] = "";
+                curFile = curObj[name];
+            }
+
+        }
+
+        path = pathArr.join("/");
+        
         //依赖文件内容
         var importPath = Path.join(currPath, path);
         var importContent = FileObj.read(importPath);
-        obj[path] = importContent;
+        // obj[path] = importContent;
+        curFile = importContent
     
         //分析文件内容中import
         var importObj = parseFile(importContent, Path.dirname(importPath));
+        
         obj = contactObj(importObj, obj);
     }        
 
@@ -123,7 +162,6 @@ function getPathFromCode(code){
             endPos = code.indexOf(")");    
         
         path = code.substr(startPos + 1, endPos - startPos - 1);
-
         //
 
     }
@@ -200,7 +238,6 @@ function imageToBase64(code, componentName) {
 
 // var modulesArr = ["dropdown", "stepbar", "group-button-sort"];
 var modulesArr = ["react-viewport-slider"];
-
 modulesArr.map(function(moduleName){
     var module = {
         component: [{
