@@ -3,6 +3,7 @@ var FileObj = require("./file.js");
 var Obj = require("./object.js")
 var fs = require("fs");
 
+var libArr = [];
 //获取模块的入口文件
 function parseModule(path, moduleJSON){    
     //所有文件存储对象
@@ -41,9 +42,27 @@ function parseModule(path, moduleJSON){
     // }
 
     // var fileObj = parseFile(entryContent, Path.dirname(entryPath), moduleJSON); 
+    libArr = [];
     parseFile(entryContent, Path.dirname(entryPath), moduleJSON); 
     
-    console.log("moduleJSON", moduleJSON);
+    //给库文件增加版本号
+    var newLibObj = {};
+    var checkList = ["peerDependencies", "dependencies", "devDependencies"];
+    
+    libArr.map(function(libName){
+        var version = null;
+        checkList.map(function(key){
+            if(package[key][libName] != undefined){
+                version = package[key][libName];                
+            }
+        });
+        
+        newLibObj[libName] = version; 
+        // obj[libName] = version;
+        // newLibArr.push(obj);
+    });
+
+    // console.log("moduleJSON", moduleJSON);
 
     //将文件对象复制存储对象中
     // obj = contactObj(obj, fileObj);
@@ -68,7 +87,10 @@ function parseModule(path, moduleJSON){
     // }
 
     // console.log("modules", obj);    
-    return moduleJSON
+    return{ 
+        module: moduleJSON,
+        lib: newLibObj
+    }
 }
 
 /*
@@ -79,7 +101,7 @@ function parseFile(content, currPath, moduleJSON){
     
     //将内容按”;"进行切分成每一行
     var lineArr = content.split(";");
-    for(var i = 0; i < 5; i++){
+    for(var i = 0; i < lineArr.length; i++){
         var code = lineArr[i];
         
         //过滤掉注释的代码
@@ -94,64 +116,27 @@ function parseFile(content, currPath, moduleJSON){
         }
             
         //判断路径状态
-        if(path == undefined || path == "react" || path == "react-dom"){
+        if(path == undefined || path == "react" || path == "react-dom" || path.indexOf(".") == -1){
+            if(path && libArr.indexOf(path) == -1){                                
+                libArr.push(path);
+            }
             continue;
         }
-        
-        /*
-            根据路径建立层级关系; 比如：将./a/b.js转化为下面格式
-            {
-                a: {
-                    "b.js": null
-                }
-            }
-        */
-        console.log("path", path);
-        
-        // var curObj = obj;
-        // var curFile = null;
-            
+                    
         //判断最后一个值是否需要增加.js后缀; 比如将 ./A 转化为 ./A.js
         var pathArr = path.split("/");
         if((pathArr[0] == "." || pathArr[0] == "..") && pathArr.length > 1 && pathArr[pathArr.length - 1].indexOf(".") == -1){
             path = path + ".js";
         }
-        path = pathArr.join("/");
+        console.log("path", path);
 
-    
-        // for(var i = 0; i < pathArr.length; i++){
-        //     var name = path[i];
-        //     if(i == 0 && name == "."){
-        //         continue;
-        //     }
-            
-        //     //判断最后一个值是否需要增加.js后缀; 比如将 ./A 转化为 ./A.js
-        //     if(i == pathArr.length - 1 && pathArr.length > 1 && path.indexOf(".js") == -1){
-        //         name = name + ".js";
-        //     }
-            
-        //     //
-        //     if(name.indexOf(".") == -1) {
-        //         curObj[name] = {};
-        //         curObj = curObj[name];
-        //     }else{
-        //         curObj[name] = "";
-        //         curFile = curObj[name];
-        //     } 
-        // }
-        
-        
+ 
         //依赖文件内容
         var importPath = Path.join(currPath, path);
         importContent = setFileUsed(importPath, moduleJSON)
 
-        // var importContent = FileObj.read(importPath);
-        // // obj[path] = importContent;
-        // curFile = importContent
-    
-        //分析文件内容中import
-        // var importObj = parseFile(importContent, Path.dirname(importPath));
         parseFile(importContent, Path.dirname(importPath), moduleJSON);
+
         
         // obj = contactObj(importObj, obj);
     }        
@@ -181,6 +166,56 @@ function getPathFromCode(code){
     return path;
 }
 
+//获取到CSS文件所有URL链接的图片，然后将图片替换为为base64字符串;
+function parseCss(code, path, moduleJSON) {
+    //如果code等于undefined或者null,直接返回为空
+    if (!code) {
+      return "";
+    }
+  
+    var cssArr = code.split("{");
+  
+    var urlPatten = /url\((.)*\)/gi;
+    var imgBasePath = Path.join("../code/", componentName, "/lib/");
+  
+    //文件名设定为组件名
+    // var componentName = getFileName(path);
+  
+    //将查找图片
+    for (var i = 0; i < cssArr.length; i++) {
+        var imgArr = cssArr[i].match(urlPatten);
+        
+        if (!imgArr || imgArr.length == 0) {
+            continue;
+        }
+  
+        //获取图片Url
+        var imgUrl = imgArr[0],
+        startPos = imgUrl.indexOf("("),
+        endPos = imgUrl.indexOf(")");
+
+        var imgName = imgUrl.substr(startPos + 1, endPos - startPos - 1);
+
+        if(isImage(imgName) == false){
+            console.log(imgName);
+            continue;
+        }
+        
+        var imgFileUrl = Path.join(imgBasePath, imgName);
+        var imgContent = fs.readFileSync(imgFileUrl);
+        var imgBase64 = "data:image/png;base64," +  new Buffer(imgContent).toString("base64");
+
+        cssArr[i] = cssArr[i].replace(
+            urlPatten,
+            "url(" + imgBase64 + ")"
+        );
+        // console.log("img", imgName);
+    }
+    code = cssArr.join("{");
+    return code;
+}
+
+
 //当文件被调用后，在文件Key之前增加一个$
 function setFileUsed(path, moduleJSON){
     var parentObj = Obj.getParentFromPath(path, moduleJSON);    
@@ -199,6 +234,9 @@ function setFileUsed(path, moduleJSON){
     return content;
 
 }   
+
+
+
 
 module.exports = {
     module: parseModule,

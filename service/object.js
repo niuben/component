@@ -10,6 +10,41 @@
 }
 */
 function clearObj(obj){
+    obj = delObj(obj);
+    obj = updateObj(obj);
+    return obj;
+}
+
+
+//更新
+function updateKey(key, parentObj){
+    if(key.indexOf("$") == -1){
+        return;
+    }
+    var keyArr = key.split("$");
+    newKey = keyArr.join("");
+    
+    var content = parentObj[key];
+    parentObj[newKey] = content;
+
+    delete parentObj[key];
+}
+
+function updateObj(obj){
+    for(var i in obj){
+        if(typeof obj[i] == "object"){
+            updateObj(obj[i]);
+            continue;
+        }
+
+        if(typeof obj[i] == "string"){
+            updateKey(i, obj);
+        }
+    }
+    return obj;
+}
+
+function delObj(obj){
     var isUsed = false;
     for(var key in obj){
         if(typeof obj[key] == "object"){
@@ -36,7 +71,7 @@ function clearObj(obj){
     }
     // return obj;
     return obj;
-}   
+}
 
 /*
 * 根据路径结构获取对象
