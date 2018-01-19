@@ -26,7 +26,7 @@ function parseModule(name){
     if(FileObj.isExit(readmePath)){
         obj["readme"] = FileObj.read(readmePath);
     }
-
+    
     var fileObj = parseFile(entryContent, Path.dirname(entryPath)); 
     
     //将文件对象复制存储对象中
@@ -40,8 +40,7 @@ function parseModule(name){
                 
                 var sass = require("node-sass");
                 var result = sass.renderSync({
-                    data: obj[path],
-
+                    data: obj[path]
                 }); 
                                 
                 obj[path] = typeof result == "object" ? result["css"].toString() : obj[path];
@@ -127,8 +126,7 @@ function parseFile(content, currPath){
         curFile = importContent
     
         //分析文件内容中import
-        var importObj = parseFile(importContent, Path.dirname(importPath));
-        
+        var importObj = parseFile(importContent, Path.dirname(importPath));        
         obj = contactObj(importObj, obj);
     }        
 
@@ -236,57 +234,10 @@ function imageToBase64(code, componentName) {
     return code;
 }
 
-//获取到CSS文件所有URL链接的图片，然后将图片替换为为base64字符串;
-function imageToBase64(code, componentName) {
-    //如果code等于undefined或者null,直接返回为空
-    if (!code) {
-      return "";
-    }
-  
-    var cssArr = code.split("{");
-  
-    var urlPatten = /url\((.)*\)/gi;
-    var imgBasePath = Path.join("../code/", componentName, "/lib/");
-  
-    //文件名设定为组件名
-    // var componentName = getFileName(path);
-  
-    //将查找图片
-    for (var i = 0; i < cssArr.length; i++) {
-        var imgArr = cssArr[i].match(urlPatten);
-        
-        if (!imgArr || imgArr.length == 0) {
-            continue;
-        }
-  
-        //获取图片Url
-        var imgUrl = imgArr[0],
-        startPos = imgUrl.indexOf("("),
-        endPos = imgUrl.indexOf(")");
-
-        var imgName = imgUrl.substr(startPos + 1, endPos - startPos - 1);
-
-        if(isImage(imgName) == false){
-            console.log(imgName);
-            continue;
-        }
-        
-        var imgFileUrl = Path.join(imgBasePath, imgName);
-        var imgContent = fs.readFileSync(imgFileUrl);
-        var imgBase64 = "data:image/png;base64," +  new Buffer(imgContent).toString("base64");
-
-        cssArr[i] = cssArr[i].replace(
-            urlPatten,
-            "url(" + imgBase64 + ")"
-        );
-        // console.log("img", imgName);
-    }
-    code = cssArr.join("{");
-    return code;
-}
 
 // var modulesArr = ["dropdown", "stepbar", "group-button-sort"];
-var modulesArr = ["react-viewport-slider"];
+// var modulesArr = ["react-viewport-slider"];
+var modulesArr = ["dropdown"];
 modulesArr.map(function(moduleName){
     var module = {
         component: [{

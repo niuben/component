@@ -24,10 +24,33 @@ function isExit(path){
     return fs.existsSync(path);
 }
 
+function isImage(imgName){
+    if(imgName.indexOf(".") == -1){
+        return false;
+    }
+
+    var imgNameArr = imgName.split(".");
+    var imgType = imgNameArr[imgNameArr.length - 1];
+    var imgTypeList = ["png", "jpg", "jpeg", "gif", "bmp"];
+    
+    imgType = imgType.toLowerCase();
+    if(imgTypeList.indexOf(imgType) == -1){
+        return false;
+    }
+    return true;
+} 
+
+function toBase64(imgFileUrl){
+    var imgContent = fs.readFileSync(imgFileUrl);
+    return "data:image/png;base64," +  new Buffer(imgContent).toString("base64");
+}
+
 module.exports = {
     create: createFile,
     read: readFile,
     getType: getFileType,
     getName: getFileName,
-    isExit: isExit
+    isExit: isExit,
+    isImage: isImage,
+    toBase64: toBase64
 }

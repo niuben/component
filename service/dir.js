@@ -7,8 +7,8 @@ function createFile(path, content){
     return fs.writeFileSync(path, content);
 };
 
-function readFile(path) {
-    var buf = fs.readFileSync(path);
+function readFile(path, option) {
+    var buf = fs.readFileSync(path, option);
     return buf.toString();
 }
 
@@ -32,6 +32,13 @@ function getMDTitle(path) {
     return document.body.childNodes[0].innerHTML;
 }
 
+function getDirOfPath(path){
+    var pathArr = path.split("/");
+    pathArr.pop();
+    return pathArr.join("/");
+    // return pathArr[pathArr.length - 1];
+}
+
 //搜索文件
 function searchFile(fileName, fileObj) {
     var arr = fileObj.files;
@@ -45,6 +52,7 @@ function searchFile(fileName, fileObj) {
     }
     return;
 }
+
 function getJSONByDir(path){
     // var titleArr = [];
     var fileName = getFileName(path);
@@ -67,10 +75,17 @@ function getJSONByDir(path){
 
         if(stat.isDirectory()){                    
             fileObj[file] = getJSONByDir(pathName);
-        }else{  
-            var content = readFile(pathName);            
-            fileObj[file] = content;            
-            // fileObj[file] = null;            
+        }else{            
+            var fileName = getFileName(pathName);            
+            var content;
+            if(!FileObj.isImage(fileName)){
+                content = readFile(pathName);
+            }else{
+                content = FileObj.toBase64(pathName);
+            }
+
+            fileObj[file] = content;
+            // fileObj[file] = null;
         }
     });
     return fileObj;
@@ -79,5 +94,6 @@ function getJSONByDir(path){
 // getJSONByDir("../code/dropdown")
 // FileObj.create("../site/static/data/" + "test" + ".js", "var modules1= " + JSON.stringify(getJSONByDir("../code/react-viewport-slider"), null, 2));
 module.exports = {
-    toJSON: getJSONByDir
+    toJSON: getJSONByDir,
+    getDirOfPath: getDirOfPath 
 }

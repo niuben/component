@@ -4,7 +4,7 @@ function evalModule(code, moduleName, props) {
   var exports = {};
 
   try {
-    eval(code);
+    eval(code); 
     return Object.keys(exports || {}).length > 0 ? exports : module.exports;
   } catch (e) {
     e.isEvalError = true;
@@ -24,6 +24,10 @@ function findModule(path, is) {
 
   return currentComponent;
 }
+
+// function findModule(path){
+  
+// }
 
 /*
 * 解析Css模块
@@ -48,3 +52,6 @@ function transformCode(code){
   }
   
 }
+
+
+

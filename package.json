@@ -9,6 +9,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "node-sass": "^4.7.2"
+    "node-sass": "^4.7.2",
+    "optimist": "",
+    "webpack": "3.5.1",
+    "webpack-manifest-plugin": "1.2.1"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   }
 }

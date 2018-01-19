@@ -52,8 +52,12 @@ function parseModule(path, moduleJSON){
     libArr.map(function(libName){
         var version = null;
         checkList.map(function(key){
+            if(package[key] == undefined){
+                return false;
+            }
+                        
             if(package[key][libName] != undefined){
-                version = package[key][libName];                
+                version = package[key][libName];
             }
         });
         
@@ -89,7 +93,8 @@ function parseModule(path, moduleJSON){
     // console.log("modules", obj);    
     return{ 
         module: moduleJSON,
-        lib: newLibObj
+        lib: newLibObj,
+        entry: entryPath
     }
 }
 
@@ -116,10 +121,16 @@ function parseFile(content, currPath, moduleJSON){
         }
             
         //判断路径状态
-        if(path == undefined || path == "react" || path == "react-dom" || path.indexOf(".") == -1){
+        if(path == undefined || path.indexOf(".") == -1){
             if(path && libArr.indexOf(path) == -1){                                
                 libArr.push(path);
             }
+
+            //当时React时则增加react-dom
+            if(path == "react"){
+                libArr.push("react-dom");
+            }
+
             continue;
         }
                     
@@ -128,6 +139,7 @@ function parseFile(content, currPath, moduleJSON){
         if((pathArr[0] == "." || pathArr[0] == "..") && pathArr.length > 1 && pathArr[pathArr.length - 1].indexOf(".") == -1){
             path = path + ".js";
         }
+        
         console.log("path", path);
 
  
@@ -163,6 +175,9 @@ function getPathFromCode(code){
     }
 
     //去除path中的双引号和单引号
+    if(typeof path == "string"){
+        path = path.replace(/"|'/g, "");
+    }
     return path;
 }
 
@@ -236,9 +251,8 @@ function setFileUsed(path, moduleJSON){
 }   
 
 
-
-
 module.exports = {
-    module: parseModule,
-      file: parseFile
+             module: parseModule,
+               file: parseFile,
+    getPathFromCode: getPathFromCode
 }

@@ -1,25 +1,39 @@
 // 请求模块
-function require(path, baseDir) {
-  if (path == "react") {
-    return dll_bundle(0);
+function require(path) {
+  
+  if(isExternalPath(path)){
+    var action = searchBundle(moduleName);
+    return eval(action);
   }
-  if (path == "react-dom") {
-    return dll_bundle(26);
-  }
+  
+  // if (path == "react") {
+  //   return dll_bundle(4);
+  // }
 
-  if (path == "react-router-dom") {
-    return dll_bundle(63);
-  }
+  // if (path == "react-dom") {
+  //   return dll_bundle(19);
+  // }
 
-  var component = findModule(path),
-    code = component["file"] ? component["file"][path] : null,
-    componentName = component["name"] ? component["name"] : null;
-    if(path.indexOf(".js") != -1) {      
+  // if (path == "react-router-dom") {
+  //   return dll_bundle(63);
+  // }
+
+  path = parsePath(path);
+  //获取当前位置
+  var filePath = joinPath(parentPath, path);
+  parentPath = getParentPath(filePath);
+  
+  // var component = findModule(path),
+  // code = component["file"] ? component["file"][path] : null,
+  // componentName = component["name"] ? component["name"] : null;
+  
+  code = getContentFromPath(filePath, modules["module"]);
+
+  if(path.indexOf(".js") != -1) {
     code = transformCode(code);
-    return evalModule(code, componentName, component["props"]);
+    return evalModule(code);
   }
 
-  //
   // if(path.indexOf(".css") != -1) {
     // var fileName = getFileName(path);
     // code = evalCssModule(code, path);
@@ -35,4 +49,35 @@ function require(path, baseDir) {
   //   }) 
   // }
   
+}
+
+/*
+* 通过模块名称获取manifest中的ID
+*/
+function searchBundle(moduleName){
+  var manifest = modules["manifest"];
+  if(manifest == undefined){
+    return null;
+  }
+
+  var externals = manifest["content"];
+  if(externals == undefined){
+    return null;
+  }
+
+  for(var path in externals){
+    var pathArr = path.split("/");    
+    if(pathArr.indexOf(moduleName) != -1){
+      return externals[path]
+    }
+  }
+  return null;
+}
+
+//判断是否外部依赖
+function isExternalPath(path){
+  if(path.indexOf(".") == -1){
+      return true;
+  }
+  return false;
 }

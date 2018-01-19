@@ -80,4 +80,74 @@ function getFileName(filePath){
     }
     
     return fileName;
+}
+
+function joinPath(parentPath, path){
+    var parentPathArr = parentPath.split("/"),
+              pathArr = path.split("/");
+
+    var newPathArr = [];
+    //等于    
+    pathArr.map(function(path){
+      if(path == ".") {
+          null
+      } else if(path == ".."){
+        parentPathArr.pop();        
+      }else {
+        newPathArr.push(path);
+      }
+    });
+
+    return parentPathArr.concat(newPathArr).join("/");
+}
+
+function getParentPath(path){
+  var pathArr = path.split("/");
+  pathArr.pop();
+
+  return pathArr.join("/");
+}
+
+/*
+* 根据路径结构获取对象
+*/
+function getParentObjFromPath(path, obj){
+  var pathArr = path.split("/");
+  var curObj = obj;
+
+  //
+  pathArr.map(function(name){
+      if(name == "."){
+          return;
+      }
+
+      for(var key in curObj){            
+          if(key == name && typeof curObj[key] == "object"){
+              curObj = curObj[key];
+          }
+      }
+  });
+
+  return curObj;  
+}
+
+/*
+* 根据
+*/
+function getContentFromPath(path, obj){
+  var pathArr = path.split("/");
+  var fileName = pathArr[pathArr.length - 1];
+  var parentObj = getParentObjFromPath(path, obj);
+  return parentObj[fileName];
+}
+
+/*
+* 处理路径
+*/
+function parsePath(path){
+  var pathArr = path.split("/");
+  if((pathArr[0] == "." || pathArr[0] == "..") && pathArr.length > 1 && pathArr[pathArr.length - 1].indexOf(".") == -1){
+      path = path + ".js";
   }
+  return path;
+}

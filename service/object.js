@@ -9,8 +9,10 @@
     }
 }
 */
+var FileObj = require("./file.js");
+
 function clearObj(obj){
-    obj = delObj(obj);
+    // obj = delObj(obj);
     obj = updateObj(obj);
     return obj;
 }
@@ -46,7 +48,11 @@ function updateObj(obj){
 
 function delObj(obj){
     var isUsed = false;
-    for(var key in obj){
+    for(var key in obj){        
+        if(FileObj.isImage(key)){
+            continue;
+        }
+        
         if(typeof obj[key] == "object"){
             if(clearObj(obj[key])){
                 isUsed = true;
@@ -57,7 +63,8 @@ function delObj(obj){
         
         //
         if(typeof obj[key] == "string"){
-            if(key.indexOf("$") == -1){
+            //过滤readme文件
+            if(key.indexOf("$") == -1 && key.indexOf(".md") == -1){
                 delete obj[key];
             }else{
                 isUsed = true;
@@ -96,8 +103,20 @@ function getParentObjFromPath(path, obj){
     return curObj;  
 }
 
+/*
+* 根据
+*/
+function getContentFromPath(path, obj){
+    var pathArr = path.split("/"),
+    fileName = pathArr[pathArr.length - 1];
+
+    var parentObj = getParentObjFromPath(path, obj);
+    return parentObj[fileName];
+}
+
 
 module.exports = {
     clear: clearObj,
-    getParentFromPath: getParentObjFromPath
+    getParentFromPath: getParentObjFromPath,
+    getContentFromPath: getContentFromPath
 }  

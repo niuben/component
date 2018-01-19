@@ -66,31 +66,35 @@
   <script src="./static/file.js"></script>
   <script src="./static/module.js"></script>
   <script src="./static/require.js"></script>
-  <script src="./static/data/group-button-sort.js?v=1"></script>
+  <script src="./static/data/test.js?v=1"></script>
   
   <!-- Markdown相关资源 -->
-  <script src="./static/markdown.js"></script>  
-  <script src="./static/sass/sass.js"></script>
+  <script src="./static/markdown.js"></script>    
   
   <script>
-    //初始化运行代码、ReadMe和编辑器
-    // var code = findModule("./app.js")["file"]["./app.js"];
-    // var dropdownComponent = findModule("./dropdown.js")["file"];
-    // var componentCode = dropdownComponent["./dropdown.js"];
-    // var readme = navComponent["./readme.md"];
-    
-    /*
-    * 显示markdown文本
-    * 点击代码区域将内容赋值到编辑器中 
-    */ 
-    // $.get("./static/data/readme.md", function(msg){
-      var sass = new Sass();
+      //初始化运行代码、ReadMe和编辑器
+      // var code = findModule("./app.js")["file"]["./app.js"];
+      // var dropdownComponent = findModule("./dropdown.js")["file"];
+      // var componentCode = dropdownComponent["./dropdown.js"];
+      // var readme = navComponent["./readme.md"];
+      
+      /*
+      * 显示markdown文本
+      * 点击代码区域将内容赋值到编辑器中 
+      */ 
+      // $.get("./static/data/readme.md", function(msg){
+      // var sass = new Sass();
 
-      var markdown = findModule("readme")["file"]["readme"];      
+
+
+      // var markdown = findModule("readme")["file"]["readme"];      
+      
+      markdown = getContentFromPath("readme.md", modules["module"]);
       $("#markdown").html(marked(markdown));
 
       var code = document.getElementsByClassName("lang-js")[0].innerHTML;
 	    code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+      var parentPath = "";
 
       evalModule(transformCode(code));
       $("#preview").show();
