@@ -2,8 +2,8 @@
 function require(path) {
   
   if(isExternalPath(path)){
-    var action = searchBundle(moduleName);
-    return eval(action);
+    var bundleID = searchBundleID(path);
+    return dll_bundle(bundleID);
   }
   
   // if (path == "react") {
@@ -37,8 +37,8 @@ function require(path) {
   // if(path.indexOf(".css") != -1) {
     // var fileName = getFileName(path);
     // code = evalCssModule(code, path);
-    $("head").append("<style>" + code + "</style>");
-    // return;
+  $("head").append("<style>" + code + "</style>");
+  return null;
   // }
   
   //将scss转换为css
@@ -54,7 +54,7 @@ function require(path) {
 /*
 * 通过模块名称获取manifest中的ID
 */
-function searchBundle(moduleName){
+function searchBundleID(moduleName){
   var manifest = modules["manifest"];
   if(manifest == undefined){
     return null;
@@ -68,7 +68,7 @@ function searchBundle(moduleName){
   for(var path in externals){
     var pathArr = path.split("/");    
     if(pathArr.indexOf(moduleName) != -1){
-      return externals[path]
+      return externals[path]["id"]
     }
   }
   return null;

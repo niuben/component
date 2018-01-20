@@ -66,7 +66,7 @@ function Init(){
             dll.create(()=>{
                 var manifest = FileObj.read(Path.join(paths["dist"], "manifest.json"));
                 moduleJSON["manifest"] = JSON.parse(manifest);
-                FileObj.create("../site/static/data/" + "test" + ".js", "var modules=" + JSON.stringify(moduleJSON));
+                FileObj.create("../site/static/data/" + moduleName +  ".js", "var modules=" + JSON.stringify(moduleJSON));
             });
         })
     });
