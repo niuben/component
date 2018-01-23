@@ -6,52 +6,54 @@ var ManifestPlugin = require('webpack-manifest-plugin');
 
 var output = path.join(__dirname, "./dist");
 
-var config = {
-    entry: {
-        lib: ["jquery", "react", "react-dom"]
-    },
-    output: {
-		path: output,
-        filename: "dll.bundle.js",
-        library: "dll_bundle",
-    },
-    plugins: [
-        new webpack.DllPlugin({
-            path: path.join("./dist", "manifest.json"),
-            name: "[name]"
-        }),
-        // new ManifestPlugin({
-        //     fileName: "md5.manifest.json"
-        // }),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //       warnings: false,      
-        //       comparisons: false,
-        //       drop_console: true
-        //     },
-        //     output: {
-        //       comments: false,      
-        //       ascii_only: true
-        //     },
-        //     sourceMap: false
-        // }),
-        // new webpack.DefinePlugin({
-        //     'process.env': {
-        //         'NODE_ENV': JSON.stringify('production')
-        //     }
-        // })        
-    ]
-}
+module.exports = function(libArr){
 
-// if(argv.p) {
-//     //解决react warning问题
-//     config.plugins.push(
-//         new webpack.DefinePlugin({
-//             'process.env': {
-//                 'NODE_ENV': JSON.stringify('production')
-//             }
-//         })
-//     )
-//     // config.output.filename = "[name].bundle.[hash].js"    
-// }
-module.exports = config;
+    return {
+        entry: {
+            lib: libArr || ["jquery", "react", "react-dom"]
+        },
+        output: {
+            path: output,
+            filename: "dll.bundle.js",
+            library: "dll_bundle",
+        },
+        plugins: [
+            new webpack.DllPlugin({
+                path: path.join("./dist", "manifest.json"),
+                name: "[name]"
+            }),
+            // new ManifestPlugin({
+            //     fileName: "md5.manifest.json"
+            // }),
+            // new webpack.optimize.UglifyJsPlugin({
+            //     compress: {
+            //       warnings: false,      
+            //       comparisons: false,
+            //       drop_console: true
+            //     },
+            //     output: {
+            //       comments: false,      
+            //       ascii_only: true
+            //     },
+            //     sourceMap: false
+            // }),
+            // new webpack.DefinePlugin({
+            //     'process.env': {
+            //         'NODE_ENV': JSON.stringify('production')
+            //     }
+            // })        
+        ]
+    }
+
+    // if(argv.p) {
+    //     //解决react warning问题
+    //     config.plugins.push(
+    //         new webpack.DefinePlugin({
+    //             'process.env': {
+    //                 'NODE_ENV': JSON.stringify('production')
+    //             }
+    //         })
+    //     )
+    //     // config.output.filename = "[name].bundle.[hash].js"    
+    // }
+}

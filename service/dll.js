@@ -15,9 +15,15 @@ function download(lib, callback){
     });
 }
 
-function create(callback){
-    var config = require("./webpack.config.lib.js");
+function create(libList, callback){
     var webpack = require("webpack");
+    
+    var libArr = [];
+    for(var lib in libList){
+        libArr.push(lib);
+    }
+    var configFunc = require("./webpack.config.lib.js");    
+    var config = configFunc(libArr);
     
     var compiler = webpack(config);
     compiler.run(function(a, b, c){

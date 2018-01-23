@@ -1,5 +1,5 @@
 // 请求模块
-function require(path) {
+function require(path ) {
   
   if(isExternalPath(path)){
     var bundleID = searchBundleID(path);
@@ -21,7 +21,6 @@ function require(path) {
   path = parsePath(path);
   //获取当前位置
   var filePath = joinPath(parentPath, path);
-  parentPath = getParentPath(filePath);
   
   // var component = findModule(path),
   // code = component["file"] ? component["file"][path] : null,
@@ -30,6 +29,8 @@ function require(path) {
   code = getContentFromPath(filePath, modules["module"]);
 
   if(path.indexOf(".js") != -1) {
+    parentPath = getParentPath(filePath);
+    
     code = transformCode(code);
     return evalModule(code);
   }

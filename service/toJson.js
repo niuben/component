@@ -13,8 +13,8 @@ var paths = require("./paths.js");
 function Init(){
 
     var basePath =  __dirname + "/../code/";
-    // var modulesArr = ["react-viewport-slider"];
-    var modulesArr = ["stepbar"];
+    var modulesArr = ["react-viewport-slider"];
+    // var modulesArr = ["stepbar"];
 
     modulesArr.map(function(moduleName){
         var path = basePath + moduleName;
@@ -78,7 +78,7 @@ function Init(){
                 }                
             }
 
-            dll.create(()=>{
+            dll.create(libList, ()=>{
                 var manifest = FileObj.read(Path.join(paths["dist"], "manifest.json"));                
                 manifest = JSON.parse(manifest);
                 // moduleJSON["manifest"] = manifest;
@@ -97,7 +97,7 @@ function Init(){
 
                 // console.log(libList);
                 moduleJSON["lib"] = libList;            
-                console.log(moduleJSON)
+                // console.log(moduleJSON)
                 FileObj.create("../site/static/data/" + moduleName +  ".js", "var modules=" + JSON.stringify(moduleJSON));
 
             });
