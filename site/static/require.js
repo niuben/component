@@ -7,11 +7,11 @@ function require(path) {
   }
   
   // if (path == "react") {
-  //   return dll_bundle(4);
+  //   return dll_bundle(83);
   // }
 
   // if (path == "react-dom") {
-  //   return dll_bundle(19);
+  //   return dll_bundle(99);
   // }
 
   // if (path == "react-router-dom") {
@@ -55,23 +55,24 @@ function require(path) {
 * 通过模块名称获取manifest中的ID
 */
 function searchBundleID(moduleName){
-  var manifest = modules["manifest"];
-  if(manifest == undefined){
-    return null;
-  }
+  return modules["lib"][moduleName];
+  // var manifest = modules["manifest"];
+  // if(manifest == undefined){
+  //   return null;
+  // }
 
-  var externals = manifest["content"];
-  if(externals == undefined){
-    return null;
-  }
+  // var externals = manifest["content"];
+  // if(externals == undefined){
+  //   return null;
+  // }
 
-  for(var path in externals){
-    var pathArr = path.split("/");    
-    if(pathArr.indexOf(moduleName) != -1){
-      return externals[path]["id"]
-    }
-  }
-  return null;
+  // for(var path in externals){
+  //   var pathArr = path.split("/");    
+  //   if(pathArr.indexOf(moduleName) != -1){
+  //     return externals[path]["id"]
+  //   }
+  // }
+  // return null;
 }
 
 //判断是否外部依赖

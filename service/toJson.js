@@ -14,7 +14,7 @@ function Init(){
 
     var basePath =  __dirname + "/../code/";
     // var modulesArr = ["react-viewport-slider"];
-    var modulesArr = ["dropdown"];
+    var modulesArr = ["stepbar"];
 
     modulesArr.map(function(moduleName){
         var path = basePath + moduleName;
@@ -60,17 +60,51 @@ function Init(){
         //     //     console.log("body");
         //     // }            
         //     // FileObj.create("../site/static/data/" + "test" + ".js", "var modules=" + JSON.stringify(moduleJSON));
-        // });        
-        
+        // });                
         dll.download(libList, function(){
+            
+            //获取入口文件            
+            // var nodeModulesPath = Path.join(path, "/node_modules");  
+            var nodeModulesPath = Path.join("./node_modules");  
+            
+            if(fs.existsSync(nodeModulesPath)){                
+                for(var libName in libList){
+                    var packagePath = Path.join(nodeModulesPath, libName, "package.json"),
+                        package = JSON.parse(FileObj.read(packagePath)),
+                        mainPath = package["main"];
+                    
+                    mainPath = libName + "/" + mainPath;
+                    libList[libName] = mainPath;
+                }                
+            }
+
             dll.create(()=>{
-                var manifest = FileObj.read(Path.join(paths["dist"], "manifest.json"));
-                moduleJSON["manifest"] = JSON.parse(manifest);
+                var manifest = FileObj.read(Path.join(paths["dist"], "manifest.json"));                
+                manifest = JSON.parse(manifest);
+                // moduleJSON["manifest"] = manifest;
+
+                //获取入口文件对应的ID号
+                for(var libName in libList){
+                    var entryPath = libList[libName];
+                    
+                    for(var fileName in manifest["content"]){
+                        // console.log(fileName);
+                        if(fileName.indexOf(entryPath) != -1){
+                            libList[libName] = manifest["content"][fileName]["id"];
+                        }
+                    }
+                }
+
+                // console.log(libList);
+                moduleJSON["lib"] = libList;            
+                console.log(moduleJSON)
                 FileObj.create("../site/static/data/" + moduleName +  ".js", "var modules=" + JSON.stringify(moduleJSON));
+
             });
         })
     });
 }
+
 
 
 //合并路径 /a/b + ../c => /a/c 

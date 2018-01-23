@@ -46,7 +46,7 @@ function transformCode(code){
   try{
     return Babel.transform(code, {
       presets: ["react", "es2015"]
-    }).code;  
+    }).code;
   }catch(e){
     return null;
   }

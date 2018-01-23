@@ -250,6 +250,25 @@ function setFileUsed(path, moduleJSON){
 
 }   
 
+function getPackage(){
+
+}
+
+// //得到入口文件
+// function getEntry(path){
+    
+//     var modulePath = path;
+    
+//     //找到模块的入口文件
+//     var packagePath = "./package.json";
+//     var package = setFileUsed(packagePath, moduleJSON);
+//     package = JSON.parse(package);
+
+//     //获取入口文件
+//     var entryPath = package["main"];    
+//     return entryPath;
+// }
+
 
 module.exports = {
              module: parseModule,

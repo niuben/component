@@ -6,8 +6,8 @@
 
 ### 安装
 ```
-    npm install sogo-dropdown
-    // yarn add sogo-dropdown
+npm install sogo-dropdown
+// yarn add sogo-dropdown
 ```
 
 ### API

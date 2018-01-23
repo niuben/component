@@ -20,7 +20,7 @@
 ```js
 import React from 'react';
 import { render } from 'react-dom';
-import GroupButtonSort from "lib/index.js";
+import GroupButtonSort from "./lib/index.js";
 
 render(<GroupButtonSort />, document.getElementById('root'));
 ```

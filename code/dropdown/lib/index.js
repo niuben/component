@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.scss";
-export default class Dropdown extends React.Component {
+export default class Dropdown extends React.Component{
     constructor(props){
         super(props);
         this.state = {
