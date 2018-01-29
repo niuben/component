@@ -1,0 +1,8 @@
+{
+    "name": "react-viewport-slider",
+    "isModule": true,    
+    "example": {
+        "html": "<div id='demo'></div>",
+        "js": "./demo/index.js"
+    }
+}

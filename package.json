@@ -4,19 +4,30 @@
   "description": "组件库网站展示",
   "main": "create.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "node lib/service/toJson.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "node-sass": "^4.7.2",
     "optimist": "",
-    "webpack": "3.5.1",
+    "webpack": "^3.10.0",
     "webpack-manifest-plugin": "1.2.1"
   },
   "dependencies": {
+    "classnames": "2.2.5",
+    "group-button-sort": "^0.8.0",
     "jquery": "^3.2.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "marked": "^0.3.12",
+    "optimist": "^0.6.1",
+    "prop-types": "15.6.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-viewport-slider": "^1.0.0",
+    "scroll-to-y": "git://github.com/daviferreira/scroll-to-y.git",
+    "sogo-dropdown": "^0.4.0",
+    "stepbar": "^0.4.0",
+    "underscore.template": "^0.1.7"
   }
 }

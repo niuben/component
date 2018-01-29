@@ -1,0 +1,9 @@
+{
+    "name": "stepbar",
+    "version": "0.8.0",
+    "isModule": true,    
+    "example": {
+        "html": "<div id='root' style='padding: 10px'></div>",
+        "js": "./example/index.js"
+    }
+}

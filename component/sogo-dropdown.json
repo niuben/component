@@ -1,0 +1,8 @@
+{
+    "name": "sogo-dropdown",
+    "isModule": true,    
+    "example": {
+        "html": "<div id='root' style='padding: 10px'></div>",
+        "js": "./example/index.js"
+    }
+}

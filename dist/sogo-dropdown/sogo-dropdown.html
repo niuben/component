@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>
+    <link rel="stylesheet" href="/lib/site/static/github-theme.css" />
+    <title>sogo-dropdown</title>
+    <style>
+     body, #top, #top span, .markdown-body * {
+          padding: 0px;
+          margin: 0px;
+      }      
+      .markdown-body ul, .markdown-body li {
+          list-style: none;
+      }
+      #top {
+        position: relative;
+        height: 60px;
+        line-height: 60px;
+        box-shadow: 0 0 5px 0 #a5a5a5;
+      }
+
+      #top a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      #top a:hover {
+        text-decoration: underline;
+      }
+
+      #top span {
+        position: absolute;
+        width: 60px;
+        height: 60px;        
+        text-align: center;
+      }
+      #top h1 {
+        text-align: center;
+        font-size: 20px;
+      }
+      #top button {
+        float: right;
+        height: 30px;
+        width: 80px;
+        margin-right: 10px;
+        margin-top: 15px; 
+      }
+      #markdown {
+        margin-left: 10px;
+        margin-top: 10px;
+      }
+      
+      #preview {
+        border: none;
+        border-top: 2px solid #CCC;
+        /* display: none; */  
+      }
+      .left {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+      #editor {
+        height: 100%;
+        display: none;
+        overflow: auto;
+      }
+
+      .debug #editor, .debug .left{
+        float: left;
+        width: 50%;
+        display: block;                
+      }
+      
+      .middle {        
+        overflow: hidden;
+      }      
+    </style>
+  </head>
+  <body>    
+  <div id="top">
+    <span><a href="/index.html">首页</a></span>
+    <!-- <h1>导航栏</h1> -->
+    <button>调试</button>
+  </div>  
+  <div class="middle">
+    <div class="left">
+      <div class="markdown-body">
+        <div id="markdown">
+          <h2 id="-">下拉框</h2>
+<p>向下弹出一个列表</p>
+<h3 id="-">场景</h3>
+<p>有多个选项选择且没有过多的空间全部展示出来, 一般使用表单情况下。</p>
+<h3 id="-">安装</h3>
+<pre><code>npm install sogo-dropdown
+// yarn add sogo-dropdown
+</code></pre><h3 id="api">API</h3>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>标题</td>
+<td>string</td>
+<td>请选择</td>
+</tr>
+<tr>
+<td>list</td>
+<td>下拉框展示的内容</td>
+<td>Array Object</td>
+<td>[]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-">事例代码</h3>
+<pre><code class="lang-js">import React from &#39;react&#39;;
+import { render } from &#39;react-dom&#39;;
+import Dropdown from &quot;./lib/index.js&quot;;
+
+render(&lt;Dropdown infor={{
+    title: &quot;学生列表&quot;,
+    list: [
+        { name: &quot;张三&quot;, value: 1 },
+        { name: &quot;李四&quot;, value: 2 },
+        { name: &quot;王五&quot;, value: 3 }
+    ]
+ }}/&gt;, document.getElementById(&#39;root&#39;));
+</code></pre>
+          
+        </div>
+      </div>
+    </div>
+    <div id="editor"></div>
+  </div>
+
+  <div class="resize"></div>
+  <iframe src="./preview.html" name="preview" id="preview"  style=" width: 100%;"></iframe>
+
+  <!-- 执行代码相关资源  -->  
+  <script src="/lib/site/static/jquery.js"></script>
+    
+  <!-- Markdown相关资源 -->
+  <!-- <script src="/lib/site/static/markdown.js"></script>       -->
+  <!-- 编辑器相关资源 -->
+  <script src="/lib/site/static/editor/ace.js"></script>
+  <script>
+    //初始化运行代码、ReadMe和编辑器
+    // var code = findModule("./app.js")["file"]["./app.js"];
+    // var dropdownComponent = findModule("./dropdown.js")["file"];
+    // var componentCode = dropdownComponent["./dropdown.js"];
+    // var readme = navComponent["./readme.md"];
+    
+    /*
+    * 显示markdown文本
+    * 点击代码区域将内容赋值到编辑器中 
+    */ 
+    // $.get("./static/data/readme.md", function(msg){
+      // var sass = new Sass();
+
+      
+      // var code = document.getElementsByClassName("lang-js")[0].innerHTML;
+	    // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+      // var HTML = document.getElementById("initHTML").innerHTML;      
+      // $("#preview").html($.trim(HTML));
+
+      // var parentPath = "";
+      // var code = document.getElementById("initCode").innerText;
+      setTimeout(function(){
+        var code = document.getElementById("preview").contentWindow.document.getElementById("initCode").innerText;
+        var editor = ace.edit("editor");        
+        editor.setValue(code, 1);    
+        editor.setOption("wrap", "free");
+        editor.setShowPrintMargin(false);
+        
+        var handle = null;
+        editor.on("change", function(e){        
+          clearTimeout(handle);
+          handle = setTimeout(function(){
+            var code = editor.getValue();
+            window.frames.preview.postMessage(code, "http://component.niuben.com/");
+          }, 600);
+        });
+      }, 1200);
+        
+      // evalModule(transformCode(code));              
+      var pageHeight = $(window).height();
+      pageHeight = pageHeight - (60 + 20);
+      
+      $(".middle, #preview").css("height", Math.floor(pageHeight/2) + "px");
+
+      var num = 0;
+      $("#top button").click(function(){
+        if(num % 2 == 0){
+          $(".middle").addClass("debug");
+          $(this).text("关闭调试");
+        }else{
+          $(".middle").removeClass("debug");
+          $(this).text("调试");
+        }
+        num++;
+      });
+
+      // var markdown = getContentFromPath("readme.md", modules["module"]);
+      // $("#markdown").html(marked(markdown));
+
+      // $("pre code").each(function(index){
+      //   $(this).attr("id", "code" + index);
+      //   // $("#code" + index).before('<div id="demo' + index + '"></div>');
+      //   $(this).parent().before('<div id="demo' + index + '" style="margin-bottom: 10px;"></div>');
+                
+      //   var code = $(this).text();
+      //   evalModule(transformCode(code));
+      // })
+    // });
+
+    // $("body").on("click", "pre", function(e){
+    //     if($(this).find("code").length > 0){          
+    //       editor.setValue($(this).text(), 1);
+    //     }        
+    // })
+
+    /*
+    * 初始化编辑;
+    * 给编辑器增加change监听;
+    */
+    // $("#editor").html(componentCode);
+    // var editor = ace.edit("editor");        
+    // editor.setValue(code, 1);    
+    // editor.setShowPrintMargin(false);
+    
+    // editor.on("change", function(e){
+    //   console.log(1);  
+    //   code = editor.getValue();
+    //   evalModule(transformCode(code));
+    // });
+  </script>
+  </body>
+</html>
