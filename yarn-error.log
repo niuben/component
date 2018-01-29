@@ -6011,4 +6011,4 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: ENOENT: no such file or directory, open '/Users/niuben-sogou/www/component/node_modules/sogo-dropdown/node_modules/react/dist/react-with-addons.js'
+  Error: ENOENT: no such file or directory, open '/Users/niuben-sogou/www/component/node_modules/react/cjs/react.development.js'
