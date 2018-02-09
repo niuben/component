@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add prop-types@15.6.0 react@16.0.0 react-dom@16.0.0 classnames@2.2.5 scroll-to-y@git://github.com/daviferreira/scroll-to-y.git
+  /usr/local/bin/node /usr/local/bin/yarn add react@^15.6.1 react-dom@^15.6.1
 
 PATH: 
-  /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/niuben-sogou/www/component/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/niuben-sogou
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   0.21.3
@@ -28,7 +28,7 @@ npm manifest:
     "devDependencies": {
       "node-sass": "^4.7.2",
       "optimist": "",
-      "webpack": "^3.10.0",
+      "webpack-livereload-plugin": "^1.0.0",
       "webpack-manifest-plugin": "1.2.1"
     },
     "dependencies": {
@@ -44,7 +44,8 @@ npm manifest:
       "scroll-to-y": "git://github.com/daviferreira/scroll-to-y.git",
       "sogo-dropdown": "^0.4.0",
       "stepbar": "^0.4.0",
-      "underscore.template": "^0.1.7"
+      "underscore.template": "^0.1.7",
+      "webpack": "^3.10.0"
     }
   }
 
@@ -1078,6 +1079,21 @@ Lockfile:
       raw-body "2.3.2"
       type-is "~1.6.15"
   
+  body-parser@~1.14.0:
+    version "1.14.2"
+    resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.14.2.tgz#1015cb1fe2c443858259581db53332f8d0cf50f9"
+    dependencies:
+      bytes "2.2.0"
+      content-type "~1.0.1"
+      debug "~2.2.0"
+      depd "~1.1.0"
+      http-errors "~1.3.1"
+      iconv-lite "0.4.13"
+      on-finished "~2.3.0"
+      qs "5.2.0"
+      raw-body "~2.1.5"
+      type-is "~1.6.10"
+  
   bonjour@^3.5.0:
     version "3.5.0"
     resolved "https://registry.yarnpkg.com/bonjour/-/bonjour-3.5.0.tgz#8e890a183d8ee9a2393b3844c691a42bcf7bc9f5"
@@ -1229,6 +1245,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/bundle-loader/-/bundle-loader-0.5.5.tgz#11fd7b08edf86a1d708efcb1eca62ca51f6c368a"
     dependencies:
       loader-utils "^1.0.2"
+  
+  bytes@2.2.0:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.2.0.tgz#fd35464a403f6f9117c2de3609ecff9cae000588"
+  
+  bytes@2.4.0:
+    version "2.4.0"
+    resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.4.0.tgz#7d97196f9d5baf7f6935e25985549edd2a6c2339"
   
   bytes@3.0.0:
     version "3.0.0"
@@ -1544,7 +1568,7 @@ Lockfile:
     version "0.5.2"
     resolved "https://registry.yarnpkg.com/content-disposition/-/content-disposition-0.5.2.tgz#0cf68bb9ddf5f2be7961c3a85178cb85dba78cb4"
   
-  content-type@~1.0.4:
+  content-type@~1.0.1, content-type@~1.0.4:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/content-type/-/content-type-1.0.4.tgz#e138cc75e040c727b1966fe5e5f8c9aee256fe3b"
   
@@ -1786,6 +1810,12 @@ Lockfile:
     dependencies:
       ms "2.0.0"
   
+  debug@~2.2.0:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
+    dependencies:
+      ms "0.7.1"
+  
   decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
@@ -1848,7 +1878,7 @@ Lockfile:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.1.tgz#5783b4e1c459f06fa5ca27f991f3d06e7a310359"
   
-  depd@~1.1.1:
+  depd@~1.1.0, depd@~1.1.1:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   
@@ -2285,7 +2315,7 @@ Lockfile:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
   
-  faye-websocket@^0.10.0:
+  faye-websocket@^0.10.0, faye-websocket@~0.10.0:
     version "0.10.0"
     resolved "https://registry.yarnpkg.com/faye-websocket/-/faye-websocket-0.10.0.tgz#4e492f8d04dfb6f89003507f6edbf2d501e7c6f4"
     dependencies:
@@ -2805,6 +2835,13 @@ Lockfile:
       setprototypeof "1.0.3"
       statuses ">= 1.3.1 < 2"
   
+  http-errors@~1.3.1:
+    version "1.3.1"
+    resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.3.1.tgz#197e22cdebd4198585e8694ef6786197b91ed942"
+    dependencies:
+      inherits "~2.0.1"
+      statuses "1"
+  
   http-parser-js@>=0.4.0:
     version "0.4.9"
     resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.4.9.tgz#ea1a04fb64adff0242e9974f297dd4c3cad271e1"
@@ -2836,6 +2873,10 @@ Lockfile:
   https-browserify@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
+  
+  iconv-lite@0.4.13:
+    version "0.4.13"
+    resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
   
   iconv-lite@0.4.19, iconv-lite@~0.4.13:
     version "0.4.19"
@@ -3358,6 +3399,10 @@ Lockfile:
     dependencies:
       invert-kv "^1.0.0"
   
+  livereload-js@^2.2.0:
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/livereload-js/-/livereload-js-2.3.0.tgz#c3ab22e8aaf5bf3505d80d098cbad67726548c9a"
+  
   load-json-file@^1.0.0:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -3658,6 +3703,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
     dependencies:
       minimist "0.0.8"
+  
+  ms@0.7.1:
+    version "0.7.1"
+    resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
   
   ms@2.0.0:
     version "2.0.0"
@@ -4047,7 +4096,7 @@ Lockfile:
     dependencies:
       error-ex "^1.2.0"
   
-  parseurl@~1.3.2:
+  parseurl@~1.3.0, parseurl@~1.3.2:
     version "1.3.2"
     resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.2.tgz#fc289d4ed8993119460c156253262cdc8de65bf3"
   
@@ -4509,9 +4558,17 @@ Lockfile:
     version "1.5.1"
     resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   
+  qs@5.2.0:
+    version "5.2.0"
+    resolved "https://registry.yarnpkg.com/qs/-/qs-5.2.0.tgz#a9f31142af468cb72b25b30136ba2456834916be"
+  
   qs@6.5.1:
     version "6.5.1"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
+  
+  qs@~5.1.0:
+    version "5.1.0"
+    resolved "https://registry.yarnpkg.com/qs/-/qs-5.1.0.tgz#4d932e5c7ea411cca76a312d39a606200fd50cd9"
   
   qs@~6.3.0:
     version "6.3.2"
@@ -4575,6 +4632,14 @@ Lockfile:
       bytes "3.0.0"
       http-errors "1.6.2"
       iconv-lite "0.4.19"
+      unpipe "1.0.0"
+  
+  raw-body@~2.1.5:
+    version "2.1.7"
+    resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.1.7.tgz#adfeace2e4fb3098058014d08c072dcc59758774"
+    dependencies:
+      bytes "2.4.0"
+      iconv-lite "0.4.13"
       unpipe "1.0.0"
   
   rc@^1.1.7:
@@ -5268,7 +5333,7 @@ Lockfile:
       define-property "^0.2.5"
       object-copy "^0.1.0"
   
-  "statuses@>= 1.3.1 < 2", statuses@~1.3.1:
+  statuses@1, "statuses@>= 1.3.1 < 2", statuses@~1.3.1:
     version "1.3.1"
     resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
   
@@ -5480,6 +5545,17 @@ Lockfile:
     dependencies:
       setimmediate "^1.0.4"
   
+  tiny-lr@^0.2.0:
+    version "0.2.1"
+    resolved "https://registry.yarnpkg.com/tiny-lr/-/tiny-lr-0.2.1.tgz#b3fdba802e5d56a33c2f6f10794b32e477ac729d"
+    dependencies:
+      body-parser "~1.14.0"
+      debug "~2.2.0"
+      faye-websocket "~0.10.0"
+      livereload-js "^2.2.0"
+      parseurl "~1.3.0"
+      qs "~5.1.0"
+  
   to-arraybuffer@^1.0.0:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"
@@ -5551,7 +5627,7 @@ Lockfile:
     version "0.14.5"
     resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   
-  type-is@~1.6.15:
+  type-is@~1.6.10, type-is@~1.6.15:
     version "1.6.15"
     resolved "https://registry.yarnpkg.com/type-is/-/type-is-1.6.15.tgz#cab10fb4909e441c82842eafe1ad646c81804410"
     dependencies:
@@ -5787,6 +5863,12 @@ Lockfile:
       webpack-dev-middleware "1.12.2"
       yargs "6.6.0"
   
+  webpack-livereload-plugin@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/webpack-livereload-plugin/-/webpack-livereload-plugin-1.0.0.tgz#c197397ebe2a922d91da81642e000eb52c949299"
+    dependencies:
+      tiny-lr "^0.2.0"
+  
   webpack-manifest-plugin@1.2.1:
     version "1.2.1"
     resolved "https://registry.yarnpkg.com/webpack-manifest-plugin/-/webpack-manifest-plugin-1.2.1.tgz#e02f0846834ce98dca516946ee3ee679745e7db1"
@@ -6011,4 +6093,4 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: ENOENT: no such file or directory, open '/Users/niuben-sogou/www/component/node_modules/react/cjs/react.development.js'
+  Error: ENOENT: no such file or directory, chmod '/Users/niuben-sogou/www/component/node_modules/babel-loader/node_modules/webpack/node_modules/.bin/acorn'

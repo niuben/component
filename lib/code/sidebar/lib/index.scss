@@ -1,0 +1,95 @@
+.faq-left {
+    float: left;
+    width: 198px;
+    height: 100%;
+    /*min-height: 569px;*/
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    background: #fff;
+    margin-top: 3px;
+    li {
+        width: 198px;
+        height: 58px;
+        line-height: 58px;
+        font-size: 16px;
+        color: #666666;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        b {
+            display: block;
+            float: left;
+            width: 3px;
+            height: 24px;
+            background-color: #fff;
+            margin-top: 17px;
+        }
+        span {
+            display: block;
+            float: left;
+            width: 16px;
+            height: 18px;
+            margin-top: 22px;
+            margin-left: 29px;                                  
+        }        
+        i {
+            display: block;
+            float: left;
+            margin-left: 8px;
+        }
+        &:first-child {
+            margin-top: 20px;
+        }
+        &:first-child span{
+            background: url('./img/xszn.png') no-repeat;
+        }
+        &:nth-child(2) span{
+            background: url('./img/ywhz.png') no-repeat;
+        }
+        &:last-child span{
+            background: url('./img/lmjs.png') no-repeat;
+        }
+    }
+    .active {
+        color: #3697fd;
+        background-color: #f2f6ff;
+        b {
+            width: 3px;
+            height: 24px;
+            background-color: #3697fd;
+        }
+        &:first-child span{
+            background: url('./img/xszn-hover.png') no-repeat;
+        }
+        &:nth-child(2) span{
+            background: url('./img/ywhz-hover.png') no-repeat;
+        }
+        &:last-child span{
+            background: url('./img/lmjs-hover.png') no-repeat;
+        }      
+    }    
+}
+.faq-right {
+    float: right;
+    width: 946px;
+    height: 100%;
+    .tabText {
+        display: none;
+        dl {
+            padding-top: 35px;
+        }
+        h2 {
+            font-size: 16px;
+			line-height: 26px;
+            font-weight: bold;
+        }
+        p {
+            padding-top: 10px;
+			font-size: 14px;
+			line-height: 24px;
+        }
+    }
+}
+
+@media screen and (min-width:1900px){
+    .faq-left{ min-height: 760px;}
+}

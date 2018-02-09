@@ -3,33 +3,66 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="theme-color" content="#000000"/>
-    <link rel="stylesheet" href="<%- static %>/github-theme.css" />
-    <style>
-      a {
-        text-decoration: none;
-        color: #000;
-      }
+    <meta name="theme-color" content="#000000"/> 
+    <link rel="stylesheet" href="<%- static %>/reset.css" />
+    <link rel="stylesheet" href="<%- static %>/index.css" />
 
-      a:hover {
-        text-decoration: underline;
-      }
-
-    </style>
     <title>首页</title>
-    <body>  
-        <div>
-          <h1>Dov</h1>          
-        </div>
-        <ul>
+    <style>      
+    </style>
+  </head>
+  <body>  
+      <div class="nav">
+        <h1><a href="./index.html">Dov</a></h1>          
+      </div>
+      <ul class="list">
           <% list.map(function(item, index){ %>
             <li>
-              <a href="<%= item["url"] %>"> <%= index + 1 %>.  <%= item["name"] %></a>
+              <div class="cover">
+                <a class="title" href="<%= item["url"] %>"><img src="<%= item["image"] %>" /></a>
+              </div>
+              <div class="content">  
+                <a class="title" href="<%= item["url"] %>"><%= item["title"] %></a>
+                <p class="infor"><%= item["content"] %></p>
+              </div>
             </li>
           <% }); %>
-            <!-- <li><a href="dropdown.html">1. dropdown</a></li>
-            <li><a href="group-button-sort.html">2. group-button-sort</a></li>
-            <li><a href="stepbar.html">3. stepbar</a></li> -->
-        </ul>
-    </body>     
+        <!-- <li>
+          <div class="cover">
+            <a class="title" href="dropdown.html"><img src="/lib/site/static/img/group-button-sort.jpg" /></a>
+          </div>
+          <div class="content">  
+            <a class="title" href="dropdown.html">排序按钮组</a>
+            <p class="infor">通过一组按钮实现选中排序等功能</p>
+          </div>
+        </li>
+        <li>
+          <div class="cover">
+            <a class="title" href="dropdown.html"><img src="/lib/site/static/img/react-viewport-slider.png" /></a>
+          </div>
+          <div class="content">  
+            <a class="title" href="dropdown.html">全屏介绍页</a>
+            <p class="infor">全屏展示内容，通过鼠标滚轮或者点击进行切换</p>
+          </div>
+        </li> 
+        <li>
+            <div class="cover">
+              <a class="title" href="dropdown.html"><img src="/lib/site/static/img/stepbar.png" /></a>
+            </div>
+            <div class="content">  
+              <a class="title" href="dropdown.html">步骤条</a>
+              <p class="infor">用于多步操作。可以展示当前在第几步。</p>
+            </div>
+          </li>  
+          <li>
+              <div class="cover">
+                <a class="title" href="dropdown.html"><img src="/lib/site/static/img/sogo-dropdown.png" /></a>
+              </div>
+              <div class="content">  
+                <a class="title" href="dropdown.html">下拉框</a>
+                <p class="infor">隐藏多行数据</p>
+              </div>
+            </li>   -->
+      </ul>      
+  </body>     
 </html>

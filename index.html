@@ -3,65 +3,96 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="theme-color" content="#000000"/>
-    <link rel="stylesheet" href="/lib/site/static/github-theme.css" />
-    <style>
-      a {
-        text-decoration: none;
-        color: #000;
-      }
+    <meta name="theme-color" content="#000000"/> 
+    <link rel="stylesheet" href="/lib/site/dist/reset.css" />
+    <link rel="stylesheet" href="/lib/site/dist/index.css" />
 
-      a:hover {
-        text-decoration: underline;
-      }
-
-    </style>
     <title>首页</title>
-    <body>  
-        <div>
-          <h1>Dov</h1>          
-        </div>
-        <ul>
+    <style>      
+    </style>
+  </head>
+  <body>  
+      <div class="nav">
+        <h1><a href="./index.html">Dov</a></h1>          
+      </div>
+      <ul class="list">
           
             <li>
-              <a href="/dist/group-button-sort/group-button-sort.html"> 1.  group-button-sort</a>
+              <div class="cover">
+                <a class="title" href="/dist/group-button-sort/group-button-sort.html"><img src="/lib/site/static/img/group-button-sort.jpg" /></a>
+              </div>
+              <div class="content">  
+                <a class="title" href="/dist/group-button-sort/group-button-sort.html">排序按钮组</a>
+                <p class="infor">通过一组按钮实现选中排序等功能</p>
+              </div>
             </li>
           
             <li>
-              <a href="/dist/react-viewport-slider/react-viewport-slider.html"> 2.  react-viewport-slider</a>
+              <div class="cover">
+                <a class="title" href="/dist/react-viewport-slider/react-viewport-slider.html"><img src="/lib/site/static/img/react-viewport-slider.png" /></a>
+              </div>
+              <div class="content">  
+                <a class="title" href="/dist/react-viewport-slider/react-viewport-slider.html">全屏介绍页</a>
+                <p class="infor">全屏展示内容，通过鼠标滚轮或者点击进行切换</p>
+              </div>
             </li>
           
             <li>
-              <a href="/dist/sogo-dropdown/sogo-dropdown.html"> 3.  sogo-dropdown</a>
+              <div class="cover">
+                <a class="title" href="/dist/sogo-dropdown/sogo-dropdown.html"><img src="/lib/site/static/img/sogo-dropdown.png" /></a>
+              </div>
+              <div class="content">  
+                <a class="title" href="/dist/sogo-dropdown/sogo-dropdown.html">下拉框</a>
+                <p class="infor">隐藏多行数据</p>
+              </div>
             </li>
           
             <li>
-              <a href="/dist/stepbar/stepbar.html"> 4.  stepbar</a>
+              <div class="cover">
+                <a class="title" href="/dist/stepbar/stepbar.html"><img src="/lib/site/static/img/stepbar.png" /></a>
+              </div>
+              <div class="content">  
+                <a class="title" href="/dist/stepbar/stepbar.html">步骤条</a>
+                <p class="infor">用于多步操作。可以展示当前在第几步。</p>
+              </div>
             </li>
           
-            <!-- <li><a href="dropdown.html">1. dropdown</a></li>
-            <li><a href="group-button-sort.html">2. group-button-sort</a></li>
-            <li><a href="stepbar.html">3. stepbar</a></li> -->
-        </ul>
-        <!-- Hotjar Tracking Code for https://niuben.github.io/component/ -->
-        <script>
-          (function(h,o,t,j,a,r){
-              h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-              h._hjSettings={hjid:769696,hjsv:6};
-              a=o.getElementsByTagName('head')[0];
-              r=o.createElement('script');r.async=1;
-              r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-              a.appendChild(r);
-          })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
-
-      <div id="SOHUCS" sid="1" ></div>
-      <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
-      <script type="text/javascript">
-      window.changyan.api.config({
-      appid: 'cysvwaNb5',
-      conf: 'prod_92e5a98ecf144788ad2f4fdba7193d2f'
-      });
-      </script>
-    </body>     
+        <!-- <li>
+          <div class="cover">
+            <a class="title" href="dropdown.html"><img src="/lib/site/static/img/group-button-sort.jpg" /></a>
+          </div>
+          <div class="content">  
+            <a class="title" href="dropdown.html">排序按钮组</a>
+            <p class="infor">通过一组按钮实现选中排序等功能</p>
+          </div>
+        </li>
+        <li>
+          <div class="cover">
+            <a class="title" href="dropdown.html"><img src="/lib/site/static/img/react-viewport-slider.png" /></a>
+          </div>
+          <div class="content">  
+            <a class="title" href="dropdown.html">全屏介绍页</a>
+            <p class="infor">全屏展示内容，通过鼠标滚轮或者点击进行切换</p>
+          </div>
+        </li> 
+        <li>
+            <div class="cover">
+              <a class="title" href="dropdown.html"><img src="/lib/site/static/img/stepbar.png" /></a>
+            </div>
+            <div class="content">  
+              <a class="title" href="dropdown.html">步骤条</a>
+              <p class="infor">用于多步操作。可以展示当前在第几步。</p>
+            </div>
+          </li>  
+          <li>
+              <div class="cover">
+                <a class="title" href="dropdown.html"><img src="/lib/site/static/img/sogo-dropdown.png" /></a>
+              </div>
+              <div class="content">  
+                <a class="title" href="dropdown.html">下拉框</a>
+                <p class="infor">隐藏多行数据</p>
+              </div>
+            </li>   -->
+      </ul>      
+  </body>     
 </html>

@@ -1,0 +1,17 @@
+body {
+    background: #f5f5f5;    
+}
+.nav {
+    height: 64px;
+    line-height: 64px;
+    background: #FF5722;
+    box-shadow: 0 2px 5px rgba(0,0,0,.26);
+    h1 {
+        margin-left: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        a {
+            color: #FFF;
+        }        
+    }
+}

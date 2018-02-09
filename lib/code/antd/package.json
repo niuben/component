@@ -1,0 +1,14 @@
+{
+  "name": "antd",
+  "version": "1.0.0",
+  "description": "拆分antd模块",
+  "main": "index.js",
+  "scripts": {
+    "test": "start "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^2.13.10"
+  }
+}

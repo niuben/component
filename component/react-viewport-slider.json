@@ -1,5 +1,8 @@
 {
+    "title": "全屏介绍页",
+    "content": "全屏展示内容，通过鼠标滚轮或者点击进行切换",
     "name": "react-viewport-slider",
+    "image": "/lib/site/static/img/react-viewport-slider.png",
     "isModule": true,    
     "example": {
         "html": "<div id='demo'></div>",

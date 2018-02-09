@@ -3,114 +3,104 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="theme-color" content="#000000"/>
-    <link rel="stylesheet" href="./static/github-theme.css" />
-    <title>组件详情</title>
-    <style>
-      * {
-          padding: 0px;
-          margin: 0px;
-      }      
-      ul, li {
-          list-style: none;
-      }
-      #top {
-        position: relative;
-        height: 60px;
-        line-height: 60px;
-        box-shadow: 0 0 5px 0 #a5a5a5;
-      }
-      #top span {
-        position: absolute;
-        width: 60px;
-        height: 60px;        
-        text-align: center;
-      }
-      #top h1 {
-        text-align: center;
-        font-size: 20px;
-      }
-      #markdown {
-        border-bottom: 1px solid #EEE;
-      }
-      #editor, #preview {
-        float: left;
-        width: 50%;
-      }
-      
-    </style>
+    <meta name="theme-color" content="#000000"/>    
+    <link rel="stylesheet" href="/lib/site/dist/edit.css">
+    <link rel="stylesheet" href="/lib/site/static/reset.css">
+
+    <title>编辑器</title>
   </head>
-  <body>    
-  <div id="top">
-    <span>首页</span>
-    <!-- <h1>导航栏</h1> -->
-  </div>
-  <div id="markdown" class="markdown-body"></div>
-  <div id="editor" style="height: 200px;"></div>  
-  <div id="preview">
-    <div id="root"></div>
-  </div>
-  
-  <!-- 执行代码相关资源  -->
-  <script src="./static/dll.js"></script>
-  <script src="./static/babel.min.js"></script>
-  <script src="./static/jquery.js"></script>
-  <script src="./static/file.js"></script>
-  <script src="./static/module.js"></script>
-  <script src="./static/require.js"></script>
-  <script src="./static/data/dropdown.js"></script>
-  
-  <!-- Markdown相关资源 -->
-  <script src="./static/markdown.js"></script>  
+  <body> 
+    <div class="nav">
+      <h1><a href="./index.html">Dov</a></h1>          
+    </div>
+    <div class="content">            
+      <div class="left">
+        <div id="markdown" class="html editor">
+          <div class="editor-inner">
+            <p class="title">HTML</p>
+            <div id="editorHTML"></div>
+          </div>
+        </div>      
+        <div id="markdown1" class="css editor">
+          <div class="editor-inner">
+            <p class="title">CSS</p>
+            <div id="editorCSS" ></div>
+          </div>
+        </div>      
+        <div id="editor" class="js editor">
+          <div class="editor-inner">
+            <p class="title">JavaScript</p>
+            <div id="editorJS"></div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <iframe src="/dist/react-viewport-slider/preview.html" name="preview" id="preview"  style="width: 100%;"></iframe>
+      </div>
+    </div>
+    <!-- <script src="http://localhost:35729/livereload.js"></script> -->
+    <script src="/lib/site/static/jquery.js"></script>
+    <script src="/lib/site/static/editor/ace.js"></script>    
+    <script>
+      // evalModule(transformCode(code));              
+      var pageHeight = $(window).height();
+      pageHeight = pageHeight - 64;
+      $(".left, .right").css("height", Math.floor(pageHeight) + "px");
+      
+      var editorHeight = Math.floor((pageHeight / 3) - 35);
+      $("#editorHTML, #editorCSS, #editorJS").css("height", editorHeight);
 
-  <!-- 编辑器相关资源 -->
-  <script src="./static/editor/ace.js"></script>  
+      // var editorHTML = ace.edit("editorHTML");
+      // var editorCSS = ace.edit("editorCSS");
+      // var editorJS = ace.edit("editorJS");
+      var codeConf = [{
+        id: "editorHTML",
+        sourceID: "initHTML",
+        type: "html"
+      },{
+        id: "editorCSS",
+        sourceID: "initCSS",
+        type: "css"
+      },{
+        id: "editorJS",
+        sourceID: "initJS",
+        type: "js"
+      }];
+      
+      codeConf.map(function(conf){
+        createEdit(conf["id"], conf["sourceID"], conf["type"]);
+      });
 
-  <script>
-    //初始化运行代码、ReadMe和编辑器
-    var code = findModule("./app.js")["file"]["./app.js"];
-    var dropdownComponent = findModule("./dropdown.js")["file"];
-    var componentCode = dropdownComponent["./dropdown.js"];
-    // var readme = navComponent["./readme.md"];
-    
-    /*
-    * 显示markdown文本
-    * 点击代码区域将内容赋值到编辑器中 
-    */ 
-    $.get("./static/data/readme.md", function(msg){
-      $("#markdown").html(marked(msg));
-      // $("pre code").each(function(index){
-      //   $(this).attr("id", "code" + index);
-      //   // $("#code" + index).before('<div id="demo' + index + '"></div>');
-      //   $(this).parent().before('<div id="demo' + index + '" style="margin-bottom: 10px;"></div>');
-                
-      //   var code = $(this).text();
-      //   evalModule(transformCode(code));
-      // })
 
-    });
-    $("body").on("click", "pre", function(e){
-        if($(this).find("code").length > 0){          
-          editor.setValue($(this).text(), 1);
-        }        
-    })
+      /*
+      * id: 对应DIV的ID号
+      * sourceID: 页面页面对应的源码ID  
+      */
+      function createEdit(id, sourceID, type){
+        setTimeout(function(){
+          var code = document.getElementById("preview").contentWindow.document.getElementById(sourceID).innerText;
+          code = $.trim(code);
 
-    /*
-    * 初始化编辑;
-    * 给编辑器增加change监听;
-    */
-    // $("#editor").html(componentCode);
-    var editor = ace.edit("editor");        
-    editor.setValue(code, 1);    
-    editor.setShowPrintMargin(false);
-    
-    editor.on("change", function(e){
-      console.log(1);  
-      code = editor.getValue();
-      evalModule(transformCode(code));
-    });
+          var editorJS = ace.edit(id); 
+          editorJS.setValue(code, 1);    
+          editorJS.setOption("wrap", "free");
+          editorJS.setShowPrintMargin(false);
+          
+          
+          var handle = null;
+          editorJS.on("change", function(e){        
+            clearTimeout(handle);
+            handle = setTimeout(function(){
+              var code = editorJS.getValue();
+              window.frames.preview.postMessage({
+                type: type,
+                code: code
+              }, "http://component.niuben.com/");
+            }, 600);
+          });
+        }, 1200);
+      }
 
-    evalModule(transformCode(code));
-  </script>
+    </script>
   </body>
 </html>

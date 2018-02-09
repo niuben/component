@@ -1,0 +1,55 @@
+.left, .right {
+    float: left;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+.left {
+    .editor{        
+        height: 33.333%;
+        border-bottom: 1px solid #d9ddde;
+        .editor-inner {            
+            .title {
+                padding: 0 5px;
+                height: 35px;
+                line-height: 35px;
+                opacity: 0.5;
+            }
+            .ace_editor{
+                background: #f5f5f5 !important;
+            }
+            &>div{
+                height: 100%;
+                display: block;
+            }
+        }
+    }
+    &.two{
+        .editor{
+            height: 50%;
+        }
+    }
+}  
+.right {
+
+    iframe{
+        border: none;
+        height: 100%;        
+    }
+}
+
+// #editor {
+//   height: 100%;
+//   display: none;
+//   overflow: auto;
+// }
+
+// .debug #editor, .debug .left{
+//   float: left;
+//   width: 50%;
+//   display: block;
+// }
+
+// .middle {
+//   overflow: hidden;
+// }

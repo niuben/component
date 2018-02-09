@@ -12,7 +12,7 @@
   "devDependencies": {
     "node-sass": "^4.7.2",
     "optimist": "",
-    "webpack": "^3.10.0",
+    "webpack-livereload-plugin": "^1.0.0",
     "webpack-manifest-plugin": "1.2.1"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "scroll-to-y": "git://github.com/daviferreira/scroll-to-y.git",
     "sogo-dropdown": "^0.4.0",
     "stepbar": "^0.4.0",
-    "underscore.template": "^0.1.7"
+    "underscore.template": "^0.1.7",
+    "webpack": "^3.10.0"
   }
 }

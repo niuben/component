@@ -1,5 +1,8 @@
 {
-    "name": "group-button-sort",
+    "title": "排序按钮组",
+    "name": "group-button-sort",    
+    "content": "通过一组按钮实现选中排序等功能",
+    "image": "/lib/site/static/img/group-button-sort.jpg",
     "isModule": true,
     "example": {
         "html": "<div id='root' style='padding: 10px'></div>",

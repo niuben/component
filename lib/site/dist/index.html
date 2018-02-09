@@ -4,208 +4,52 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="theme-color" content="#000000"/>    
-    <style>
-     #top, #top span, .markdown-body * {
-          padding: 0px;
-          margin: 0px;
-      }      
-      .markdown-body ul, .markdown-body li {
-          list-style: none;
-      }
-      #top {
-        position: relative;
-        height: 60px;
-        line-height: 60px;
-        box-shadow: 0 0 5px 0 #a5a5a5;
-      }
-      #top span {
-        position: absolute;
-        width: 60px;
-        height: 60px;        
-        text-align: center;
-      }
-      #top h1 {
-        text-align: center;
-        font-size: 20px;
-      }
-      #markdown {
-        margin-left: 10px;
-        margin-top: 10px;
-        /* border-bottom: 1px solid #EEE; */
-      }
-      
-      #preview {
-        /* display: none; */
-        margin-top: 100px;
-      }
-      #editor, #preview {
-        /* float: left; */
-        /* width: 50%; */
-      }
-      #editor {
-        /* height: 400px; */
-      }
+    <title>首页</title>
+    <style>      
     </style>
-  </head>
-  <body >    
-    <div id="demo"></div>
-  
-  <!-- <iframe src="../code/dropdown/build/index.html" style="height: 500px; width: 100%;"></iframe> -->
-
-  <!-- 执行代码相关资源  -->
-  <script src="../../service/dist/dll.bundle.js"></script>
-  <script src="../static/babel.min.js"></script>
-  <script src="../static/jquery.js"></script>
-  <script src="../static/file.js"></script>
-  <script src="../static/module.js"></script>
-  <script src="../static/require.js"></script>
-  <script src="../static/data/react-viewport-slider.js?v=1"></script>
-  
-  <script type="template/text" id="initCode">
-    'use strict';
-        
-    import './demo.css';
-
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    
-    import Slider from './src/Slider';
-    
-    // http://alpha.wallhaven.cc/wallpaper/164335
-    const wallpaper =
-      'http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-164335.png';
-    
-    class Demo extends React.Component {
-      render() {
-        return (
-          <Slider>
-            <Slider.Item style={{ backgroundColor: '#a2d7c7' }}>
-              <div className="content">Hello, world.</div>
-            </Slider.Item>
-            <Slider.Item style={{ backgroundColor: '#353330' }}>
-              <div className="content">Sup?</div>
-            </Slider.Item>
-            <Slider.Item
-              className="has-overlay"
-              style={{
-                backgroundImage: `url(${wallpaper})`,
-                backgroundSize: 'cover'
-              }}
-            >
-              <div className="content">Yo.</div>
-            </Slider.Item>
-            <Slider.Item style={{ color: '#333' }}>
-              <div className="content love">
-                <i className="fa fa-heart" />
-                <iframe
-                  src="http://ghbtns.com/github-btn.html?user=daviferreira&repo=react-viewport-slider&type=follow&count=true&size=large"
-                  allowTransparency="true"
-                  frameBorder="0"
-                  scrolling="0"
-                  width="auto"
-                  height="30"
-                />
-                <iframe
-                  src="http://ghbtns.com/github-btn.html?user=daviferreira&repo=react-viewport-slider&type=watch&count=true&size=large"
-                  allowTransparency="true"
-                  frameBorder="0"
-                  scrolling="0"
-                  width="auto"
-                  height="30"
-                />
-                <iframe
-                  src="http://ghbtns.com/github-btn.html?user=daviferreira&repo=react-viewport-slider&type=fork&count=true&size=large"
-                  allowTransparency="true"
-                  frameBorder="0"
-                  scrolling="0"
-                  width="auto"
-                  height="30"
-                />
+  <link href="index.css" rel="stylesheet"></head>
+  <body>  
+      <div class="nav">
+        <h1><a href="./index.html">Dov</a></h1>          
+      </div>
+      <ul class="list">       
+        <li>
+          <div class="cover">
+            <a class="title" href="dropdown.html"><img src="/lib/site/static/img/group-button-sort.jpg" /></a>
+          </div>
+          <div class="content">  
+            <a class="title" href="dropdown.html">排序按钮组</a>
+            <p class="infor">通过一组按钮实现选中排序等功能</p>
+          </div>
+        </li>
+        <li>
+          <div class="cover">
+            <a class="title" href="dropdown.html"><img src="/lib/site/static/img/react-viewport-slider.png" /></a>
+          </div>
+          <div class="content">  
+            <a class="title" href="dropdown.html">全屏介绍页</a>
+            <p class="infor">全屏展示内容，通过鼠标滚轮或者点击进行切换</p>
+          </div>
+        </li> 
+        <li>
+            <div class="cover">
+              <a class="title" href="dropdown.html"><img src="/lib/site/static/img/stepbar.png" /></a>
+            </div>
+            <div class="content">  
+              <a class="title" href="dropdown.html">步骤条</a>
+              <p class="infor">用于多步操作。可以展示当前在第几步。</p>
+            </div>
+          </li>  
+          <li>
+              <div class="cover">
+                <a class="title" href="dropdown.html"><img src="/lib/site/static/img/sogo-dropdown.png" /></a>
               </div>
-            </Slider.Item>
-          </Slider>
-        );
-      }
-    }
-    
-    ReactDOM.render(<Demo />, document.getElementById('demo'));
-    
-  </script>
-
-  <script>
-    //初始化运行代码、ReadMe和编辑器
-    // var code = findModule("./app.js")["file"]["./app.js"];
-    // var dropdownComponent = findModule("./dropdown.js")["file"];
-    // var componentCode = dropdownComponent["./dropdown.js"];
-    // var readme = navComponent["./readme.md"];
-    
-    /*
-    * 显示markdown文本
-    * 点击代码区域将内容赋值到编辑器中 
-    */ 
-    // $.get("./static/data/readme.md", function(msg){
-      // var sass = new Sass();
-
-      
-      // var code = document.getElementsByClassName("lang-js")[0].innerHTML;
-	    // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");      
-      var parentPath = "";
-      var code = document.getElementById("initCode").innerText;
-      
-      // var editor = ace.edit("editor");        
-      // editor.setValue(code, 1);    
-      // editor.setShowPrintMargin(false);
-      
-      // editor.on("change", function(e){
-      //   console.log(1);  
-      //   code = editor.getValue();
-      //   evalModule(transformCode(code));
-      // });
-      
-    evalModule(transformCode(code));              
-
-    window.addEventListener("message", function(msg){
-        var code = msg.data;
-        parentPath = "";
-        evalModule(transformCode(code));
-    }, false);
-
-   
-     
-
-
-
-      // $("pre code").each(function(index){
-      //   $(this).attr("id", "code" + index);
-      //   // $("#code" + index).before('<div id="demo' + index + '"></div>');
-      //   $(this).parent().before('<div id="demo' + index + '" style="margin-bottom: 10px;"></div>');
-                
-      //   var code = $(this).text();
-      //   evalModule(transformCode(code));
-      // })
-    // });
-
-    // $("body").on("click", "pre", function(e){
-    //     if($(this).find("code").length > 0){          
-    //       editor.setValue($(this).text(), 1);
-    //     }        
-    // })
-
-    /*
-    * 初始化编辑;
-    * 给编辑器增加change监听;
-    */
-    // $("#editor").html(componentCode);
-    // var editor = ace.edit("editor");        
-    // editor.setValue(code, 1);    
-    // editor.setShowPrintMargin(false);
-    
-    // editor.on("change", function(e){
-    //   console.log(1);  
-    //   code = editor.getValue();
-    //   evalModule(transformCode(code));
-    // });
-
-  </script>
-  </body>
+              <div class="content">  
+                <a class="title" href="dropdown.html">下拉框</a>
+                <p class="infor">隐藏多行数据</p>
+              </div>
+            </li>  
+      </ul>
+      <script src="http://localhost:35729/livereload.js"></script>
+  <script type="text/javascript" src="index.bundle.js"></script></body>     
 </html>
