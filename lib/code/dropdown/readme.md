@@ -23,11 +23,11 @@ import { render } from 'react-dom';
 import Dropdown from "./lib/index.js";
 
 render(<Dropdown infor={{
-    title: "学生列表",
-    list: [
-        { name: "张三", value: 1 },
-        { name: "李四", value: 2 },
-        { name: "王五", value: 3 }
+    "title": "学生列表",
+    "list": [
+        { "name": "张三", "value": 1 },
+        { "name": "李四", "value": 2 },
+        { "name": "王五", "value": 3 }
     ]
  }}/>, document.getElementById('root'));
 ```
