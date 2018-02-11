@@ -1,2 +1,3 @@
 name: "dov组件收集"
-exclude: [readme.*, README.*]
+exclude:   
+  - "*.md"
