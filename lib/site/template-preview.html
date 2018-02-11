@@ -53,20 +53,29 @@
   <!-- <iframe src="../code/dropdown/build/index.html" style="height: 500px; width: 100%;"></iframe> -->
 
   <!-- 执行代码相关资源  -->
-  <script src="./dll.bundle.js"></script>
-  <script src="/lib/site/static/babel.min.js"></script>
   <script src="/lib/site/static/jquery.js"></script>
-  <script src="/lib/site/static/file.js"></script>
-  <script src="/lib/site/static/module.js"></script>
-  <script src="/lib/site/static/require.js"></script>
-  <script src="./<%- moduleName %>.js"></script>
+  <% if(libArr == null) { %>
+    <script src="./dll.bundle.js"></script>
+    <script src="/lib/site/static/babel.min.js"></script>
+    <script src="/lib/site/static/file.js"></script>
+    <script src="/lib/site/static/module.js"></script>
+    <script src="/lib/site/static/require.js"></script>
+    <script src="./<%- moduleName %>.js"></script>
+    <% }else{ %>
+      <% libArr.map(function(url, index){ %>
+        <script src="<%= url%>"></script>
+    <%})}%>
   
   <script type="template/text" id="initHTML">
     <%= html %>
   </script>
   
-  <script type="template/text" id="initCode">
-    <%= code %>
+  <script type="template/text" id="initCSS">
+    <%= css %>
+  </script>
+
+  <script type="template/text" id="initJS">
+    <%= js %>
   </script>
 
   <script>
@@ -85,14 +94,30 @@
 
       
       // var code = document.getElementsByClassName("lang-js")[0].innerHTML;
-	    // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");      
-      
-      var HTML = document.getElementById("initHTML").innerHTML;
-      $("#result").html($.trim(HTML));
-      
+      // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");      
       var parentPath = "";
-      var code = document.getElementById("initCode").innerText;
+      function runCode(type, code){
+        if(type == "html"){
+          $("#result").html($.trim(HTML));
+        }else if(type == "css"){
+          $("head").append("<style>"+ code +"</style>");
+        }else if(type == "js"){
+          parentPath = "";
+          <% if(libArr == null) { %>
+            evalModule(transformCode(code));
+          <%}else{%>
+            eval(code);
+          <%}%>              
+        }
+      }
+
+
+      var HTML = document.getElementById("initHTML").innerHTML;
+      runCode("html", HTML);
       
+      
+      var js = document.getElementById("initJS").innerText;
+      runCode("js", js);
       // var editor = ace.edit("editor");        
       // editor.setValue(code, 1);    
       // editor.setShowPrintMargin(false);
@@ -103,12 +128,14 @@
       //   evalModule(transformCode(code));
       // });
       
-    evalModule(transformCode(code));              
+   
 
     window.addEventListener("message", function(msg){
-        var code = msg.data;
-        parentPath = "";
-        evalModule(transformCode(code));
+        var code = msg.data["code"],
+            type = msg.data["type"];
+        
+        runCode(type, code);        
+        // evalModule(transformCode(code));
     }, false);
 
    

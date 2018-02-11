@@ -1,0 +1,12 @@
+{
+    "title": "下拉框",    
+    "name": "sogo-dropdown",    
+    "content": "隐藏多行数据",
+    "image": "/lib/site/static/img/sogo-dropdown.png",
+    "browser": "ie9",
+    "isModule": true,
+    "example": {
+        "html": "<div id='root' style='padding: 10px'></div>",
+        "js": "./example/index.js"
+    }
+}

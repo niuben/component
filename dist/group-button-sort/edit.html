@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>    
+    <link rel="stylesheet" href="/lib/site/dist/edit.css" />
+    <link rel="stylesheet" href="/lib/site/dist/reset.css" />
+
+    <title>group-button-sort</title>
+  </head>
+  <body> 
+    <div class="nav">
+      <h1><a href="/index.html">Dov</a></h1>          
+    </div>
+    <div class="content">            
+      <div class="left">
+        <div id="markdown" class="html editor">
+          <div class="editor-inner">
+            <p class="title">HTML</p>
+            <div id="editorHTML"></div>
+          </div>
+        </div>      
+        <div id="markdown1" class="css editor">
+          <div class="editor-inner">
+            <p class="title">CSS</p>
+            <div id="editorCSS" ></div>
+          </div>
+        </div>      
+        <div id="editor" class="js editor">
+          <div class="editor-inner">
+            <p class="title">JavaScript</p>
+            <div id="editorJS"></div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <iframe src="./preview.html" name="preview" id="preview"  style="width: 100%;"></iframe>
+      </div>
+    </div>
+    <!-- <script src="http://localhost:35729/livereload.js"></script> -->
+    <script src="/lib/site/static/jquery.js"></script>
+    <script src="/lib/site/static/editor/ace.js"></script>    
+    <script>
+      // evalModule(transformCode(code));              
+      var pageHeight = $(window).height();
+      pageHeight = pageHeight - 64;
+      $(".left, .right").css("height", Math.floor(pageHeight) + "px");
+      
+      var editorHeight = Math.floor((pageHeight / 3) - 35);
+      $("#editorHTML, #editorCSS, #editorJS").css("height", editorHeight);
+
+      // var editorHTML = ace.edit("editorHTML");
+      // var editorCSS = ace.edit("editorCSS");
+      // var editorJS = ace.edit("editorJS");
+      var codeConf = [{
+        id: "editorHTML",
+        sourceID: "initHTML",
+        type: "html"
+      },{
+        id: "editorCSS",
+        sourceID: "initCSS",
+        type: "css"
+      },{
+        id: "editorJS",
+        sourceID: "initJS",
+        type: "js"
+      }];
+      
+      codeConf.map(function(conf){
+        createEdit(conf["id"], conf["sourceID"], conf["type"]);
+      });
+
+
+      /*
+      * id: 对应DIV的ID号
+      * sourceID: 页面页面对应的源码ID  
+      */
+      function createEdit(id, sourceID, type){
+        setTimeout(function(){
+          var code = document.getElementById("preview").contentWindow.document.getElementById(sourceID).innerText;
+          code = $.trim(code);
+
+          var editorJS = ace.edit(id); 
+          editorJS.setValue(code, 1);    
+          editorJS.setOption("wrap", "free");
+          editorJS.setShowPrintMargin(false);
+          
+          
+          var handle = null;
+          editorJS.on("change", function(e){        
+            clearTimeout(handle);
+            handle = setTimeout(function(){
+              var code = editorJS.getValue();
+              window.frames.preview.postMessage({
+                type: type,
+                code: code
+              }, "http://component.niuben.com/");
+            }, 600);
+          });
+        }, 1200);
+      }
+
+    </script>
+  </body>
+</html>

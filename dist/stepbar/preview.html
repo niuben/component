@@ -65,7 +65,11 @@
     <div id='root' style='padding: 10px'></div>
   </script>
   
-  <script type="template/text" id="initCode">
+  <script type="template/text" id="initCSS">
+    
+  </script>
+
+  <script type="template/text" id="initJS">
     import React from 'react';
 import { render } from 'react-dom';
 import Stepbar from "../lib/index";
@@ -90,14 +94,26 @@ render(<Stepbar step={2} />, document.getElementById('root'));
 
       
       // var code = document.getElementsByClassName("lang-js")[0].innerHTML;
-	    // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");      
-      
-      var HTML = document.getElementById("initHTML").innerHTML;
-      $("#result").html($.trim(HTML));
-      
+      // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");      
       var parentPath = "";
-      var code = document.getElementById("initCode").innerText;
+      function runCode(type, code){
+        if(type == "html"){
+          $("#result").html($.trim(HTML));
+        }else if(type == "css"){
+          $("head").append("<style>"+ code +"</style>");
+        }else if(type == "js"){
+          parentPath = "";
+          evalModule(transformCode(code));              
+        }
+      }
+
+
+      var HTML = document.getElementById("initHTML").innerHTML;
+      runCode("html", HTML);
       
+      
+      var js = document.getElementById("initJS").innerText;
+      runCode("js", js);
       // var editor = ace.edit("editor");        
       // editor.setValue(code, 1);    
       // editor.setShowPrintMargin(false);
@@ -108,12 +124,14 @@ render(<Stepbar step={2} />, document.getElementById('root'));
       //   evalModule(transformCode(code));
       // });
       
-    evalModule(transformCode(code));              
+   
 
     window.addEventListener("message", function(msg){
-        var code = msg.data;
-        parentPath = "";
-        evalModule(transformCode(code));
+        var code = msg.data["code"],
+            type = msg.data["type"];
+        
+        runCode(type, code);        
+        // evalModule(transformCode(code));
     }, false);
 
    

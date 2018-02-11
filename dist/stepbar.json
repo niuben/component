@@ -1,0 +1,13 @@
+{    
+    "title": "步骤条",    
+    "name": "stepbar",
+    "content": "用于多步操作。可以展示当前在第几步。",
+    "image": "/lib/site/static/img/stepbar.png",
+    "browser": "ie9",
+    "version": "0.8.0",
+    "isModule": true,    
+    "example": {
+        "html": "<div id='root' style='padding: 10px'></div>",
+        "js": "./example/index.js"
+    }  
+}

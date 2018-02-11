@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add react@^15.6.1 react-dom@^15.6.1
+  /usr/local/bin/node /usr/local/bin/yarn add prop-types@15.6.0 react@16.0.0 react-dom@16.0.0 classnames@2.2.5 scroll-to-y@git://github.com/daviferreira/scroll-to-y.git
 
 PATH: 
-  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/niuben-sogou/www/component/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   0.21.3
@@ -6093,4 +6093,4 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: ENOENT: no such file or directory, chmod '/Users/niuben-sogou/www/component/node_modules/babel-loader/node_modules/webpack/node_modules/.bin/acorn'
+  Error: ENOENT: no such file or directory, open '/Users/niuben-sogou/www/component/node_modules/group-button-sort/node_modules/react/LICENSE'
