@@ -2,7 +2,7 @@
     "title": "视频播放",    
     "name": "videoplayer",
     "content": "在网页上播放视频，支持各种格式视频",
-    "image": "/lib/site/static/img/videoplay.png",
+    "image": "videoplay.png",
     "browser": "ie6",
     "version": "0.8.0",
     "isModule": false,    
