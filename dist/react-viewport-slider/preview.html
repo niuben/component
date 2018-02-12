@@ -53,13 +53,15 @@
   <!-- <iframe src="../code/dropdown/build/index.html" style="height: 500px; width: 100%;"></iframe> -->
 
   <!-- 执行代码相关资源  -->
-  <script src="./dll.bundle.js"></script>
-  <script src="/lib/site/static/babel.min.js"></script>
-  <script src="/lib/site/static/jquery.js"></script>
-  <script src="/lib/site/static/file.js"></script>
-  <script src="/lib/site/static/module.js"></script>
-  <script src="/lib/site/static/require.js"></script>
-  <script src="./react-viewport-slider.js"></script>
+  <script src="/component/lib/site/static/jquery.js"></script>
+  
+    <script src="./dll.bundle.js"></script>
+    <script src="/component/lib/site/static/babel.min.js"></script>
+    <script src="/component/lib/site/static/file.js"></script>
+    <script src="/component/lib/site/static/module.js"></script>
+    <script src="/component/lib/site/static/require.js"></script>
+    <script src="./react-viewport-slider.js"></script>
+    
   
   <script type="template/text" id="initHTML">
     <div id='demo'></div>
@@ -165,8 +167,10 @@ ReactDOM.render(<Demo />, document.getElementById('demo'));
         }else if(type == "css"){
           $("head").append("<style>"+ code +"</style>");
         }else if(type == "js"){
-          parentPath = "";
-          evalModule(transformCode(code));              
+          parentPath = "./demo";
+          
+            evalModule(transformCode(code));
+                        
         }
       }
 
@@ -186,13 +190,10 @@ ReactDOM.render(<Demo />, document.getElementById('demo'));
       //   code = editor.getValue();
       //   evalModule(transformCode(code));
       // });
-      
-   
-
+       
     window.addEventListener("message", function(msg){
         var code = msg.data["code"],
-            type = msg.data["type"];
-        
+            type = msg.data["type"];        
         runCode(type, code);        
         // evalModule(transformCode(code));
     }, false);

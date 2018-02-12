@@ -53,13 +53,13 @@
   <!-- <iframe src="../code/dropdown/build/index.html" style="height: 500px; width: 100%;"></iframe> -->
 
   <!-- 执行代码相关资源  -->
-  <script src="/lib/site/static/jquery.js"></script>
-  <% if(libArr == null) { %>
+  <script src="/component/lib/site/static/jquery.js"></script>
+  <% if(isModule) { %>
     <script src="./dll.bundle.js"></script>
-    <script src="/lib/site/static/babel.min.js"></script>
-    <script src="/lib/site/static/file.js"></script>
-    <script src="/lib/site/static/module.js"></script>
-    <script src="/lib/site/static/require.js"></script>
+    <script src="/component/lib/site/static/babel.min.js"></script>
+    <script src="/component/lib/site/static/file.js"></script>
+    <script src="/component/lib/site/static/module.js"></script>
+    <script src="/component/lib/site/static/require.js"></script>
     <script src="./<%- moduleName %>.js"></script>
     <% }else{ %>
       <% libArr.map(function(url, index){ %>
@@ -102,8 +102,8 @@
         }else if(type == "css"){
           $("head").append("<style>"+ code +"</style>");
         }else if(type == "js"){
-          parentPath = "";
-          <% if(libArr == null) { %>
+          parentPath = "<%- parentPath %>";
+          <% if(isModule){ %>
             evalModule(transformCode(code));
           <%}else{%>
             eval(code);
@@ -127,16 +127,15 @@
       //   code = editor.getValue();
       //   evalModule(transformCode(code));
       // });
-      
-   
-
+       
     window.addEventListener("message", function(msg){
         var code = msg.data["code"],
-            type = msg.data["type"];
-        
+            type = msg.data["type"];        
         runCode(type, code);        
         // evalModule(transformCode(code));
     }, false);
+
+      
 
    
            // $("pre code").each(function(index){

@@ -53,7 +53,7 @@
   <!-- <iframe src="../code/dropdown/build/index.html" style="height: 500px; width: 100%;"></iframe> -->
 
   <!-- 执行代码相关资源  -->
-  <script src="/lib/site/static/jquery.js"></script>
+  <script src="/component/lib/site/static/jquery.js"></script>
   
       
         <script src="/component/lib/code/videoplayer/js/jquery-1.12.1.js"></script>
@@ -134,13 +134,10 @@
       //   code = editor.getValue();
       //   evalModule(transformCode(code));
       // });
-      
-   
-
+       
     window.addEventListener("message", function(msg){
         var code = msg.data["code"],
-            type = msg.data["type"];
-        
+            type = msg.data["type"];        
         runCode(type, code);        
         // evalModule(transformCode(code));
     }, false);
