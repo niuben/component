@@ -11,6 +11,6 @@
         "html": "<div id='video' style='width: 548px; height: 392px;'></div>",
         "js": "./js/player.js",
         "lib": ["./js/jquery-1.12.1.js", "./js/ckplayer/ckplayer.js"],
-        "css": ["video-ckplayer/css/index.css"]
+        "css": "./css/index.css"
     }  
 }

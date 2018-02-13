@@ -1,0 +1,75 @@
+
+.share {
+  position: fixed;
+  top: 180px;
+  left: 50%;  
+  width: 60px;
+  height: 235px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px 0 rgba(124, 124, 124, 0.1);
+
+  .share-text {
+      font-size: 14px;
+      color: #bbbbbb;
+      text-align: center;
+      line-height: 35px;
+  }
+
+  .share-pic {
+      display: block;
+      background-image: url(./images/shareicon.png);
+      width: 48px;
+      height: 48px;
+      background-size: 200%;
+      margin-left: 6px;
+  }
+
+  .share-wechat {
+      background-position: 0px 0px;
+  }
+
+  .share-wechat:hover{
+      background-position: -48px 0px;
+  }
+
+  .share-weibo {
+      background-position: 0px -48px;
+  }
+
+  .share-weibo:hover{
+      background-position: -48px -48px;
+  }
+
+  .share-qq {
+      background-position: 0px -96px;
+  }
+
+  .share-qq:hover {
+      background-position: -48px -96px;
+  }
+
+  .share-qzone {
+      background-position: 0px -144px;
+  }
+
+  .share-qzone:hover {
+      background-position: -48px -144px;
+  }
+}
+
+.qrcode {
+  display: none;
+  position: absolute;
+  top:26px;
+  left:51px;
+  background-image: url(./images/qrcode.png);
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  width: 160px;
+  height: 157px;
+  background-size: 200px 212px;
+  margin: 0px;
+  padding-left: 40px;
+  padding-top: 55px;
+}

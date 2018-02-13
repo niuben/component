@@ -2,9 +2,10 @@
     "title": "步骤条",    
     "name": "stepbar",
     "content": "用于多步操作。可以展示当前在第几步。",
-    "image": "/lib/site/static/img/stepbar.png",
+    "image": "stepbar.png",
     "browser": "ie9",
     "version": "0.8.0",
+    "download": "https://www.npmjs.com/package/stepbar",
     "isModule": true,    
     "example": {
         "html": "<div id='root' style='padding: 10px'></div>",

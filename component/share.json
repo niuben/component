@@ -1,0 +1,15 @@
+{    
+    "title": "分享",
+    "name": "share",
+    "content": "将网址、图片分享各大社交媒体中",
+    "image": "share.png",
+    "browser": "ie6",
+    "version": "1.0.0",
+    "isModule": true,
+    "download": "",
+    "source": "share",
+    "example": {
+        "html": "<div class='share'><div class='share-text'>-分享-</div><div><a href='#' id='share-wechat' class='share-pic share-wechat'></a></div><div><a href='${it.weiboShareUrl}' id='share-weibo' class='share-pic share-weibo'></a></div><div><a href='${it.qqShareUrl}' id='share-qq' class='share-pic share-qq'></a></div><div><a href='${it.qzoneShareUrl}' id='share-qzone' class='share-pic share-qzone'></a></div><div id='qrcode' class='qrcode'></div></div>",
+        "js": "./index.js"
+    }  
+}  

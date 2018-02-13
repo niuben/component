@@ -22,13 +22,15 @@
     "marked": "^0.3.12",
     "optimist": "^0.6.1",
     "prop-types": "15.6.0",
-    "react": "16.0.0",
-    "react-dom": "16.0.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-viewport-slider": "^1.0.0",
     "scroll-to-y": "git://github.com/daviferreira/scroll-to-y.git",
+    "share": "^0.7.40",
     "sogo-dropdown": "^0.4.0",
     "stepbar": "^0.4.0",
     "underscore.template": "^0.1.7",
+    "videoplayer": "^1.0.3",
     "webpack": "^3.10.0"
   }
 }
