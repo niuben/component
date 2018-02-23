@@ -5,7 +5,9 @@
   "main": "create.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "node lib/service/toJson.js"
+    "publish": "node lib/service/toJson.js --history",
+    "build": "node lib/service/toJson.js",
+    "add": "node lib/service/command.js"
   },
   "author": "",
   "license": "ISC",

@@ -6,12 +6,11 @@
     <meta name="theme-color" content="#000000"/>    
     <link rel="stylesheet" href="<%- static %>/edit.css" />
     <link rel="stylesheet" href="<%- static %>/reset.css" />
-
-    <title><%- name %></title>
+    <title><%- name %> - 搜狗导航前端组件库</title>
   </head>
   <body> 
     <div class="nav">
-      <h1><a href="/component/index.html">Dov</a></h1>          
+      <h1><a href="/component/index.html"><img src="https://upd13.sogoucdn.com/nstatic/img/logo.png?v=4" /></a></h1>
     </div>
     <div class="content">            
       <div class="left">
@@ -70,7 +69,6 @@
       codeConf.map(function(conf){
         createEdit(conf["id"], conf["sourceID"], conf["type"]);
       });
-
 
       /*
       * id: 对应DIV的ID号

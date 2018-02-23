@@ -4,7 +4,7 @@
     "content": "用于多步操作。可以展示当前在第几步。",
     "image": "stepbar.png",
     "browser": "ie9",
-    "version": "0.8.0",
+    "version": "1.0",
     "download": "https://www.npmjs.com/package/stepbar",
     "isModule": true,    
     "example": {

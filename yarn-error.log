@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add react@^15.6.1 react-dom@^15.6.1
+  /usr/local/bin/node /usr/local/bin/yarn add prop-types@15.6.0 react@16.0.0 react-dom@16.0.0 classnames@2.2.5 scroll-to-y@git://github.com/daviferreira/scroll-to-y.git
 
 PATH: 
   /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/niuben-sogou/www/component/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -21,7 +21,8 @@ npm manifest:
     "main": "create.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "publish": "node lib/service/toJson.js"
+      "publish": "node lib/service/toJson.js --history",
+      "build": "node lib/service/toJson.js"
     },
     "author": "",
     "license": "ISC",
@@ -6660,4 +6661,10 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: ENOENT: no such file or directory, lstat '/Users/niuben-sogou/www/component/node_modules/group-button-sort/node_modules/webpack/node_modules/.bin'
+  Error: ENOENT: no such file or directory, lstat '/Users/niuben-sogou/www/component/node_modules/fsevents/node_modules/.bin'
+      at Object.realpathSync (fs.js:1657:15)
+      at Object.<anonymous> (/usr/local/Cellar/yarn/0.21.3/libexec/lib/node_modules/yarn/lib/util/fs.js:603:39)
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/0.21.3/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+      at /usr/local/Cellar/yarn/0.21.3/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+      at <anonymous>

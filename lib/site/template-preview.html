@@ -104,7 +104,7 @@
         }else if(type == "js"){
           parentPath = "<%- parentPath %>";
           <% if(isModule){ %>
-            evalModule(transformCode(code));
+            evalModule(transformCode(code)); 
           <%}else{%>
             eval(code);
           <%}%>              
