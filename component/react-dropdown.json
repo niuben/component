@@ -1,0 +1,15 @@
+{    
+    "title": "下拉框",
+    "name": "react-dropdown",
+    "content": "",
+    "image": "123.png",
+    "browser": "ie11",
+    "version": "1.0.0",
+    "isModule": true,
+    "download": "https://github.com/tomchentw/react-dropdown",
+    "source": "react-dropdown",
+    "example": {
+        "html": "./example/index.html",
+        "js": "./example/main.js"
+    }
+}

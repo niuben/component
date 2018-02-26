@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="theme-color" content="#000000"/>    
+    
+      <link rel="stylesheet" href="/component/lib/code/videoplayer/img/favicon.ico"/>      
+    
+      <link rel="stylesheet" href="/component/lib/code/videoplayer/css/index.css"/>      
+     
     <style>
      #top, #top span, .markdown-body * {
           padding: 0px;
@@ -55,94 +60,25 @@
   <!-- 执行代码相关资源  -->
   <script src="/component/lib/site/static/jquery.js"></script>
   
-      
-        <script src="/component/lib/code/videoplayer/js/jquery-1.12.1.js"></script>
-    
-        <script src="/component/lib/code/videoplayer/js/ckplayer/ckplayer.js"></script>
-    
+  <!-- 库文件 -->
   
+    <script src="/component/lib/code/videoplayer/js/ckplayer/ckplayer.js"></script>
+  
+    <script src="/component/lib/code/videoplayer/js/player.js"></script>
+  
+
+    
   <script type="template/text" id="initHTML">
-    <div id='video' style='width: 548px; height: 392px;'></div>
+     
+  <!--导语-->
+  <div id="video" style="width: 548px; height: 392px;"></div>
+  
+  
+
   </script>
   
   <script type="template/text" id="initCSS">
-    * {
-  margin: 0;
-  padding: 0;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: 100%;
-  font-weight: 400;
-}
-details,
-figcaption,
-figure,
-menu {
-  display: block;
-}
-li {
-  list-style: none;
-}
-input,
-select,
-textarea {
-  outline: none;
-}
-img {
-  display: block;
-  border: 0 none;
-}
-i,
-em {
-  font-style: normal;
-}
-b {
-  font-weight: 400;
-}
-html {
-  overflow-y: scroll;
-}
-body {
-  font: 400 12px/1 "\5FAE\8F6F\96C5\9ED1";
-  background-color: #f7534d;
-  -webkit-text-size-adjust: none;
-  font-size: 14px;
-}
-a {
-  cursor: pointer;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: none;
-}
-.ct {
-  font-size: 0;
-  line-height: 0;
-}
-.cf:before,
-.cf:after {
-  content: ".";
-  display: block;
-  height: 0;
-  overflow: hidden;
-}
-.cf:after {
-  clear: both;
-}
-.cf {
-  zoom: 1;
-}
-
-#video{
-  background: #fff;
-  margin: 100px auto 0 auto;
-}
-
+    
   </script>
 
   <script type="template/text" id="initJS">
@@ -180,14 +116,14 @@ a:hover {
       
       // var code = document.getElementsByClassName("lang-js")[0].innerHTML;
       // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");      
-      var parentPath = "";
+      var parentPathArr = [];      
       function runCode(type, code){
         if(type == "html"){
           $("#result").html($.trim(HTML));
         }else if(type == "css"){
           $("head").append("<style>"+ code +"</style>");
         }else if(type == "js"){
-          parentPath = "";
+          parentPathArr = [""];
           
             eval(code);
                         

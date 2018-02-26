@@ -4,6 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="theme-color" content="#000000"/>    
+    
+      <link rel="stylesheet" href="/component/lib/code/react-modal/https:/maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"/>      
+    
+      <link rel="stylesheet" href="/component/lib/code/react-modal/base.css"/>      
+    
+      <link rel="stylesheet" href="/component/lib/code/react-modal/app.css"/>      
      
     <style>
      #top, #top span, .markdown-body * {
@@ -58,6 +64,10 @@
   
   <!-- 库文件 -->
   
+    <script src="/component/lib/code/__build__/shared.js"></script>
+  
+    <script src="/component/lib/code/__build__/basic.js"></script>
+  
 
   
     <script src="./dll.bundle.js"></script>
@@ -65,11 +75,18 @@
     <script src="/component/lib/site/static/file.js"></script>
     <script src="/component/lib/site/static/module.js"></script>
     <script src="/component/lib/site/static/require.js"></script>
-    <script src="./stepbar.js"></script>
+    <script src="./react-modal.js"></script>
     
   <script type="template/text" id="initHTML">
     
-    <div id="root"></div>
+    <header class="branding padbox">
+      <h1>react-modal</h1>
+      <h2>an accessible React modal dialog component</h2>
+    </header>
+    <div id="example" class="padbox"></div>
+    <a target="_top" href="https://github.com/reactjs/react-modal"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    
+    
   
   </script>
   
@@ -78,11 +95,46 @@
   </script>
 
   <script type="template/text" id="initJS">
-    import React from 'react';
-import { render } from 'react-dom';
-import Stepbar from "../lib/index";
+    // import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
+import SimpleUsage from './simple_usage';
+import MultipleModals from './multiple_modals';
+import Forms from './forms';
+import ReactRouter from './react-router';
+import NestedModals from './nested_modals';
 
-render(<Stepbar step={2} />, document.getElementById('root'));
+const appElement = document.getElementById('example');
+
+Modal.setAppElement('#example');
+
+const examples = [
+  SimpleUsage,
+  Forms,
+  MultipleModals,
+  NestedModals,
+  ReactRouter
+];
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        {examples.map((example, key) => {
+          const ExampleApp = example.app;
+          return (
+            <div key={key + 1} className="example">
+              <h3>{`#${key + 1}. ${example.label}`}</h3>
+              <ExampleApp />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, appElement);
 
   </script>
 
@@ -103,20 +155,16 @@ render(<Stepbar step={2} />, document.getElementById('root'));
       
       // var code = document.getElementsByClassName("lang-js")[0].innerHTML;
       // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");      
-      var parentPathArr = [];      
+      var parentPath = "";
       function runCode(type, code){
         if(type == "html"){
           $("#result").html($.trim(HTML));
         }else if(type == "css"){
           $("head").append("<style>"+ code +"</style>");
         }else if(type == "js"){
-          parentPathArr = ["./example"];
+          parentPath = "./examples/basic";
           
-            try{
-              evalModule(transformCode(code));                        
-            }catch(e){
-              console.log(parentPathArr);
-            }            
+            evalModule(transformCode(code)); 
                         
         }
       }

@@ -8,7 +8,7 @@
     "download": "https://www.npmjs.com/package/stepbar",
     "isModule": true,    
     "example": {
-        "html": "<div id='root' style='padding: 10px'></div>",
+        "html": "./example/index.html",
         "js": "./example/index.js"
     }  
 }

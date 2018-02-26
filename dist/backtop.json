@@ -1,0 +1,14 @@
+{    
+    "title": "返回顶部",    
+    "name": "backtop",  
+    "content": "当滚动超过一屏会显示回到顶部按钮,点击按钮后滚动条会回到顶部",
+    "image": "",
+    "browser": "ie6",
+    "version": "1.0.0",
+    "isModule": false,
+    "download": "https://github.com/xtgcs/Backtop",
+    "example": {
+        "html": "./index.html",
+        "css": "./css/index.css"
+    }
+}

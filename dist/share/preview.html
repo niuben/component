@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="theme-color" content="#000000"/>    
+     
     <style>
      #top, #top span, .markdown-body * {
           padding: 0px;
@@ -55,6 +56,10 @@
   <!-- 执行代码相关资源  -->
   <script src="/component/lib/site/static/jquery.js"></script>
   
+  <!-- 库文件 -->
+  
+
+  
     <script src="./dll.bundle.js"></script>
     <script src="/component/lib/site/static/babel.min.js"></script>
     <script src="/component/lib/site/static/file.js"></script>
@@ -62,9 +67,17 @@
     <script src="/component/lib/site/static/require.js"></script>
     <script src="./share.js"></script>
     
-  
   <script type="template/text" id="initHTML">
-    <div class='share'><div class='share-text'>-分享-</div><div><a href='#' id='share-wechat' class='share-pic share-wechat'></a></div><div><a href='${it.weiboShareUrl}' id='share-weibo' class='share-pic share-weibo'></a></div><div><a href='${it.qqShareUrl}' id='share-qq' class='share-pic share-qq'></a></div><div><a href='${it.qzoneShareUrl}' id='share-qzone' class='share-pic share-qzone'></a></div><div id='qrcode' class='qrcode'></div></div>
+    
+        <div class="share">
+            <div class="share-text">-&#x5206;&#x4EAB;-</div>
+            <div><a href="#" id="share-wechat" class="share-pic share-wechat"></a></div>
+            <div><a href="${it.weiboShareUrl}" id="share-weibo" class="share-pic share-weibo"></a></div>
+            <div><a href="${it.qqShareUrl}" id="share-qq" class="share-pic share-qq"></a></div>
+            <div><a href="${it.qzoneShareUrl}" id="share-qzone" class="share-pic share-qzone"></a></div>
+            <div id="qrcode" class="qrcode"></div>
+        </div>
+    
   </script>
   
   <script type="template/text" id="initCSS">
@@ -144,16 +157,20 @@ $('body').delegate('#share-wechat', 'mouseout', function (e) {
       
       // var code = document.getElementsByClassName("lang-js")[0].innerHTML;
       // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");      
-      var parentPath = "";
+      var parentPathArr = [];      
       function runCode(type, code){
         if(type == "html"){
           $("#result").html($.trim(HTML));
         }else if(type == "css"){
           $("head").append("<style>"+ code +"</style>");
         }else if(type == "js"){
-          parentPath = ".";
+          parentPathArr = ["."];
           
-            evalModule(transformCode(code)); 
+            try{
+              evalModule(transformCode(code));                        
+            }catch(e){
+              console.log(parentPathArr);
+            }            
                         
         }
       }

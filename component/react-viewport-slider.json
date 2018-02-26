@@ -7,7 +7,7 @@
     "isModule": true,
     "download": "https://github.com/daviferreira/react-viewport-slider",
     "example": {
-        "html": "<div id='demo'></div>",
+        "html": "./demo/index.html",
         "js": "./demo/index.js"
-    }
+    } 
 }
