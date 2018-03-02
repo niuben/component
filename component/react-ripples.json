@@ -1,0 +1,15 @@
+{    
+    "title": "react-ripples",
+    "name": "react-ripples",
+    "content": "",
+    "image": "123.png",
+    "browser": "ie11",
+    "version": "1.0.0",
+    "isModule": true,
+    "download": "https://github.com/tomchentw/react-dropdown",
+    "source": "react-ripples",
+    "example": {
+        "html": "./dev/index.html",
+        "js": "./dev/index.js"
+    }
+}

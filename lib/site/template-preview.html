@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="theme-color" content="#000000"/>    
-    <% link.map(function(url, index){ %>
+    <% link != null && link.map(function(url, index){ %>
       <link rel="stylesheet" href="<%= url%>"/>      
     <%})%> 
     <style>
@@ -59,7 +59,7 @@
   <script src="/component/lib/site/static/jquery.js"></script>
   
   <!-- 库文件 -->
-  <% script.map(function(url, index){ %>
+  <% script != null &&  script.map(function(url, index){ %>
     <script src="<%= url%>"></script>
   <%})%>
 
@@ -103,7 +103,7 @@
       var parentPathArr = [];      
       function runCode(type, code){
         if(type == "html"){
-          $("#result").html($.trim(HTML));
+          $("#result").html($.trim(code));
         }else if(type == "css"){
           $("head").append("<style>"+ code +"</style>");
         }else if(type == "js"){
@@ -112,14 +112,13 @@
             try{
               evalModule(transformCode(code));                        
             }catch(e){
-              console.log(parentPathArr);
+              console.log("error", e);
             }            
           <%}else{%>
             eval(code);
           <%}%>              
         }
       }
-
 
       var HTML = document.getElementById("initHTML").innerHTML;
       runCode("html", HTML);
@@ -146,10 +145,7 @@
         runCode(type, code);        
         // evalModule(transformCode(code));
     }, false);
-
-      
-
-   
+     
            // $("pre code").each(function(index){
       //   $(this).attr("id", "code" + index);
       //   // $("#code" + index).before('<div id="demo' + index + '"></div>');

@@ -20,14 +20,20 @@
   "dependencies": {
     "backtop": "^1.0.1",
     "cheerio": "",
-    "classnames": "^2.2.3",
+    "classnames": "2.x",
+    "component-classes": "1.x",
+    "dom-scroll-into-view": "1.x",
     "group-button-sort": "^0.8.0",
     "jquery": "^3.2.1",
     "marked": "^0.3.12",
     "optimist": "^0.6.1",
-    "prop-types": "15.6.0",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
+    "prop-types": "^15.5.8",
+    "rc-animate": "2.x",
+    "rc-menu": "^6.1.0",
+    "rc-trigger": "^2.2.0",
+    "rc-util": "^4.0.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-dropdown": "^1.3.6",
     "react-modal": "^3.3.1",
     "react-toast": "^0.1.0",
@@ -39,6 +45,7 @@
     "stepbar": "^0.4.0",
     "underscore.template": "^0.1.7",
     "videoplayer": "^1.0.3",
+    "warning": "^3.0.0",
     "webpack": "^3.10.0"
   }
 }

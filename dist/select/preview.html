@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="theme-color" content="#000000"/>    
-    
-      <link rel="stylesheet" href="/component/lib/code/react-dropdown/style.css"/>      
      
     <style>
      #top, #top span, .markdown-body * {
@@ -60,8 +58,6 @@
   
   <!-- 库文件 -->
   
-    <script src="/component/lib/code/react-dropdown/bundle.js"></script>
-  
 
   
     <script src="./dll.bundle.js"></script>
@@ -69,13 +65,10 @@
     <script src="/component/lib/site/static/file.js"></script>
     <script src="/component/lib/site/static/module.js"></script>
     <script src="/component/lib/site/static/require.js"></script>
-    <script src="./react-dropdown.js"></script>
+    <script src="./select.js"></script>
     
   <script type="template/text" id="initHTML">
-    
-    <div id="app"></div>
-    
-  
+    <div id='__react-content'></div>
   </script>
   
   <script type="template/text" id="initCSS">
@@ -83,59 +76,57 @@
   </script>
 
   <script type="template/text" id="initJS">
-    import React, { Component } from 'react';
+    /* eslint no-console: 0 */
+import React from 'react';
+// import Select, { Option } from 'rc-select';
+import Select, { Option } from '../src/index.js';
+import 'rc-select/assets/index.less';
 import ReactDOM from 'react-dom';
 
-import FlatArrayExample from './flatArrayExample';
-import ObjectArrayExample from './objectArrayExample';
+console.log("Select", Select, Option);
 
-class App extends Component {
-  render () {
-    return (
-      <div>
-        <header>
-          <h2><a href='https://github.com/fraserxu/react-dropdown'>React Dropdown</a></h2>
-        </header>
-        <section className='description'>
-          <p>
-            Simple Dropdown component for React, inspired by <a href='https://github.com/JedWatson/react-select'>react-select</a>
-          </p>
-          <div className='code'>
-            <pre>
-              { "$ npm install react-dropdown --save" }
-            </pre>
-          </div>
-        </section>
+class Test extends React.Component {
+  state = {
+    options: [],
+  };
 
-        <section>
-          <h3>Examples: </h3>
-          <h4>Usage: </h4>
-          <div className='code'>
-            <pre>
-              {`
-<Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
-              `}
-            </pre>
-          </div>
-        </section>
+  onSelect = (value) => {
+    console.log('onSelect', value);
+  };
 
-        <FlatArrayExample />
-        <ObjectArrayExample />
+  onChange = (value) => {
+    console.log('onChange', value);
+    let options = [];
+    if (value) {
+      if (value.indexOf('@') >= 0) {
+        options = <Option key={value}>{value}</Option>;
+      } else {
+        options = ['gmail.com', 'yahoo.com', 'outlook.com'].map((domain) => {
+          const email = `${value}@${domain}`;
+          return <Option key={email}>{email}</Option>;
+        });
+      }
+    }
+    this.setState({
+      options,
+    });
+  };
 
-        <section>
-          <h3>License: </h3>
-        </section>
-        <footer>
-          <p>MIT | Build for <a href='https://csviz.org'>CSViz</a> project @<a href='http://wiredcraft.com'>Wiredcraft</a></p>
-        </footer>
-      </div>
-
-    )
+  render() {
+    return (<Select
+      combobox
+      notFoundContent={false}
+      style={{ width: 200 }}
+      onChange={this.onChange}
+      onSelect={this.onSelect}
+      placeholder="请输入账户名"
+    >
+      {this.state.options}
+    </Select>);
   }
-
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'))
+ReactDOM.render(<Test />, document.getElementById('__react-content'));
 
   </script>
 
@@ -159,21 +150,20 @@ ReactDOM.render(<App />, document.querySelector('#app'))
       var parentPathArr = [];      
       function runCode(type, code){
         if(type == "html"){
-          $("#result").html($.trim(HTML));
+          $("#result").html($.trim(code));
         }else if(type == "css"){
           $("head").append("<style>"+ code +"</style>");
         }else if(type == "js"){
-          parentPathArr = ["./example"];
+          parentPathArr = ["./examples"];
           
             try{
               evalModule(transformCode(code));                        
             }catch(e){
-              console.log(parentPathArr);
+              console.log("error", e);
             }            
                         
         }
       }
-
 
       var HTML = document.getElementById("initHTML").innerHTML;
       runCode("html", HTML);
@@ -200,10 +190,7 @@ ReactDOM.render(<App />, document.querySelector('#app'))
         runCode(type, code);        
         // evalModule(transformCode(code));
     }, false);
-
-      
-
-   
+     
            // $("pre code").each(function(index){
       //   $(this).attr("id", "code" + index);
       //   // $("#code" + index).before('<div id="demo' + index + '"></div>');

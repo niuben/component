@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>
+    <link rel="stylesheet" href="/component/lib/site/dist/reset.css" />
+    <link rel="stylesheet" href="/component/lib/site/dist/detail.css" />        
+    <title>react-ripples组件 - 搜狗导航前端组件库</title>
+    <style>      
+    </style>
+  </head>
+  <body>  
+      <div class="nav">
+        <h1><a href="/component/index.html"><img src="https://upd13.sogoucdn.com/nstatic/img/logo.png?v=4" /></a></h1>
+      </div>
+      <div class="content">
+        <div class="content-inner">
+          <h2 class="title">react-ripples</h2>
+          <div class="preview">
+            <img src="/component/lib/site/static/img/123.png" />
+          </div>
+          <div class="browser">            
+            <img src="/component/lib/site/static/img/browser/ie11.png" />
+          </div>
+
+          <div class="operate">
+            <button class="demo" onClick=location.href="./edit.html">查看Demo</button>
+            <button class="download" onClick=location.href="https://github.com/tomchentw/react-dropdown">下载</button>
+          </div>
+          <div class="markdown markdown-body">
+              <h1 align="center">
+  react-ripples
+  <p>
+    <img width="200" src="https://raw.githubusercontent.com/rwu823/react-ripples/master/assets/logo.png"/>
+  </p>
+</h1>
+
+<p align="center">
+  <a href="https://www.npmjs.org/package/react-ripples" target="_blank">
+    <img src="https://img.shields.io/npm/v/react-ripples.svg?style=flat-square&label=version"/>
+  </a>
+  <a href="https://travis-ci.org/rwu823/react-ripples" target="_blank">
+    <img src="https://img.shields.io/travis/rwu823/react-ripples.svg?style=flat-square&branch=master"/>
+  </a>
+  <a href="https://codecov.io/github/rwu823/react-ripples" target="_blank">
+    <img src="https://img.shields.io/codecov/c/github/rwu823/react-ripples.svg?style=flat-square&"/>
+  </a>
+  <img src="https://img.shields.io/github/license/rwu823/react-ripples.svg?style=flat-square&" />
+</p>
+
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-sh">$ npm install --save react-ripples
+</code></pre>
+<p>or</p>
+<pre><code class="lang-sh">$ yarn add react-ripples
+</code></pre>
+<h2 id="demo">Demo</h2>
+<p><a href="https://rwu823.github.io/react-ripples">Live Demo</a></p>
+<h2 id="usage">Usage</h2>
+<pre><code class="lang-jsx">import Ripples from &#39;react-ripples&#39;
+
+render() {
+  &lt;Ripples&gt;
+    &lt;button&gt;Ripple Button&lt;/button&gt;
+  &lt;/Ripples&gt;
+}
+</code></pre>
+<h2 id="api">API</h2>
+<h3 id="props">Props</h3>
+<pre><code class="lang-javascript">static propTypes = {
+  during: PropTypes.number,
+  color: PropTypes.string,
+}
+
+static defaultProps = {
+  during: 600,
+  color: &#39;rgba(0, 0, 0, .3)&#39;,
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>during</td>
+<td>The css animate duration [ms]</td>
+</tr>
+<tr>
+<td>color</td>
+<td>The ripple&#39;s background color</td>
+</tr>
+</tbody>
+</table>
+            
+          </div>
+        </div>
+      </div>
+  </body>     
+</html>

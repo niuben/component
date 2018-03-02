@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="theme-color" content="#000000"/>    
     
-      <link rel="stylesheet" href="/component/lib/code/react-dropdown/style.css"/>      
+      <link rel="stylesheet" href="/component/lib/code/react-categorized-tag-input/categorized-tag-input.css"/>      
      
     <style>
      #top, #top span, .markdown-body * {
@@ -60,7 +60,7 @@
   
   <!-- 库文件 -->
   
-    <script src="/component/lib/code/react-dropdown/bundle.js"></script>
+    <script src="/component/lib/code/react-categorized-tag-input/bundle.js"></script>
   
 
   
@@ -69,13 +69,13 @@
     <script src="/component/lib/site/static/file.js"></script>
     <script src="/component/lib/site/static/module.js"></script>
     <script src="/component/lib/site/static/require.js"></script>
-    <script src="./react-dropdown.js"></script>
+    <script src="./react-categorized-tag-input.js"></script>
     
   <script type="template/text" id="initHTML">
     
-    <div id="app"></div>
-    
+  <div id="app"></div>
   
+
   </script>
   
   <script type="template/text" id="initCSS">
@@ -83,59 +83,109 @@
   </script>
 
   <script type="template/text" id="initJS">
-    import React, { Component } from 'react';
+    import React from 'react';
 import ReactDOM from 'react-dom';
 
-import FlatArrayExample from './flatArrayExample';
-import ObjectArrayExample from './objectArrayExample';
+import Input from './src/index';
 
-class App extends Component {
-  render () {
-    return (
-      <div>
-        <header>
-          <h2><a href='https://github.com/fraserxu/react-dropdown'>React Dropdown</a></h2>
-        </header>
-        <section className='description'>
-          <p>
-            Simple Dropdown component for React, inspired by <a href='https://github.com/JedWatson/react-select'>react-select</a>
-          </p>
-          <div className='code'>
-            <pre>
-              { "$ npm install react-dropdown --save" }
-            </pre>
-          </div>
-        </section>
-
-        <section>
-          <h3>Examples: </h3>
-          <h4>Usage: </h4>
-          <div className='code'>
-            <pre>
-              {`
-<Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
-              `}
-            </pre>
-          </div>
-        </section>
-
-        <FlatArrayExample />
-        <ObjectArrayExample />
-
-        <section>
-          <h3>License: </h3>
-        </section>
-        <footer>
-          <p>MIT | Build for <a href='https://csviz.org'>CSViz</a> project @<a href='http://wiredcraft.com'>Wiredcraft</a></p>
-        </footer>
-      </div>
-
-    )
+const categories = [
+  {
+    id: 'animals',
+    title: 'Animals',
+    type: 'animal',
+    items: ['Dog', 'Cat', 'Bird', 'Dolphin', 'Apes']
+  },
+  {
+    id: 'something',
+    title: 'Something cool',
+    items: ['Something cool'],
+    single: true
+  },
+  {
+    id: 'food',
+    title: 'food',
+    type: 'food',
+    items: ['Apple', 'Banana', 'Grapes', 'Pear']
+  },
+  {
+    id: 'professions',
+    title: 'Professions',
+    type: 'profession',
+    items: ['Waiter', 'Writer', 'Hairdresser', 'Policeman']
   }
+];
 
+function transformTag(tag) {
+  const categoryMatches = categories.filter(category => category.id === tag.category);
+  const categoryTitle = categoryMatches[0].title;
+  return `${categoryTitle}/${tag.title}`;
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'))
+
+function getTagStyle(tag){
+  if (tag.title === "rhino") {
+    return {
+      base: {
+        backgroundColor: "gray",
+        color: "lightgray"
+      }
+    }
+    return {}
+  }
+}
+
+function getCreateNewText(title, text){
+  return `create new ${title} "${text}"`
+}
+
+const Wrap = React.createClass({
+  getInitialState() {
+    return {
+      editable: true,
+      tags: [{
+        title: "rhino",
+        category: 'animals'
+      }]
+    };
+  },
+
+  toggleEdit(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.setState({ editable: !this.state.editable });
+  },
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.toggleEdit}>Toggle edit</button>
+        {this.state.editable
+                      ? <Input
+                          addNew={true}
+                          categories={categories}
+                          getTagStyle={getTagStyle}
+                          value={this.state.tags}
+                          placeholder="Add a tag"
+                          onChange={(tags) => {
+                            console.log('Changed', tags);
+                            this.setState({tags});
+                          }}
+                          onBlur={() => {
+                            console.log('Blur');
+                          }}
+                          transformTag={transformTag}
+                          getCreateNewText={getCreateNewText}
+                        /> 
+                      : <span>Not editable</span>}
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  React.createElement(Wrap, {}),
+  document.getElementById('app')
+);
 
   </script>
 
@@ -163,7 +213,7 @@ ReactDOM.render(<App />, document.querySelector('#app'))
         }else if(type == "css"){
           $("head").append("<style>"+ code +"</style>");
         }else if(type == "js"){
-          parentPathArr = ["./example"];
+          parentPathArr = ["."];
           
             try{
               evalModule(transformCode(code));                        

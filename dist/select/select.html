@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>
+    <link rel="stylesheet" href="/component/lib/site/dist/reset.css" />
+    <link rel="stylesheet" href="/component/lib/site/dist/detail.css" />        
+    <title>select组件 - 搜狗导航前端组件库</title>
+    <style>      
+    </style>
+  </head>
+  <body>  
+      <div class="nav">
+        <h1><a href="/component/index.html"><img src="https://upd13.sogoucdn.com/nstatic/img/logo.png?v=4" /></a></h1>
+      </div>
+      <div class="content">
+        <div class="content-inner">
+          <h2 class="title">下拉框（React）</h2>
+          <div class="preview">
+            <img src="/component/lib/site/static/img/123.png" />
+          </div>
+          <div class="browser">            
+            <img src="/component/lib/site/static/img/browser/ie11.png" />
+          </div>
+
+          <div class="operate">
+            <button class="demo" onClick=location.href="./edit.html">查看Demo</button>
+            <button class="download" onClick=location.href="https://github.com/tomchentw/select">下载</button>
+          </div>
+          <div class="markdown markdown-body">
+              <h1 id="rc-select">rc-select</h1>
+<hr>
+<p>React Select</p>
+<p><a href="http://npmjs.org/package/rc-select"><img src="http://img.shields.io/npm/v/rc-select.svg?style=flat-square" alt="NPM version"></a>
+<a href="https://travis-ci.org/react-component/select"><img src="https://img.shields.io/travis/react-component/select.svg?style=flat-square" alt="build status"></a>
+<a href="https://coveralls.io/r/react-component/select?branch=master"><img src="https://img.shields.io/coveralls/react-component/select.svg?style=flat-square" alt="Test coverage"></a>
+<a href="https://gemnasium.com/react-component/select"><img src="http://img.shields.io/gemnasium/react-component/select.svg?style=flat-square" alt="gemnasium deps"></a>
+<a href="https://npmjs.org/package/rc-select"><img src="https://img.shields.io/npm/dm/rc-select.svg?style=flat-square" alt="npm download"></a></p>
+<h2 id="screenshots">Screenshots</h2>
+<p><img src="https://tfsimg.alipay.com/images/T1CUBeXa0kXXXXXXXX.png" /></p>
+<h2 id="feature">Feature</h2>
+<ul>
+<li>support ie8,ie8+,chrome,firefox,safari</li>
+</ul>
+<h3 id="keyboard">Keyboard</h3>
+<ul>
+<li>Open select (focus input || focus and click)</li>
+<li>KeyDown/KeyUp/Enter to navigate menu</li>
+</ul>
+<h2 id="install">install</h2>
+<p><a href="https://npmjs.org/package/rc-select"><img src="https://nodei.co/npm/rc-select.png" alt="rc-select"></a></p>
+<h2 id="usage">Usage</h2>
+<h3 id="basic-use">basic use</h3>
+<pre><code class="lang-js">import Select, {Option, OptGroup} from &#39;rc-select&#39;;
+
+var c = (
+  &lt;Select&gt;
+    &lt;Option value=&quot;jack&quot;&gt;jack&lt;/Option&gt;
+    &lt;Option value=&quot;lucy&quot;&gt;lucy&lt;/Option&gt;
+    &lt;Option value=&quot;yiminghe&quot;&gt;yiminghe&lt;/Option&gt;
+  &lt;/Select&gt;
+);
+React.render(c, container);
+</code></pre>
+<h2 id="api">API</h2>
+<h3 id="select-props">Select props</h3>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>className</td>
+<td>additional css class of root dom node</td>
+<td>String</td>
+<td>&#39;&#39;</td>
+</tr>
+<tr>
+<td>prefixCls</td>
+<td>prefix class</td>
+<td>String</td>
+<td>&#39;&#39;</td>
+</tr>
+<tr>
+<td>animation</td>
+<td>dropdown animation name. only support slide-up now</td>
+<td>String</td>
+<td>&#39;&#39;</td>
+</tr>
+<tr>
+<td>transitionName</td>
+<td>dropdown css animation name</td>
+<td>String</td>
+<td>&#39;&#39;</td>
+</tr>
+<tr>
+<td>choiceTransitionName</td>
+<td>css animation name for selected items at multiple mode</td>
+<td>String</td>
+<td>&#39;&#39;</td>
+</tr>
+<tr>
+<td>dropdownMatchSelectWidth</td>
+<td>whether dropdown&#39;s with is same with select</td>
+<td>bool</td>
+<td>true</td>
+</tr>
+<tr>
+<td>dropdownClassName</td>
+<td>additional className applied to dropdown</td>
+<td>String</td>
+<td>-</td>
+</tr>
+<tr>
+<td>dropdownStyle</td>
+<td>additional style applied to dropdown</td>
+<td>Object</td>
+<td>{}</td>
+</tr>
+<tr>
+<td>dropdownAlign</td>
+<td>additional align applied to dropdown</td>
+<td>Object</td>
+<td>{}</td>
+</tr>
+<tr>
+<td>dropdownMenuStyle</td>
+<td>additional style applied to dropdown menu</td>
+<td>Object</td>
+<td>{}</td>
+</tr>
+<tr>
+<td>notFoundContent</td>
+<td>specify content to show when no result matches.</td>
+<td>String</td>
+<td>&#39;Not Found&#39;</td>
+</tr>
+<tr>
+<td>tokenSeparators</td>
+<td>separator used to tokenize on tag/multiple mode</td>
+<td>string[]?</td>
+<td></td>
+</tr>
+<tr>
+<td>placeholder</td>
+<td>select placeholder</td>
+<td>React Node</td>
+<td></td>
+</tr>
+<tr>
+<td>showSearch</td>
+<td>whether show search input in single mode</td>
+<td>bool</td>
+<td>true</td>
+</tr>
+<tr>
+<td>showArrow</td>
+<td>whether show arrow in single mode</td>
+<td>bool</td>
+<td>true</td>
+</tr>
+<tr>
+<td>allowClear</td>
+<td>whether allowClear</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>when tagging is enabled the user can select from pre-existing options or create a new tag by picking the first choice, which is what the user has typed into the search box so far.</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>maxTagTextLength</td>
+<td>max tag text length to show</td>
+<td>number</td>
+<td>-</td>
+</tr>
+<tr>
+<td>maxTagCount</td>
+<td>max tag count to show</td>
+<td>number</td>
+<td>-</td>
+</tr>
+<tr>
+<td>maxTagPlaceholder</td>
+<td>placeholder for omitted values</td>
+<td>ReactNode/function(omittedValues)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>combobox</td>
+<td>enable combobox mode(can not set multiple at the same time)</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>multiple</td>
+<td>whether multiple select</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>whether disabled select</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>filterOption</td>
+<td>whether filter options by input value. default filter by option&#39;s optionFilterProp prop&#39;s value</td>
+<td>bool</td>
+<td>true/Function(inputValue:string, option:Option)</td>
+</tr>
+<tr>
+<td>optionFilterProp</td>
+<td>which prop value of option will be used for filter if filterOption is true</td>
+<td>String</td>
+<td>&#39;value&#39;</td>
+</tr>
+<tr>
+<td>optionLabelProp</td>
+<td>render option value or option children as content of select</td>
+<td>String: &#39;value&#39;/&#39;children&#39;</td>
+<td>&#39;value&#39;</td>
+</tr>
+<tr>
+<td>defaultValue</td>
+<td>initial selected option(s)</td>
+<td>String/Array<String></td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>current selected option(s)</td>
+<td>String/Array<String>/{key:String, label:React.Node}/Array&lt;{key, label}&gt;</td>
+<td>-</td>
+</tr>
+<tr>
+<td>firstActiveValue</td>
+<td>first active value when there is no value</td>
+<td>String/Array<String></td>
+<td>-</td>
+</tr>
+<tr>
+<td>labelInValue</td>
+<td>whether to embed label in value, see above value type</td>
+<td>Bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>backfill</td>
+<td>whether backfill select option to search input (Only works in single and combobox mode)</td>
+<td>Bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>onChange</td>
+<td>called when select an option or input value change(combobox)</td>
+<td>function(value, option:Option/Array<Option>)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>onSearch</td>
+<td>called when input changed</td>
+<td>function</td>
+<td>-</td>
+</tr>
+<tr>
+<td>onBlur</td>
+<td>called when blur</td>
+<td>function</td>
+<td>-</td>
+</tr>
+<tr>
+<td>onFocus</td>
+<td>called when focus</td>
+<td>function</td>
+<td>-</td>
+</tr>
+<tr>
+<td>onPopupScroll</td>
+<td>called when menu is scrolled</td>
+<td>function</td>
+<td>-</td>
+</tr>
+<tr>
+<td>onSelect</td>
+<td>called when a option is selected. param is option&#39;s value and option instance</td>
+<td>Function(value, option:Option)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>onDeselect</td>
+<td>called when a option is deselected. param is option&#39;s value. only called for multiple or tags</td>
+<td>Function(value, option:Option)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>onInputKeydown</td>
+<td>called when key down on input</td>
+<td>Function(event)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>defaultActiveFirstOption</td>
+<td>whether active first option by default</td>
+<td>bool</td>
+<td>true</td>
+</tr>
+<tr>
+<td>getPopupContainer</td>
+<td>container which popup select menu rendered into</td>
+<td>function(trigger:Node):Node</td>
+<td>function(){return document.body;}</td>
+</tr>
+<tr>
+<td>getInputElement</td>
+<td>customize input element</td>
+<td>function(): Element</td>
+<td>-</td>
+</tr>
+<tr>
+<td>showAction</td>
+<td>actions trigger the dropdown to show</td>
+<td>String[]?</td>
+<td>-</td>
+</tr>
+<tr>
+<td>autoFocus</td>
+<td>focus select after mount</td>
+<td>Bool</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="methods">Methods</h3>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+<th>parameters</th>
+<th>return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>focus</td>
+<td>focus select programmably</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>blur</td>
+<td>blur select programmably</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="option-props">Option props</h3>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>className</td>
+<td>additional class to option</td>
+<td>String</td>
+<td>&#39;&#39;</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>no effect for click or keydown for this item</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>key</td>
+<td>if react want you to set key, then key is same as value, you can omit value</td>
+<td>String</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>default filter by this attribute. if react want you to set key, then key is same as value, you can omit value</td>
+<td>String</td>
+<td>-</td>
+</tr>
+<tr>
+<td>title</td>
+<td>if you are not satisfied with auto-generated <code>title</code> which is show while hovering on selected value, you can customize it with this property</td>
+<td>String</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optgroup-props">OptGroup props</h3>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>label</td>
+<td>group label</td>
+<td>String/React.Element</td>
+<td>-</td>
+</tr>
+<tr>
+<td>key</td>
+<td>-</td>
+<td>String</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>default filter by this attribute. if react want you to set key, then key is same as value, you can omit value</td>
+<td>String</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="development">Development</h2>
+<pre><code>npm install
+npm start
+</code></pre><h2 id="example">Example</h2>
+<p><a href="http://localhost:8003/examples/">http://localhost:8003/examples/</a></p>
+<p>online example: <a href="http://react-component.github.io/select/examples/">http://react-component.github.io/select/examples/</a></p>
+<h2 id="test-case">Test Case</h2>
+<pre><code>npm test
+</code></pre><h2 id="coverage">Coverage</h2>
+<pre><code>npm run coverage
+</code></pre><h2 id="license">License</h2>
+<p>rc-select is released under the MIT license.</p>
+            
+          </div>
+        </div>
+      </div>
+  </body>     
+</html>

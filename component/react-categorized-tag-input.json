@@ -1,0 +1,15 @@
+{    
+    "title": "输入框",
+    "name": "react-categorized-tag-input",
+    "content": "",
+    "image": "123.png",
+    "browser": "ie11",
+    "version": "1.0.0",
+    "isModule": true,
+    "download": "https://github.com/tomchentw/react-dropdown",
+    "source": "react-categorized-tag-input",
+    "example": {
+        "html": "./index.html",
+        "js": "./index.js"
+    }
+}
