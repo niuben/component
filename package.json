@@ -3,14 +3,20 @@
   "version": "0.2.0",
   "description": "组件分享项目",
   "main": "./lib/service/command/index.js",
-  "scripts": {    
+  "scripts": {
     "add": "node lib/service/command/index.js --operate=add && node lib/service/command/index.js --operate=index",
     "index": "node lib/service/command/index.js --operate=index",
     "del": "node lib/service/command/index.js --operate=del && node lib/service/command/index.js --operate=index",
-    "test": "node lib/service/index.js"
+    "test": "node lib/service/test.js"
   },
   "author": "",
   "license": "ISC",
+  "babel": {
+    "presets": [
+        "es2015",
+        "stage-2"
+    ] 
+  },
   "devDependencies": {
     "babel-preset-react-app": "^3.1.1",
     "node-sass": "^4.7.2",
@@ -19,6 +25,7 @@
     "webpack-manifest-plugin": "1.2.1"
   },
   "dependencies": {
+    "babel-cli": "^6.24.0",
     "babel-loader": "7.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
@@ -50,7 +57,6 @@
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "scroll-to-y": "git://github.com/daviferreira/scroll-to-y.git",
-    "share": "^0.7.40",
     "simple-git": "^1.92.0",
     "style-loader": "0.18.2",
     "underscore.template": "^0.1.7",
