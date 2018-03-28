@@ -1,4 +1,5 @@
 .DS_Store
 node_modules
+node_modules1
 code/react-viewport-slider/
 lib/code/*

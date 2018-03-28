@@ -117,9 +117,10 @@
       // var code = document.getElementsByClassName("lang-js")[0].innerHTML;
       // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");      
       var parentPathArr = [];      
+      var alias = {};
       function runCode(type, code){
         if(type == "html"){
-          $("#result").html($.trim(HTML));
+          $("#result").html($.trim(code));
         }else if(type == "css"){
           $("head").append("<style>"+ code +"</style>");
         }else if(type == "js"){
@@ -129,7 +130,6 @@
                         
         }
       }
-
 
       var HTML = document.getElementById("initHTML").innerHTML;
       runCode("html", HTML);
@@ -141,7 +141,7 @@
       runCode("css", css);
 
       // var editor = ace.edit("editor");        
-      // editor.setValue(code, 1);    
+      // editor.setValue(code, 1);
       // editor.setShowPrintMargin(false);
       
       // editor.on("change", function(e){
@@ -156,10 +156,7 @@
         runCode(type, code);        
         // evalModule(transformCode(code));
     }, false);
-
-      
-
-   
+     
            // $("pre code").each(function(index){
       //   $(this).attr("id", "code" + index);
       //   // $("#code" + index).before('<div id="demo' + index + '"></div>');

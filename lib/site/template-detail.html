@@ -16,20 +16,21 @@
       </div>
       <div class="content">
         <div class="content-inner">
-          <h2 class="title"><%= title %></h2>
+          <h2 class="title"><%= name %></h2>
+          <p><%= description %></p>
           <div class="preview">
-            <img src="<%= image %>" />
+            <img src="./preview.png" />
           </div>
           <div class="browser">            
             <img src="<%= browser %>" />
           </div>
 
           <div class="operate">
-            <button class="demo" onClick=location.href="./edit.html">查看Demo</button>
-            <button class="download" onClick=location.href="<%= download %>">下载</button>
+            <button class="demo" onClick=location.href="<%= url %>">查看Demo</button>
+            <button class="download" onClick=location.href="<%= git %>">下载</button>
           </div>
           <div class="markdown markdown-body">
-              <%= markdown %>            
+              <%= markdown ? markdown : "暂无文档" %>            
           </div>
         </div>
       </div>

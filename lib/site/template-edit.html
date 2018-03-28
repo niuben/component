@@ -87,7 +87,7 @@
           
           var handle = null;
           editorJS.on("change", function(e){        
-            clearTimeout(handle);
+            clearTimeout(handle);                                              
             handle = setTimeout(function(){
               var code = editorJS.getValue();
               window.frames.preview.postMessage({

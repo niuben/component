@@ -17,12 +17,12 @@
       <ul class="list">
           <% list.map(function(item, index){ %>
             <li>
-              <div class="cover">
-                <a class="title" href="<%= item["url"] %>"><img src="<%= item["image"] %>" /></a>
-              </div>
+              <a class="title" href="<%= item["url"] %>">
+                <div class="cover" style="background:url(<%= item["image"] %>) center center no-repeat; background-size: 100% auto;"></div>
+              </a>
               <div class="content">  
-                <a class="title" href="<%= item["url"] %>"><%= item["title"] %></a>
-                <p class="infor"><%= item["content"] %></p>
+                <a class="title" href="<%= item["url"] %>"><%= item["name"] %></a>
+                <p class="infor"><%= item["description"] %></p>
               </div>
             </li>
           <% }); %>

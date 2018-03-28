@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>    
+    <% link != null && link.map(function(url, index){ %>
+      <link rel="stylesheet" href="<%= url%>"/>      
+    <%})%> 
+    <style>
+     #top, #top span, .markdown-body * {
+          padding: 0px;
+          margin: 0px;
+      }      
+      .markdown-body ul, .markdown-body li {
+          list-style: none;
+      }
+      #top {
+        position: relative;
+        height: 60px;
+        line-height: 60px;
+        box-shadow: 0 0 5px 0 #a5a5a5;
+      }
+      #top span {
+        position: absolute;
+        width: 60px;
+        height: 60px;        
+        text-align: center;
+      }
+      #top h1 {
+        text-align: center;
+        font-size: 20px;
+      }
+      #markdown {
+        margin-left: 10px;
+        margin-top: 10px;
+        /* border-bottom: 1px solid #EEE; */
+      }
+      
+      #preview {
+        /* display: none; */
+        margin-top: 100px;
+      }
+      #editor, #preview {
+        /* float: left; */
+        /* width: 50%; */
+      }
+      #editor {
+        /* height: 400px; */
+      }
+    </style>
+  </head>
+  <body >    
+    <div id="result"></div>
+  
+  <!-- <iframe src="../code/dropdown/build/index.html" style="height: 500px; width: 100%;"></iframe> -->
+
+  <!-- 执行代码相关资源  -->
+  <script src="/component/lib/site/static/jquery.js"></script>
+  
+  <!-- 库文件 -->
+  <% script != null &&  script.map(function(url, index){ %>
+    <script src="<%= url%>"></script>
+  <%})%>
+
+  <% if(isModule){%>
+    <script src="./dll.bundle.js"></script>
+    <script src="/component/lib/site/static/babel.min.js"></script>
+    <script src="/component/lib/site/static/file.js"></script>
+    <script src="/component/lib/site/static/module.js"></script>
+    <script src="/component/lib/site/static/require.js"></script>    
+  <%}%>  
+  <script type="template/text" id="initHTML">
+    <%= html %>
+  </script>
+  
+  <script type="template/text" id="initCSS">
+    <%= css %>
+  </script>
+
+  <script type="template/text" id="initJS">
+    <%= js %>
+  </script>
+
+  <script>
+    //初始化运行代码、ReadMe和编辑器
+    // var code = findModule("./app.js")["file"]["./app.js"];
+    // var dropdownComponent = findModule("./dropdown.js")["file"];
+    // var componentCode = dropdownComponent["./dropdown.js"];
+    // var readme = navComponent["./readme.md"];
+    
+    /*
+    * 显示markdown文本
+    * 点击代码区域将内容赋值到编辑器中 
+    */ 
+    // $.get("./static/data/readme.md", function(msg){
+      // var sass = new Sass();
+
+      
+      // var code = document.getElementsByClassName("lang-js")[0].innerHTML;
+      // code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">"); 
+      
+      function escape2Html(str) {
+        var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
+        return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){
+          return arrEntities[t];
+        });
+      }
+    
+      var parentPathArr = [];      
+      var alias = <%= alias ? alias : {} %>;
+      var modules = <%= manifest ? manifest : {} %>;
+      var parentPath = "<%- parentPath %>";
+      function runCode(type, code){
+        if(type == "html"){
+          $("#result").html($.trim(escape2Html(code)));
+        }else if(type == "css"){
+          $("head").append("<style>"+ code +"</style>");
+        }else if(type == "js"){
+          parentPathArr = ["<%- parentPath %>"];
+          <% if(isModule){ %>
+            try{
+              evalModule(transformCode(code));                        
+            }catch(e){
+              console.log("error", e);
+            }            
+          <%}else{%>
+            eval(code);
+          <%}%>              
+        }
+      }
+
+      var HTML = document.getElementById("initHTML").innerHTML;
+      runCode("html", HTML);
+            
+      var js = document.getElementById("initJS").innerText;
+      runCode("js", js);
+
+      var css = document.getElementById("initCSS").innerText;
+      runCode("css", css);
+
+      // var editor = ace.edit("editor");        
+      // editor.setValue(code, 1);
+      // editor.setShowPrintMargin(false);
+      
+      // editor.on("change", function(e){
+      //   console.log(1);  
+      //   code = editor.getValue();
+      //   evalModule(transformCode(code));
+      // });
+       
+      window.addEventListener("message", function(msg){
+          var code = msg.data["code"],
+              type = msg.data["type"];        
+          runCode(type, code);        
+          // evalModule(transformCode(code));
+      }, false);
+     
+           // $("pre code").each(function(index){
+      //   $(this).attr("id", "code" + index);
+      //   // $("#code" + index).before('<div id="demo' + index + '"></div>');
+      //   $(this).parent().before('<div id="demo' + index + '" style="margin-bottom: 10px;"></div>');
+                
+      //   var code = $(this).text();
+      //   evalModule(transformCode(code));
+      // })
+    // });
+
+    // $("body").on("click", "pre", function(e){
+    //     if($(this).find("code").length > 0){          
+    //       editor.setValue($(this).text(), 1);
+    //     }        
+    // })
+
+    /*
+    * 初始化编辑;
+    * 给编辑器增加change监听;
+    */
+    // $("#editor").html(componentCode);
+    // var editor = ace.edit("editor");        
+    // editor.setValue(code, 1);    
+    // editor.setShowPrintMargin(false);
+    
+    // editor.on("change", function(e){
+    //   console.log(1);  
+    //   code = editor.getValue();
+    //   evalModule(transformCode(code));
+    // });
+
+  </script>
+  </body>
+</html>

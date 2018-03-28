@@ -5,9 +5,10 @@ var path = require("path");
 
 var config = {
     entry: {
-        index: './lib/site/static/index.js',
-        detail: "./lib/site/static/detail.js",
-        edit: "./lib/site/static/edit.js"
+        test: "./lib/site/static/test.js",
+        // index: './lib/site/static/index.js',
+        // detail: "./lib/site/static/detail.js",
+        // edit: "./lib/site/static/edit.js"
     },
     output: {
       path: path.resolve(__dirname, "./lib/site/dist"),

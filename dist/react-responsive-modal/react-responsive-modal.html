@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>
+    <link rel="stylesheet" href="../../lib/site/dist/reset.css" />
+    <link rel="stylesheet" href="../../lib/site/dist/detail.css" />        
+    <title>react-responsive-modal组件 - 搜狗导航前端组件库</title>
+    <style>      
+    </style>
+  </head>
+  <body>  
+      <div class="nav">
+        <h1><a href="/component/index.html"><img src="https://upd13.sogoucdn.com/nstatic/img/logo.png?v=4" /></a></h1>
+      </div>
+      <div class="content">
+        <div class="content-inner">
+          <h2 class="title">react-responsive-modal</h2>
+          <p>基于React的自适应弹出框</p>
+          <div class="preview">
+            <img src="./preview.png" />
+          </div>
+          <div class="browser">            
+            <img src="../../lib/site/static/img/browser/ie10.png" />
+          </div>
+
+          <div class="operate">
+            <button class="demo" onClick=location.href="https://github.com/pradel/react-responsive-modal">查看Demo</button>
+            <button class="download" onClick=location.href="https://github.com/pradel/react-responsive-modal">下载</button>
+          </div>
+          <div class="markdown markdown-body">
+              <h1 id="react-responsive-modal">react-responsive-modal</h1>
+<p><a href="https://badge.fury.io/js/react-responsive-modal"><img src="https://badge.fury.io/js/react-responsive-modal.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/react-responsive-modal"><img src="https://img.shields.io/npm/dm/react-responsive-modal.svg" alt="npm"></a>
+<a href="https://travis-ci.org/pradel/react-responsive-modal"><img src="https://travis-ci.org/pradel/react-responsive-modal.svg?branch=master" alt="Build Status"></a>
+<a href="https://david-dm.org/pradel/react-responsive-modal"><img src="https://david-dm.org/pradel/react-responsive-modal/status.svg" alt="dependencies Status"></a></p>
+<p>A simple responsive react modal compatible with React 15 and 16.</p>
+<ul>
+<li>Centered modals.</li>
+<li>Scrolling modals.</li>
+<li>Multiple modals.</li>
+<li>Easily customizable via props.</li>
+</ul>
+<h2 id="demo">Demo</h2>
+<p>You can find a demo <a href="https://react-responsive-modal.leopradel.com/">here</a>.</p>
+<h2 id="examples">Examples</h2>
+<p><a href="https://react-responsive-modal.leopradel.com/#example">https://react-responsive-modal.leopradel.com/#example</a></p>
+<h2 id="installation">Installation</h2>
+<p>With npm: <code>npm install react-responsive-modal --save</code></p>
+<p>Or with yarn: <code>yarn add react-responsive-modal</code></p>
+<h2 id="usage">Usage</h2>
+<p><a href="https://codesandbox.io/s/9jxp669j2o"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit react-responsive-modal"></a></p>
+<pre><code class="lang-javascript">import React from &#39;react&#39;;
+import ReactDOM from &#39;react-dom&#39;;
+import Modal from &#39;react-responsive-modal&#39;;
+
+export default class App extends React.Component {
+  state = {
+    open: false,
+  };
+
+  onOpenModal = () =&gt; {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () =&gt; {
+    this.setState({ open: false });
+  };
+
+  render() {
+    const { open } = this.state;
+    return (
+      &lt;div&gt;
+        &lt;button onClick={this.onOpenModal}&gt;Open modal&lt;/button&gt;
+        &lt;Modal open={open} onClose={this.onCloseModal} little&gt;
+          &lt;h2&gt;Simple centered modal&lt;/h2&gt;
+        &lt;/Modal&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+ReactDOM.render(&lt;App /&gt;, document.getElementById(&#39;app&#39;));
+</code></pre>
+<h3 id="usage-with-css">Usage with css</h3>
+<p>By default react-responsive-modal is using
+<a href="https://github.com/cssinjs/react-jss">react-jss</a>.</p>
+<p>If you don&#39;t want to add it to your project you can use the css version of this
+project:</p>
+<pre><code class="lang-javascript">// Import the css file
+import &#39;react-responsive-modal/lib/react-responsive-modal.css&#39;;
+import Modal from &#39;react-responsive-modal/lib/css&#39;;
+</code></pre>
+<h2 id="props">Props</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:center">Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>open*</strong></td>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:center"></td>
+<td>Control if the modal is open or not.</td>
+</tr>
+<tr>
+<td><strong>onClose*</strong></td>
+<td style="text-align:center">Function</td>
+<td style="text-align:center"></td>
+<td>Fired when the Modal is requested to be closed by a click on the overlay or when user press esc key.</td>
+</tr>
+<tr>
+<td>children</td>
+<td style="text-align:center">Node</td>
+<td style="text-align:center"></td>
+<td>The content of the modal.</td>
+</tr>
+<tr>
+<td>closeOnEsc</td>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:center">true</td>
+<td>Is the modal closable when user press esc key.</td>
+</tr>
+<tr>
+<td>closeOnOverlayClick</td>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:center">true</td>
+<td>Is the modal closable when user click on overlay.</td>
+</tr>
+<tr>
+<td>little</td>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:center">false</td>
+<td>Is the dialog centered (<strong>when you don&#39;t have a lot of content</strong>).</td>
+</tr>
+<tr>
+<td>showCloseIcon</td>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:center">true</td>
+<td>Show the close icon.</td>
+</tr>
+<tr>
+<td>closeIconSize</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">28</td>
+<td>Close icon size.</td>
+</tr>
+<tr>
+<td>closeIconSvgPath</td>
+<td style="text-align:center">Node</td>
+<td style="text-align:center"></td>
+<td>A valid svg path to show as icon.</td>
+</tr>
+<tr>
+<td>classNames</td>
+<td style="text-align:center">Object</td>
+<td style="text-align:center">{}</td>
+<td>An object containing classNames to style the modal, can have properties &#39;overlay&#39; (classname for overlay div), &#39;modal&#39; (classname for modal content div), &#39;closeIcon&#39; (classname for close icon svg). You can customize the transition with &#39;transitionEnter&#39;, &#39;transitionEnterActive&#39;, &#39;transitionExit&#39;, &#39;transitionExitActive&#39;</td>
+</tr>
+<tr>
+<td>styles</td>
+<td style="text-align:center">Object</td>
+<td style="text-align:center">{}</td>
+<td>An object containing the styles objects to style the modal, can have properties &#39;overlay&#39;, &#39;modal&#39;, &#39;closeIcon&#39;.</td>
+</tr>
+<tr>
+<td>animationDuration</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">500</td>
+<td>Animation duration in milliseconds.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="license">License</h2>
+<p>MIT © <a href="https://www.leopradel.com/">Léo Pradel</a></p>
+            
+          </div>
+        </div>
+      </div>
+  </body>     
+</html>

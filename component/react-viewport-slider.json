@@ -1,13 +1,1 @@
-{
-    "title": "全屏介绍页",
-    "content": "全屏展示内容，通过鼠标滚轮或者点击进行切换",
-    "name": "react-viewport-slider",
-    "image": "react-viewport-slider.png",    
-    "browser": "ie9",    
-    "isModule": true,
-    "download": "https://github.com/daviferreira/react-viewport-slider",
-    "example": {
-        "html": "./demo/index.html",
-        "js": "./demo/index.js"
-    } 
-}
+{"git":"https://github.com/daviferreira/react-viewport-slider","isCover":false,"version":"1.0.0","description":"基于React开发全屏上下轮播图","browser":"../../lib/site/static/img/browser/ie9.png","type":3,"url":"http://daviferreira.github.io/react-viewport-slider/","name":"react-viewport-slider","markdown":"<h1 id=\"viewport-slider-react\">Viewport Slider, React</h1>\n<p><strong>react-viewport-slider</strong> is a react component (obviously) that displays a sequence of contents using 100% of the viewport with and height.</p>\n<p><a href=\"https://www.npmjs.com/package/react-viewport-slider\"><img src=\"https://nodei.co/npm/react-viewport-slider.png?downloads=true\" alt=\"NPM info\"></a></p>\n<p><a href=\"https://travis-ci.org/daviferreira/react-viewport-slider\"><img src=\"https://travis-ci.org/daviferreira/react-viewport-slider.svg?branch=master\" alt=\"Travis build status\"></a> <a href=\"https://david-dm.org/daviferreira/react-viewport-slider\"><img src=\"https://david-dm.org/daviferreira/react-viewport-slider.svg\" alt=\"Dependency Status\"></a> <a href=\"https://david-dm.org/daviferreira/react-viewport-slider#info=devDependencies\"><img src=\"https://david-dm.org/daviferreira/react-viewport-slider/dev-status.svg\" alt=\"devDependency Status\"></a></p>\n<h2 id=\"usage\">Usage</h2>\n<h3 id=\"commonjs\">CommonJS</h3>\n<p>Install via NPM:</p>\n<pre><code>npm install react-viewport-slider\n</code></pre><p>Then:</p>\n<pre><code class=\"lang-javascript\">import Slider from ‘react-viewport-slider’;\n\n…\n\n    render: function () {\n        return (\n      &lt;Slider&gt;\n        &lt;Slider.Item style={{ backgroundColor: &#39;#a2d7c7&#39; }}&gt;\n          &lt;div className=&quot;content&quot;&gt;Hello, world.&lt;/div&gt;\n        &lt;/Slider.Item&gt;\n        &lt;Slider.Item style={{ backgroundColor: &#39;#353330&#39; }}&gt;\n          &lt;div className=&quot;content&quot;&gt;Sup?&lt;/div&gt;\n        &lt;/Slider.Item&gt;\n        &lt;Slider.Item className=&quot;has-overlay&quot; style={{ backgroundImage: `url(${wallpaper})`, backgroundSize: &#39;cover&#39; }}&gt;\n          &lt;div className=&quot;content&quot;&gt;Yo.&lt;/div&gt;\n        &lt;/Slider.Item&gt;\n      &lt;/Slider&gt;\n\n        );\n    }\n\n…\n</code></pre>\n<h2 id=\"development\">development</h2>\n<pre><code>npm install\n\nnpm run demo\n\nnpm test\n</code></pre><h2 id=\"license\">LICENSE</h2>\n<p>MIT: <a href=\"https://github.com/daviferreira/react-viewport-slider/blob/master/LICENSE\">https://github.com/daviferreira/react-viewport-slider/blob/master/LICENSE</a></p>\n","static":"../../lib/site/dist"}

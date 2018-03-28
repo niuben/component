@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>
+    <link rel="stylesheet" href="../../lib/site/dist/reset.css" />
+    <link rel="stylesheet" href="../../lib/site/dist/detail.css" />        
+    <title>vir-ui-slider组件 - 搜狗导航前端组件库</title>
+    <style>      
+    </style>
+  </head>
+  <body>  
+      <div class="nav">
+        <h1><a href="/component/index.html"><img src="https://upd13.sogoucdn.com/nstatic/img/logo.png?v=4" /></a></h1>
+      </div>
+      <div class="content">
+        <div class="content-inner">
+          <h2 class="title">vir-ui-slider</h2>
+          <p>基于vir-ui的轮播图组件</p>
+          <div class="preview">
+            <img src="./preview.png" />
+          </div>
+          <div class="browser">            
+            <img src="../../lib/site/static/img/browser/ie10.png" />
+          </div>
+
+          <div class="operate">
+            <button class="demo" onClick=location.href="./examples/index.html">查看Demo</button>
+            <button class="download" onClick=location.href="https://github.com/sgdh-fe/vir-ui-slider">下载</button>
+          </div>
+          <div class="markdown markdown-body">
+              <h1 id="vir-ui-slider">vir-ui-slider</h1>
+<h2 id="-">依赖安装</h2>
+<h3 id="npm">npm</h3>
+<pre><code class="lang-sh">npm install Vir
+</code></pre>
+<h3 id="script-">script 标签</h3>
+<pre><code class="lang-html">&lt;script src=&quot;https://unpkg.com/vir&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h2 id="-">安装</h2>
+<h3 id="npm">npm</h3>
+<pre><code class="lang-sh">npm install vir-ui-slider
+</code></pre>
+<h3 id="script-">script 标签</h3>
+<pre><code class="lang-html">&lt;script src=&quot;https://unpkg.com/vir-ui-slider&quot;&gt;&lt;/script&gt;
+&lt;!-- 全局变量 VirUiSlider --&gt;
+</code></pre>
+<h2 id="-">基本使用</h2>
+<pre><code class="lang-html">  &lt;div class=&quot;slider&quot;&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;!-- lazyload 需要设置 data-src 属性 --&gt;
+        &lt;img data-src=&quot;n.jpg&quot; src=&quot;n.png&quot;&gt;
+      &lt;/li&gt;
+      ...
+    &lt;/ul&gt;
+    &lt;a href=&quot;javascript:;&quot; class=&quot;prev&quot;&gt;&lt;/a&gt;
+    &lt;a href=&quot;javascript:;&quot; class=&quot;next&quot;&gt;&lt;/a&gt;
+  &lt;/div&gt;
+</code></pre>
+<pre><code class="lang-js">const Slider = require(&#39;vir-ui-slider&#39;)(
+  /* 默认选项
+    {
+      lazyload: false,
+      wrapperSelector: &#39;ul&#39;,
+      slideSelector: &#39;ul &gt; li&#39;,
+      nextSelector: &#39;.next&#39;,
+      prevSelector: &#39;.prev&#39;,
+      pagination: {
+        selector:&#39;.pagination&#39;, // 传值开启 pagination 功能 不依赖结构
+        navSelector: &#39;li&#39;,
+        currentClass: &#39;cur&#39;
+      }
+    }
+  */
+)
+
+let slider = new Slider({
+  el: &#39;.slider&#39;
+})
+/* 选项 lazyload 为 true 需要手触发首屏显示
+slider.set(&#39;index&#39;, 0, {
+  force: true
+})
+*/
+</code></pre>
+<h2 id="-">例子</h2>
+<p><a href="https://codepen.io/cjg/pen/KmNoJY/" target="_blank">code pen</a></p>
+<p><a href="http://htmlpreview.github.io/?https://github.com/sgdh-fe/vir-ui-slider/blob/master/examples/index.html" target="_blank">base</a></p>
+            
+          </div>
+        </div>
+      </div>
+  </body>     
+</html>

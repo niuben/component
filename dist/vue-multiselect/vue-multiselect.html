@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>
+    <link rel="stylesheet" href="../../lib/site/dist/reset.css" />
+    <link rel="stylesheet" href="../../lib/site/dist/detail.css" />        
+    <title>vue-multiselect组件 - 搜狗导航前端组件库</title>
+    <style>      
+    </style>
+  </head>
+  <body>  
+      <div class="nav">
+        <h1><a href="/component/index.html"><img src="https://upd13.sogoucdn.com/nstatic/img/logo.png?v=4" /></a></h1>
+      </div>
+      <div class="content">
+        <div class="content-inner">
+          <h2 class="title">vue-multiselect</h2>
+          <p>基于Vue下拉复选框</p>
+          <div class="preview">
+            <img src="./preview.png" />
+          </div>
+          <div class="browser">            
+            <img src="../../lib/site/static/img/browser/ie10.png" />
+          </div>
+
+          <div class="operate">
+            <button class="demo" onClick=location.href="https://vue-multiselect.js.org/">查看Demo</button>
+            <button class="download" onClick=location.href="https://github.com/shentao/vue-multiselect">下载</button>
+          </div>
+          <div class="markdown markdown-body">
+              <h1 id="vue-multiselect-build-status-https-circleci-com-gh-shentao-vue-multiselect-tree-2-0-svg-style-shield-circle-token-5c931ff28fd12587610f835472becdd514d09cef-codecov-branch-https-img-shields-io-codecov-c-github-shentao-vue-multiselect-2-0-svg-https-codecov-io-gh-shentao-vue-multiselect-branch-2-0-npm-https-img-shields-io-npm-v-vue-multiselect-svg-https-www-npmjs-com-package-vue-multiselect-">vue-multiselect <img src="https://circleci.com/gh/shentao/vue-multiselect/tree/2.0.svg?style=shield&amp;circle-token=5c931ff28fd12587610f835472becdd514d09cef" alt="Build Status"><a href="https://codecov.io/gh/shentao/vue-multiselect/branch/2.0"><img src="https://img.shields.io/codecov/c/github/shentao/vue-multiselect/2.0.svg" alt="Codecov branch"></a><a href="https://www.npmjs.com/package/vue-multiselect"><img src="https://img.shields.io/npm/v/vue-multiselect.svg" alt="npm"></a></h1>
+<p>Probably the most complete <em>selecting</em> solution for Vue.js 2.0, without jQuery.</p>
+<p><img src="https://raw.githubusercontent.com/shentao/vue-multiselect/2.0/multiselect-screen-203.png" alt="Vue-Multiselect Screen"></p>
+<h3 id="features-characteristics-">Features &amp; characteristics:</h3>
+<ul>
+<li>NO dependencies</li>
+<li>Single select</li>
+<li>Multiple select</li>
+<li>Tagging</li>
+<li>Dropdowns</li>
+<li>Filtering</li>
+<li>Search with suggestions</li>
+<li>Logic split into mixins</li>
+<li>Basic component and support for custom components</li>
+<li>V-model support</li>
+<li>Vuex support</li>
+<li>Async options support</li>
+<li>> 95% test coverage</li>
+<li>Fully configurable (see props list below)</li>
+</ul>
+<h2 id="breaking-changes-">Breaking changes:</h2>
+<ul>
+<li>Instead of Vue.partial for custom option templates you can use a custom render function.</li>
+<li>The <code>:key</code> props has changed to <code>:track-by</code>, due to conflicts with Vue 2.0.</li>
+<li>Support for <code>v-model</code></li>
+<li><code>@update</code> has changed to <code>@input</code> to also work with v-model</li>
+<li><code>:selected</code> has changed to <code>:value</code> for the same reason</li>
+<li>Browserify users: if you wish to import <code>.vue</code> files, please add <code>vueify</code> transform.</li>
+</ul>
+<h2 id="install-basic-usage">Install &amp; basic usage</h2>
+<pre><code class="lang-bash">npm install vue-multiselect
+</code></pre>
+<pre><code class="lang-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;multiselect
+      v-model=&quot;selected&quot;
+      :options=&quot;options&quot;&gt;
+    &lt;/multiselect&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import Multiselect from &#39;vue-multiselect&#39;
+  export default {
+    components: { Multiselect },
+    data () {
+      return {
+        selected: null,
+        options: [&#39;list&#39;, &#39;of&#39;, &#39;options&#39;]
+      }
+    }
+  }
+&lt;/script&gt;
+
+&lt;style src=&quot;vue-multiselect/dist/vue-multiselect.min.css&quot;&gt;&lt;/style&gt;
+</code></pre>
+<h2 id="jsfiddle">JSFiddle</h2>
+<p><a href="https://jsfiddle.net/shentao/jqofkzxc/">Example JSFiddle</a> – Use this for issue reproduction.</p>
+<h2 id="examples">Examples</h2>
+<p>in jade-lang/pug-lang</p>
+<h3 id="single-select-dropdown">Single select / dropdown</h3>
+<pre><code class="lang-jade">multiselect(
+  :value=&quot;value&quot;,
+  :options=&quot;source&quot;,
+  :searchable=&quot;false&quot;,
+  :close-on-select=&quot;false&quot;,
+  :allow-empty=&quot;false&quot;,
+  @input=&quot;updateSelected&quot;,
+  label=&quot;name&quot;,
+  placeholder=&quot;Select one&quot;,
+  track-by=&quot;name&quot;
+)
+</code></pre>
+<h3 id="single-select-with-search">Single select with search</h3>
+<pre><code class="lang-jade">multiselect(
+  v-model=&quot;value&quot;,
+  :options=&quot;source&quot;,
+  :close-on-select=&quot;true&quot;,
+  :clear-on-select=&quot;false&quot;,
+  placeholder=&quot;Select one&quot;,
+  label=&quot;name&quot;,
+  track-by=&quot;name&quot;
+)
+</code></pre>
+<h3 id="multiple-select-with-search">Multiple select with search</h3>
+<pre><code class="lang-jade">multiselect(
+  v-model=&quot;multiValue&quot;,
+  :options=&quot;source&quot;,
+  :multiple=&quot;true&quot;,
+  :close-on-select=&quot;true&quot;,
+  placeholder=&quot;Pick some&quot;,
+  label=&quot;name&quot;,
+  track-by=&quot;name&quot;
+)
+</code></pre>
+<h3 id="tagging">Tagging</h3>
+<p>with <code>@tag</code> event</p>
+<pre><code class="lang-jade">multiselect(
+  v-model=&quot;taggingSelected&quot;,
+  :options=&quot;taggingOptions&quot;,
+  :multiple=&quot;true&quot;,
+  :taggable=&quot;true&quot;,
+  @tag=&quot;addTag&quot;,
+  tag-placeholder=&quot;Add this as new tag&quot;,
+  placeholder=&quot;Type to search or add tag&quot;,
+  label=&quot;name&quot;,
+  track-by=&quot;code&quot;
+)
+</code></pre>
+<pre><code class="lang-javascript">
+addTag (newTag) {
+  const tag = {
+    name: newTag,
+    code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+  }
+  this.taggingOptions.push(tag)
+  this.taggingSelected.push(tag)
+},
+</code></pre>
+<h3 id="asynchronous-dropdown">Asynchronous dropdown</h3>
+<pre><code class="lang-jade">multiselect(
+  v-model=&quot;selectedCountries&quot;,
+  :options=&quot;countries&quot;,
+  :multiple=&quot;multiple&quot;,
+  :searchable=&quot;searchable&quot;,
+  @search-change=&quot;asyncFind&quot;,
+  placeholder=&quot;Type to search&quot;,
+  label=&quot;name&quot;
+  track-by=&quot;code&quot;
+)
+  span(slot=&quot;noResult&quot;).
+    Oops! No elements found. Consider changing the search query.
+</code></pre>
+<pre><code class="lang-javascript">methods: {
+  asyncFind (query) {
+    this.countries = findService(query)
+  }
+}
+</code></pre>
+<h2 id="contributing">Contributing</h2>
+<pre><code class="lang-bash"># serve with hot reload at localhost:8080
+npm run dev
+
+# distribution build with minification
+npm run bundle
+
+# build the documentation into docs
+npm run docs
+
+# run unit tests
+npm run test
+
+# run unit tests watch
+npm run unit
+</code></pre>
+<p>For detailed explanation on how things work, checkout the <a href="http://vuejs-templates.github.io/webpack/">guide</a> and <a href="http://vuejs.github.io/vue-loader">docs for vue-loader</a>.</p>
+            
+          </div>
+        </div>
+      </div>
+  </body>     
+</html>
