@@ -3,13 +3,11 @@
   "version": "0.0.1",
   "description": "组件库网站展示",
   "main": "create.js",
-  "scripts": {
-    "publish": "node lib/service/toJson.js --history",
-    "build": "node lib/service/toJson.js",
-    "test": "node lib/service/index.js",
+  "scripts": {    
     "add": "node lib/service/command/index.js --operate=add && node lib/service/command/index.js --operate=index",
     "index": "node lib/service/command/index.js --operate=index",
-    "del": "node lib/service/command/index.js --operate=del && node lib/service/command/index.js --operate=index"
+    "del": "node lib/service/command/index.js --operate=del && node lib/service/command/index.js --operate=index",
+    "test": "node lib/service/index.js"
   },
   "author": "",
   "license": "ISC",
