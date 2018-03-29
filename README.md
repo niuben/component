@@ -1,19 +1,27 @@
 ## 快速开始
 
+### 环境要求
+
+* Node.js > v8.0.0 (支持async/await)
+* npm 5.8.0 
+* 命令行工具
+    * Windown: cmd
+    * Mac: Terminal
+
 ### 项目安装
 ```
-    git clone https://github.com/sgdh-fe/component.git      
-    npm install  // yarn    
+git clone https://github.com/sgdh-fe/component.git      
+npm install  // yarn    
 ```
 
 ### 增加组件
 ```
-    npm run add
+npm run add
 ```
 
 ### 删除组件
 ```
-    npm run del
+npm run del
 ```
  
 
