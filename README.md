@@ -2,7 +2,7 @@
 
 ### 环境要求
 
-* Node.js > v8.0.0 (支持async/await)
+* node.js > v8.0.0 (支持async/await)
 * npm 5.8.0 
 * 命令行工具
     * Windown: cmd

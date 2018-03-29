@@ -5,9 +5,9 @@ var path = require("path");
 
 var config = {
     entry: {
-        test: "./lib/site/static/test.js",
-        // index: './lib/site/static/index.js',
-        // detail: "./lib/site/static/detail.js",
+        // test: "./lib/site/static/test.js",
+        index: './lib/site/static/index.js',
+        detail: "./lib/site/static/detail.js"
         // edit: "./lib/site/static/edit.js"
     },
     output: {
@@ -38,8 +38,7 @@ var config = {
                             minimize: true
                         }              
                     },{
-                        loader: "sass-loader",
-                        
+                        loader: "sass-loader",                        
                     }]                
                 })
         },{
