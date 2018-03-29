@@ -4,6 +4,7 @@
   "description": "组件分享项目",
   "main": "./lib/service/command/index.js",
   "scripts": {
+    "fetch": "node lib/service/command/index.js --operate=fetch",  
     "add": "node lib/service/command/index.js --operate=add && node lib/service/command/index.js --operate=index",
     "index": "node lib/service/command/index.js --operate=index",
     "del": "node lib/service/command/index.js --operate=del && node lib/service/command/index.js --operate=index",
