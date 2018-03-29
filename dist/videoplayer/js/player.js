@@ -1,8 +1,8 @@
 var ztHost = 'http://' + window.location.hostname;
   var ztPath = 'img/';
   window.videoConf = {
-    poster: '../../img/cj6.jpg',
-    video:   '../../img/video.mov'
+    poster: './img/cj6.jpg',
+    video:   'http://ztpreview.sogou-inc.com/imgn/zhuanti/2018cj/video.mov'
   }
 
   var videoObject = {
