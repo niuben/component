@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>
+    <link rel="stylesheet" href="../../lib/site/dist/reset.css" />
+    <link rel="stylesheet" href="../../lib/site/dist/detail.css" />        
+    <title>videoplayer组件 - 搜狗导航前端组件库</title>
+    <style>      
+    </style>
+  </head>
+  <body>  
+      <div class="nav">
+        <h1><a href="/component/index.html"><img src="https://upd13.sogoucdn.com/nstatic/img/logo.png?v=4" /></a></h1>
+      </div>
+      <div class="content">
+        <div class="content-inner">
+          <h2 class="title">videoplayer</h2>
+          <p>兼容IE6的视频播放器</p>
+          <div class="preview">
+            <img src="./preview.png" />
+          </div>
+          <div class="browser">            
+            <img src="../../lib/site/static/img/browser/ie6.png" />
+          </div>
+
+          <div class="operate">
+            <button class="demo" onClick=location.href="./video.html">查看Demo</button>
+            <button class="download" onClick=location.href="http://git.dh.sogou-inc.com/niuben/videoplayer.git">下载</button>
+          </div>
+          <div class="markdown markdown-body">
+              <h2 id="-">视频播放组件</h2>
+<p>兼容PC端（包含IE8-）和移动端的视频播放组件                               .</p>
+<h3 id="-">场景</h3>
+<p>需要进行视频播放操作时.</p>
+<h3 id="api">API</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>属性类型</th>
+<th>功能说明</th>
+<th>兼容环境</th>
+<th>是否必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>playerID</td>
+<td>string</td>
+<td>播放器ID，不能以数字开头</td>
+<td>html5,flashplayer</td>
+<td>否</td>
+</tr>
+<tr>
+<td>container</td>
+<td>string</td>
+<td>播放器窗口的idName或className</td>
+<td>html5,flashplayer</td>
+<td>是</td>
+</tr>
+<tr>
+<td>video</td>
+<td>string/array/object</td>
+<td>定义播放地址，关于这个属性的详细说明可查看“安装调用-&gt;视频地址形式”</td>
+<td>html5,flashplayer</td>
+<td>是</td>
+</tr>
+<tr>
+<td>autoplay</td>
+<td>boolean</td>
+<td>是否自动播放（false=默认暂停，true=默认播放）</td>
+<td>html5,flashplayer</td>
+<td>否</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>boolean</td>
+<td>播放结束后是否循环播放(false=播放结束后暂停，true=播放结束后重新播放)</td>
+<td>html5,flashplayer</td>
+<td>否</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>number</td>
+<td>初始音量(如果静音，则设置成0，数值为0-1之间的小数)</td>
+<td>html5,flashplayer</td>
+<td>否</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>string</td>
+<td>封面图片(播放器默认显示的一张图片地址)</td>
+<td>html5,flashplayer</td>
+<td>否</td>
+</tr>
+<tr>
+<td>flashplayer</td>
+<td>boolean</td>
+<td>是否强制使用flashplayer播放(false=播放器自动判断，优先使用html5播放器，true=仅使用flashplayer播放)</td>
+<td>html5,flashplayer</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-">演示代码</h3>
+<pre><code class="lang-js">&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.12.1.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/ckplayer/ckplayer.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  var ztHost = &#39;http://&#39; + window.location.hostname; 
+  var ztPath = &#39;img/&#39;;
+  window.videoConf = {
+    poster: ztHost + ztPath + &#39;cj6.jpg&#39;, 
+    video:  ztHost + ztPath + &#39;video.mov&#39;
+  }
+
+  var videoObject = {
+    container: &quot;#video&quot;, //“#”代表容器的ID，“.”或“”代表容器的class
+    variable: &quot;player&quot;, //该属性必需设置，值等于下面的new chplayer()的对象
+    flashplayer: false, //强制使用flashplayer
+    poster: videoConf.poster, //封面图
+    video: videoConf.video //视频地址
+  };
+  var player = new ckplayer(videoObject);
+&lt;/script&gt;
+</code></pre>
+<h3 id="-">播放器详情地址</h3>
+<p><a href="http://www.ckplayer.com/manualX/">http://www.ckplayer.com/manualX/</a></p>
+            
+          </div>
+        </div>
+      </div>
+  </body>     
+</html>
