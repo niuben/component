@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>
+    <link rel="stylesheet" href="../../lib/site/dist/reset.css" />
+    <link rel="stylesheet" href="../../lib/site/dist/detail.css" />        
+    <title>vir-ui-suggestion组件 - 搜狗导航前端组件库</title>
+    <style>      
+    </style>
+  </head>
+  <body>  
+      <div class="nav">
+        <h1><a href="/component/index.html"><img src="https://upd13.sogoucdn.com/nstatic/img/logo.png?v=4" /></a></h1>
+      </div>
+      <div class="content">
+        <div class="content-inner">
+          <h2 class="title">vir-ui-suggestion</h2>
+          <p>搜索框提示</p>
+          <div class="preview">
+            <img src="./preview.png" />
+          </div>
+          <div class="browser">            
+            <img src="../../lib/site/static/img/browser/ie6.png" />
+          </div>
+
+          <div class="operate">
+            <button class="demo" onClick=location.href="./examples/index.html">查看Demo</button>
+            <button class="download" onClick=location.href="https://github.com/sgdh-fe/vir-ui-suggestion.git">下载</button>
+          </div>
+          <div class="markdown markdown-body">
+              <h1 id="vir-ui-suggestion">vir-ui-suggestion</h1>
+<h2 id="-">依赖安装</h2>
+<h3 id="npm">npm</h3>
+<pre><code class="lang-sh">npm install Vir
+</code></pre>
+<h3 id="script-">script 标签</h3>
+<pre><code class="lang-html">&lt;script src=&quot;https://unpkg.com/vir&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h2 id="-">安装</h2>
+<h3 id="npm">npm</h3>
+<pre><code class="lang-sh">npm install vir-ui-suggestion
+</code></pre>
+<h3 id="script-">script 标签</h3>
+<pre><code class="lang-html">&lt;script src=&quot;https://unpkg.com/vir-ui-suggestion&quot;&gt;&lt;/script&gt;
+&lt;!-- 全局变量 VirUiSuggestion --&gt;
+</code></pre>
+<h2 id="-">基本使用</h2>
+<pre><code class="lang-html">  &lt;div class=&quot;container&quot;&gt;
+    &lt;input type=&quot;text&quot; autocomplete=&quot;off&quot;&gt;
+    &lt;div class=&quot;sugglist&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+</code></pre>
+<pre><code class="lang-js">  var App = VirUiSuggestion()
+
+  new App({
+    el: &#39;.container&#39;,
+    methods: {
+      fetch: function (done) {
+        $.ajax({
+          url: &#39;https://www.sogou.com/suggnew/ajajjson&#39;,
+          data: {
+            type: &#39;web&#39;,
+            key: this.get(&#39;keyword&#39;)
+          },
+          dataType: &#39;jsonp&#39;,
+          jsonp: &#39;m&#39;
+        }).done(function (data) {
+          done(data[1])
+        })
+      },
+      render: function (data) {
+        var str = &#39;&lt;ul&gt;&#39;
+        for (var i = 0, item; item = data[i++];) {
+          str += &#39;&lt;li&gt;&#39; + item + &#39;&lt;/li&gt;&#39;
+        }
+        str += &#39;&lt;/ul&gt;&#39;
+        this.$$(&#39;.sugglist&#39;).html(str)
+      },
+      submit() {
+        window.open(&#39;https://www.sogou.com/sie?query=&#39; + decodeURIComponent(this.$$(&#39;input&#39;).val()))
+      }
+    }
+  })
+)
+</code></pre>
+<h2 id="-">例子</h2>
+<p><a href="http://htmlpreview.github.io/?https://github.com/sgdh-fe/vir-ui-suggestion/blob/master/examples/index.html" target="_blank">base</a></p>
+            
+          </div>
+        </div>
+      </div>
+  </body>     
+</html>
