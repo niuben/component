@@ -4,10 +4,10 @@
   "description": "组件分享项目",
   "main": "./lib/service/command/index.js",
   "scripts": {
-    "fetch": "node lib/service/command/index.js --operate=fetch",  
-    "add": "node lib/service/command/index.js --operate=add && node lib/service/command/index.js --operate=index",
+    "fetch": "node lib/service/command/index.js --operate=fetch",
+    "add": "node lib/service/command/index.js --operate=add && node lib/service/command/index.js --operate=index && node lib/service/command/index.js --operate=fetch",
     "index": "node lib/service/command/index.js --operate=index",
-    "del": "node lib/service/command/index.js --operate=del && node lib/service/command/index.js --operate=index",
+    "del": "node lib/service/command/index.js --operate=del && node lib/service/command/index.js --operate=index && node lib/service/command/index.js --operate=fetch",
     "test": "node lib/service/test.js"
   },
   "author": "",
@@ -54,5 +54,8 @@
     "webpack-manifest-plugin": "1.2.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "webshot": "^0.18.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1"
   }
 }
